@@ -33,7 +33,7 @@ export default async function DebateDetailPage({
   }
 
   // Fetch arguments
-  const { data: arguments: debateArgs } = await supabase
+  const { data: debateArgs } = await supabase
     .from('arguments')
     .select(`
       *,
