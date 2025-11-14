@@ -27,12 +27,13 @@ export default function LoginPage() {
       if (error) throw error;
 
       if (data.user) {
+        // Wait for session to be stored in cookies
+        await new Promise(resolve => setTimeout(resolve, 500));
         router.push('/debates');
         router.refresh();
       }
     } catch (err: any) {
       setError(err.message || 'Failed to log in');
-    } finally {
       setLoading(false);
     }
   };
