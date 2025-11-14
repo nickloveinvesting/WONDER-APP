@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARGUED - Where Intellectuals Converge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #fafafa;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        :root {
+            --charcoal: #1a202c;
+            --teal: #0d9488;
+            --teal-dark: #0f766e;
+            --slate: #64748b;
+            --light-bg: #fafafa;
+            --white: #ffffff;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+        }
+
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--slate);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+
+        .btn-primary {
+            background: var(--teal);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--teal-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--charcoal);
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--charcoal);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--charcoal);
+            color: white;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem 6rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--slate);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .hero .tagline {
+            font-size: 1.125rem;
+            color: var(--slate);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .features-section {
+            background: var(--white);
+            padding: 6rem 2rem;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: var(--slate);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--slate);
+            line-height: 1.7;
+        }
+
+        .formats-section {
+            padding: 6rem 2rem;
+            background: var(--light-bg);
+        }
+
+        .formats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .formats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .format-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s;
+        }
+
+        .format-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+            border-color: var(--teal);
+        }
+
+        .format-card h3 {
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .format-card .emoji {
+            font-size: 2rem;
+        }
+
+        .format-card .subtitle-small {
+            color: var(--teal);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .format-card p {
+            color: var(--slate);
+            margin-bottom: 1rem;
+        }
+
+        .format-card ul {
+            list-style: none;
+            color: var(--slate);
+        }
+
+        .format-card ul li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .format-card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--teal);
+            font-weight: bold;
+        }
+
+        .social-proof {
+            background: var(--charcoal);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .social-proof .stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat .number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--teal);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat .label {
+            color: var(--gray-200);
+            font-size: 1rem;
+        }
+
+        .cta-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            color: var(--slate);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        footer {
+            background: var(--charcoal);
+            color: var(--gray-200);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero .subtitle {
+                font-size: 1.25rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            .features-grid,
+            .formats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">ARGUED</a>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#formats">Formats</a>
+                <a href="#about">About</a>
+                <a href="#" class="btn-primary">Enter ARGUED</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Where Intellectuals Converge</h1>
+        <p class="subtitle">Rigorous discourse for thoughtful minds</p>
+        <p class="tagline">
+            From casual philosophical questions to formal AI-judged debates. 
+            ARGUED is your platform for serious intellectual discourse across ethics, 
+            consciousness, AI, morality, and the questions that matter.
+        </p>
+        <div class="hero-cta">
+            <a href="#" class="btn-primary">Begin Your Journey</a>
+            <a href="#" class="btn-secondary">Explore Topics</a>
+        </div>
+    </section>
+
+    <section class="features-section" id="features">
+        <div class="features-container">
+            <div class="section-header">
+                <h2>Built for Serious Discourse</h2>
+                <p>A platform designed for minds that take ideas seriously</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>AI-Enhanced</h3>
+                    <p>Gemini AI doesn't just judge debates—it facilitates discussions, suggests questions, connects ideas, and helps you think deeper.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Multiple Formats</h3>
+                    <p>From quick questions to Socratic circles to formal debates. Choose your depth, choose your format.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Quality Standards</h3>
+                    <p>Reputation-gated access to advanced discussions ensures intellectual rigor without gatekeeping beginners.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="formats-section" id="formats">
+        <div class="formats-container">
+            <div class="section-header">
+                <h2>Choose Your Mode of Inquiry</h2>
+                <p>Different formats for different depths of engagement</p>
+            </div>
+            <div class="formats-grid">
+                <div class="format-card">
+                    <h3><span class="emoji">💭</span> Discuss</h3>
+                    <p class="subtitle-small">Conversational</p>
+                    <p>Join topic-based discussions on ethics, AI, consciousness, and contemporary issues.</p>
+                    <ul>
+                        <li>Topic threads</li>
+                        <li>Community-driven</li>
+                        <li>No judgment, just dialogue</li>
+                    </ul>
+                </div>
+                <div class="format-card">
+                    <h3><span class="emoji">🤔</span> Inquire</h3>
+                    <p class="subtitle-small">Exploratory</p>
+                    <p>Socratic circles, daily dilemmas, and collaborative truth-seeking.</p>
+                    <ul>
+                        <li>Guided questioning</li>
+                        <li>Small group inquiry</li>
+                        <li>Focus on insight, not victory</li>
+                    </ul>
+                </div>
+                <div class="format-card">
+                    <h3><span class="emoji">⚔️</span> Debate</h3>
+                    <p class="subtitle-small">Competitive</p>
+                    <p>Structured arguments judged by AI on logic, evidence, and rhetoric.</p>
+                    <ul>
+                        <li>Formal structure</li>
+                        <li>AI judgment & feedback</li>
+                        <li>Earn your rating</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <h2 style="margin-bottom: 0.5rem;">Join the Conversation</h2>
+        <p style="color: var(--gray-200); margin-bottom: 2rem;">
+            Thinkers exploring the questions that matter
+        </p>
+        <div class="stats">
+            <div class="stat">
+                <div class="number">500+</div>
+                <div class="label">Active Intellectuals</div>
+            </div>
+            <div class="stat">
+                <div class="number">2.3K+</div>
+                <div class="label">Discussions</div>
+            </div>
+            <div class="stat">
+                <div class="number">12+</div>
+                <div class="label">Topic Communities</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Engage?</h2>
+        <p>Start with a question, join a discussion, or dive into formal debate. Your intellectual journey begins here.</p>
+        <a href="#" class="btn-primary" style="font-size: 1.125rem; padding: 1rem 2rem;">Enter ARGUED</a>
+    </section>
+
+    <footer>
+        <p><strong>ARGUED</strong> — Where intellectuals converge</p>
+        <p>
+            <a href="#">About</a> · 
+            <a href="#">Topics</a> · 
+            <a href="#">Community</a> · 
+            <a href="#">Privacy</a>
+        </p>
+        <p style="margin-top: 2rem; color: var(--slate);">© 2025 ARGUED. All rights reserved.</p>
+    </footer>
+</body>
+</html>
