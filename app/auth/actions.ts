@@ -12,10 +12,14 @@ import { revalidatePath } from 'next/cache';
  * 2. Redirect happens server-side
  * 3. No race conditions with client navigation
  * 
+ * @param prevState - Previous form state from useFormState
  * @param formData - Form data containing email and password
  * @returns Error object if auth fails, otherwise redirects
  */
-export async function signIn(formData: FormData) {
+export async function signIn(
+  prevState: { error?: string } | null,
+  formData: FormData
+): Promise<{ error?: string } | null> {
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
 
