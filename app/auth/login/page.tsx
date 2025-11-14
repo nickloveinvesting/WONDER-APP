@@ -27,8 +27,8 @@ export default function LoginPage() {
       if (error) throw error;
 
       if (data.user) {
-        // Wait for session to be stored in cookies
-        await new Promise(resolve => setTimeout(resolve, 500));
+        // Wait for session to be stored in cookies and synced by middleware
+        await new Promise(resolve => setTimeout(resolve, 1000));
         router.push('/debates');
         router.refresh();
       }
