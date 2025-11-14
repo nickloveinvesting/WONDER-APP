@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import { signOut } from '@/app/auth/actions';
 
 // Prevent caching - server component must run on every request
 export const dynamic = 'force-dynamic';
@@ -76,7 +77,7 @@ export default async function DebatesPage() {
             <h1 className="text-2xl font-bold text-red-300 mb-2">Profile Error</h1>
             <p className="text-red-200 mb-4">{profileError.message}</p>
             <p className="text-red-200 text-sm mb-6">Please try signing out and back in.</p>
-            <form action="/auth/logout">
+            <form action={signOut}>
               <button className="w-full px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition">
                 Sign Out & Retry
               </button>
@@ -105,14 +106,6 @@ export default async function DebatesPage() {
     console.error('[DebatesPage] Unexpected error fetching debates:', debatesError);
   }
 
-  // Server action for sign out
-  const handleSignOut = async () => {
-    'use server';
-    const supabaseClient = await createClient();
-    await supabaseClient.auth.signOut();
-    redirect('/');
-  };
-
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'open':
@@ -138,7 +131,7 @@ export default async function DebatesPage() {
               <span className="text-gray-400">Welcome,</span> <span className="font-medium">{profile?.username || 'Philosopher'}</span>
               <span className="ml-2 text-accent-500">★ {profile?.reputation_score ?? 0}</span>
             </div>
-            <form action={handleSignOut}>
+            <form action={signOut}>
               <button className="px-4 py-2 text-gray-300 hover:text-white transition">
                 Sign Out
               </button>
