@@ -33,7 +33,7 @@ export default async function DebatesPage() {
       case 'in_progress':
         return 'bg-argued-brown/20 text-argued-brown border border-argued-brown/30';
       default:
-        return 'bg-argued-gray/20 text-argued-gray border border-argued-gray/30';
+        return 'bg-argued-navy/20 text-argued-navy border border-argued-navy/30';
     }
   };
 
@@ -42,7 +42,7 @@ export default async function DebatesPage() {
       <div className="mb-8 flex justify-between items-center">
         <div>
           <h1 className="text-4xl font-bold text-argued-navy mb-2">Active Debates</h1>
-          <p className="text-argued-gray">Join philosophical discourse and earn DeLO rating</p>
+          <p className="text-argued-navy">Join philosophical discourse and earn DeLO rating</p>
         </div>
         <Link href="/debates/create">
           <Button variant="primary" size="lg">
@@ -63,16 +63,16 @@ export default async function DebatesPage() {
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-argued-navy mb-2">{debate.topic}</h3>
                   {debate.description && (
-                    <p className="text-argued-gray mb-3">{debate.description}</p>
+                    <p className="text-argued-navy mb-3">{debate.description}</p>
                   )}
                 </div>
                 <span className={`px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ml-4 ${getStatusColor(debate.status)}`}>
                   {debate.status?.replace('_', ' ').toUpperCase()}
                 </span>
               </div>
-              <div className="flex gap-4 text-sm text-argued-gray">
+              <div className="flex gap-4 text-sm text-argued-navy">
                 <span>👤 {debate.participant_count || 2} participants</span>
-                <span>🗣️ {debate.argument_count || 0} arguments</span>
+                <span>💬 {debate.argument_count || 0} arguments</span>
               </div>
             </Link>
           ))

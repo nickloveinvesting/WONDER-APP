@@ -23,7 +23,7 @@ function getRankIcon(rank: number) {
     case 3:
       return <span className="text-2xl">🥉</span>;
     default:
-      return <span className="text-argued-gray font-semibold">#{rank}</span>;
+      return <span className="text-argued-navy font-semibold">#{rank}</span>;
   }
 }
 
@@ -94,7 +94,7 @@ export default async function LeaderboardPage() {
           <Trophy className="text-argued-brown" size={32} />
           <h1 className="text-4xl font-bold text-argued-navy">Philosopher Leaderboard</h1>
         </div>
-        <p className="text-argued-gray">Top 100 philosophers ranked by DeLO rating</p>
+        <p className="text-argued-navy font-medium">Top 100 philosophers ranked by DeLO rating</p>
       </div>
 
       {/* Stats Summary */}
@@ -105,7 +105,7 @@ export default async function LeaderboardPage() {
               <Trophy className="text-argued-brown" size={24} />
             </div>
             <div>
-              <p className="text-argued-gray text-sm">Total Philosophers</p>
+              <p className="text-argued-navy text-sm font-medium">Total Philosophers</p>
               <p className="text-2xl font-bold text-argued-navy">{leaderboard.length}</p>
             </div>
           </div>
@@ -117,7 +117,7 @@ export default async function LeaderboardPage() {
               <Medal className="text-argued-navy" size={24} />
             </div>
             <div>
-              <p className="text-argued-gray text-sm">Highest DeLO</p>
+              <p className="text-argued-navy text-sm font-medium">Highest DeLO</p>
               <p className="text-2xl font-bold text-argued-navy">
                 {leaderboard[0]?.delo_rating || 1000}
               </p>
@@ -131,7 +131,7 @@ export default async function LeaderboardPage() {
               <Award className="text-argued-success" size={24} />
             </div>
             <div>
-              <p className="text-argued-gray text-sm">Best Win Rate</p>
+              <p className="text-argued-navy text-sm font-medium">Best Win Rate</p>
               <p className="text-2xl font-bold text-argued-navy">
                 {Math.max(...leaderboard.map(p => p.win_rate), 0)}%
               </p>
@@ -147,13 +147,13 @@ export default async function LeaderboardPage() {
           <table className="w-full">
             <thead className="bg-argued-cream border-b border-argued-navy/10 sticky top-0">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy w-20">Rank</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy">Username</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy">DeLO Rating</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy">Reputation</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy">Debates</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy">Wins</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy">Win Rate</th>
+                <th className="px-6 py-4 text-left text-sm font-bold text-argued-navy w-20">Rank</th>
+                <th className="px-6 py-4 text-left text-sm font-bold text-argued-navy">Username</th>
+                <th className="px-6 py-4 text-left text-sm font-bold text-argued-navy">DeLO Rating</th>
+                <th className="px-6 py-4 text-left text-sm font-bold text-argued-navy">Reputation</th>
+                <th className="px-6 py-4 text-left text-sm font-bold text-argued-navy">Debates</th>
+                <th className="px-6 py-4 text-left text-sm font-bold text-argued-navy">Wins</th>
+                <th className="px-6 py-4 text-left text-sm font-bold text-argued-navy">Win Rate</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-argued-cream">
@@ -179,11 +179,11 @@ export default async function LeaderboardPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
-                          <span className="text-argued-navy font-medium">
+                          <span className="text-argued-navy font-bold">
                             {profile.username}
                           </span>
                           {isCurrentUser && (
-                            <span className="px-2 py-1 bg-argued-navy/10 text-argued-navy text-xs rounded-full font-medium">
+                            <span className="px-2 py-1 bg-argued-navy/10 text-argued-navy text-xs rounded-full font-bold">
                               You
                             </span>
                           )}
@@ -195,14 +195,14 @@ export default async function LeaderboardPage() {
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="text-argued-navy font-medium">
-                          ⭐ {profile.reputation_score}
+                        <span className="text-argued-navy font-bold">
+                          ★ {profile.reputation_score}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-argued-navy">
+                      <td className="px-6 py-4 text-argued-navy font-bold">
                         {profile.total_debates}
                       </td>
-                      <td className="px-6 py-4 text-argued-success font-medium">
+                      <td className="px-6 py-4 text-argued-success font-bold">
                         {profile.debates_won}
                       </td>
                       <td className="px-6 py-4">
@@ -213,7 +213,7 @@ export default async function LeaderboardPage() {
                               style={{ width: `${profile.win_rate}%` }}
                             />
                           </div>
-                          <span className="text-argued-navy font-medium text-sm w-12 text-right">
+                          <span className="text-argued-navy font-bold text-sm w-12 text-right">
                             {profile.win_rate}%
                           </span>
                         </div>
@@ -225,12 +225,12 @@ export default async function LeaderboardPage() {
                 <tr>
                   <td colSpan={7} className="px-6 py-16 text-center">
                     <div className="flex flex-col items-center gap-4">
-                      <Trophy className="text-argued-gray" size={64} />
+                      <Trophy className="text-argued-navy/20" size={64} />
                       <div>
                         <h3 className="text-xl font-bold text-argued-navy mb-2">
                           Be the First Philosopher!
                         </h3>
-                        <p className="text-argued-gray">
+                        <p className="text-argued-navy">
                           Start debating to appear on the leaderboard
                         </p>
                       </div>
@@ -268,7 +268,7 @@ export default async function LeaderboardPage() {
                         <div className="flex items-center gap-2">
                           <span className="text-argued-navy font-bold">{profile.username}</span>
                           {isCurrentUser && (
-                            <span className="px-2 py-1 bg-argued-navy/10 text-argued-navy text-xs rounded-full font-medium">
+                            <span className="px-2 py-1 bg-argued-navy/10 text-argued-navy text-xs rounded-full font-bold">
                               You
                             </span>
                           )}
@@ -282,26 +282,26 @@ export default async function LeaderboardPage() {
 
                   <div className="grid grid-cols-2 gap-3 text-sm">
                     <div>
-                      <span className="text-argued-gray">Reputation:</span>
-                      <span className="ml-2 text-argued-navy font-medium">
-                        ⭐ {profile.reputation_score}
+                      <span className="text-argued-navy font-medium">Reputation:</span>
+                      <span className="ml-2 text-argued-navy font-bold">
+                        ★ {profile.reputation_score}
                       </span>
                     </div>
                     <div>
-                      <span className="text-argued-gray">Debates:</span>
-                      <span className="ml-2 text-argued-navy font-medium">
+                      <span className="text-argued-navy font-medium">Debates:</span>
+                      <span className="ml-2 text-argued-navy font-bold">
                         {profile.total_debates}
                       </span>
                     </div>
                     <div>
-                      <span className="text-argued-gray">Wins:</span>
-                      <span className="ml-2 text-argued-success font-medium">
+                      <span className="text-argued-navy font-medium">Wins:</span>
+                      <span className="ml-2 text-argued-success font-bold">
                         {profile.debates_won}
                       </span>
                     </div>
                     <div>
-                      <span className="text-argued-gray">Win Rate:</span>
-                      <span className="ml-2 text-argued-navy font-medium">
+                      <span className="text-argued-navy font-medium">Win Rate:</span>
+                      <span className="ml-2 text-argued-navy font-bold">
                         {profile.win_rate}%
                       </span>
                     </div>
@@ -321,12 +321,12 @@ export default async function LeaderboardPage() {
           ) : (
             <div className="px-6 py-16 text-center">
               <div className="flex flex-col items-center gap-4">
-                <Trophy className="text-argued-gray" size={64} />
+                <Trophy className="text-argued-navy/20" size={64} />
                 <div>
                   <h3 className="text-xl font-bold text-argued-navy mb-2">
                     Be the First Philosopher!
                   </h3>
-                  <p className="text-argued-gray">
+                  <p className="text-argued-navy">
                     Start debating to appear on the leaderboard
                   </p>
                 </div>
@@ -338,7 +338,7 @@ export default async function LeaderboardPage() {
 
       {/* Footer Info */}
       <div className="mt-6 p-4 bg-argued-navy/10 border border-argued-navy/20 rounded-xl">
-        <p className="text-argued-navy text-sm">
+        <p className="text-argued-navy font-medium text-sm">
           <strong>DeLO Rating System:</strong> Similar to chess Elo, your DeLO rating increases when you win debates
           and decreases when you lose. All philosophers start at 1000 DeLO. The more debates you win, the higher you climb!
         </p>
