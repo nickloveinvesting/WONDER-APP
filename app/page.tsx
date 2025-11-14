@@ -13,27 +13,6 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-primary-900 to-slate-900">
       <div className="container mx-auto px-4 py-16">
-        {/* Header */}
-        <nav className="flex justify-between items-center mb-20">
-          <div className="text-3xl font-bold text-white">
-            PhiloDuel
-          </div>
-          <div className="space-x-4">
-            <Link
-              href="/auth/login"
-              className="px-6 py-2 text-white hover:text-accent-500 transition"
-            >
-              Log In
-            </Link>
-            <Link
-              href="/auth/signup"
-              className="px-6 py-2 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition"
-            >
-              Sign Up
-            </Link>
-          </div>
-        </nav>
-
         {/* Hero */}
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-6xl font-bold text-white mb-6">
