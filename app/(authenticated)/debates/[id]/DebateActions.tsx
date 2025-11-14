@@ -57,7 +57,6 @@ export default function DebateActions({
     setError('');
 
     try {
-      // Submit argument
       const { error: insertError } = await supabase.from('arguments').insert({
         debate_id: debateId,
         user_id: userId,
@@ -67,7 +66,6 @@ export default function DebateActions({
 
       if (insertError) throw insertError;
 
-      // Check if both participants have submitted
       const { data: allArgs } = await supabase
         .from('arguments')
         .select('position')
@@ -76,7 +74,6 @@ export default function DebateActions({
       const hasForArg = allArgs?.some((a) => a.position === 'for');
       const hasAgainstArg = allArgs?.some((a) => a.position === 'against');
 
-      // If both arguments are in, trigger AI judgment
       if (hasForArg && hasAgainstArg) {
         await triggerJudgment();
       } else {
@@ -91,7 +88,6 @@ export default function DebateActions({
 
   const triggerJudgment = async () => {
     try {
-      // Get debate and arguments
       const { data: debate } = await supabase
         .from('debates')
         .select('topic')
@@ -110,7 +106,6 @@ export default function DebateActions({
 
       if (!forArg || !againstArg) throw new Error('Missing arguments');
 
-      // Call API to judge
       const response = await fetch('/api/judge', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
