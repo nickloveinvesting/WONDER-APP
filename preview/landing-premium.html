@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARGUED - Where Intellectuals Converge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #0F172A;
+            background: #FAFAF9;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Premium Color Palette */
+        :root {
+            --stone-50: #FAFAF9;
+            --stone-100: #F5F5F4;
+            --slate-900: #0F172A;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --slate-200: #E2E8F0;
+            --slate-100: #F1F5F9;
+            --emerald-600: #059669;
+            --emerald-700: #047857;
+        }
+
+        /* Container System */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(250, 250, 249, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--slate-200);
+            z-index: 100;
+            padding: 24px 0;
+        }
+
+        nav {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--slate-900);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--slate-600);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 150ms;
+        }
+
+        .nav-links a:hover {
+            color: var(--slate-900);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            display: inline-block;
+            background: var(--emerald-600);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 150ms;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--emerald-700);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--slate-900);
+            padding: 12px 32px;
+            border: 1px solid var(--slate-200);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 150ms;
+        }
+
+        .btn-secondary:hover {
+            background: var(--slate-100);
+        }
+
+        /* Hero Section - Asymmetric 60/40 */
+        .hero {
+            min-height: 90vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            padding: 128px 48px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: var(--slate-900);
+            margin-bottom: 24px;
+        }
+
+        .hero .tagline {
+            font-size: 20px;
+            color: var(--slate-600);
+            margin-bottom: 48px;
+            max-width: 540px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .hero-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-card {
+            background: white;
+            border: 1px solid var(--slate-200);
+            border-radius: 12px;
+            padding: 48px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .hero-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--slate-900);
+        }
+
+        .hero-card p {
+            color: var(--slate-600);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .topic-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            background: var(--stone-100);
+            border-radius: 6px;
+            font-size: 14px;
+            color: var(--slate-700);
+            font-weight: 500;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 128px 48px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            max-width: 640px;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--slate-900);
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: var(--slate-600);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+        }
+
+        .feature {
+            background: white;
+            border: 1px solid var(--slate-200);
+            border-radius: 12px;
+            padding: 40px;
+            transition: all 200ms;
+        }
+
+        .feature:hover {
+            border-color: var(--slate-900);
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .feature h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--slate-900);
+            margin-bottom: 16px;
+        }
+
+        .feature p {
+            color: var(--slate-600);
+            line-height: 1.7;
+        }
+
+        /* Formats Section - Asymmetric Layout */
+        .formats {
+            background: var(--slate-900);
+            color: white;
+            border-radius: 24px;
+            padding: 80px 64px;
+            margin: 128px 48px;
+        }
+
+        .formats-header {
+            max-width: 640px;
+            margin-bottom: 64px;
+        }
+
+        .formats h2 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .formats-header p {
+            font-size: 20px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .formats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .format-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 40px;
+            transition: all 200ms;
+        }
+
+        .format-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .format-card:first-child {
+            grid-column: span 2;
+        }
+
+        .format-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--emerald-600);
+            background: rgba(5, 150, 105, 0.1);
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        .format-card h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .format-card p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .format-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .format-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255,255,255,0.8);
+            font-size: 16px;
+        }
+
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--emerald-600);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            text-align: center;
+            padding: 80px 48px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 64px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat h3 {
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .stat p {
+            color: var(--slate-600);
+            font-size: 18px;
+        }
+
+        /* Final CTA */
+        .cta-section {
+            text-align: center;
+            padding: 128px 48px;
+            background: var(--stone-100);
+            border-radius: 24px;
+            margin: 0 48px 80px;
+        }
+
+        .cta-section h2 {
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-section p {
+            font-size: 20px;
+            color: var(--slate-600);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--slate-200);
+            padding: 64px 48px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 64px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand {
+            max-width: 320px;
+        }
+
+        .footer-brand .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--slate-900);
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            color: var(--slate-600);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--slate-900);
+            margin-bottom: 16px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--slate-600);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 150ms;
+        }
+
+        .footer-links a:hover {
+            color: var(--slate-900);
+        }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid var(--slate-200);
+            color: var(--slate-600);
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container, nav, section, .hero, .formats {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                padding: 64px 24px;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero .tagline {
+                font-size: 18px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .hero-cta a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-header h2 {
+                font-size: 36px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .formats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .format-card:first-child {
+                grid-column: span 1;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .cta-section h2 {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">ARGUED</a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#formats">Formats</a>
+                <a href="#about">About</a>
+                <a href="#" class="btn-primary">Enter ARGUED</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section - Asymmetric -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Where Intellectuals Converge</h1>
+            <p class="tagline">A platform for rigorous discourse across ethics, consciousness, AI, and the questions that define our time. Choose your depth. Choose your format.</p>
+            <div class="hero-cta">
+                <a href="#" class="btn-primary">Begin Your Inquiry</a>
+                <a href="#" class="btn-secondary">Explore Topics</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card">
+                <h3>Current Discussions</h3>
+                <p>Join ongoing conversations on topics that matter</p>
+                <div class="topic-tags">
+                    <span class="tag">AI Ethics</span>
+                    <span class="tag">Consciousness</span>
+                    <span class="tag">Morality</span>
+                    <span class="tag">Free Will</span>
+                    <span class="tag">Justice</span>
+                    <span class="tag">Technology</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="section-header">
+            <h2>Built for Serious Minds</h2>
+            <p>A platform designed for those who take ideas seriously</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature">
+                <span class="feature-icon">🧠</span>
+                <h3>AI-Enhanced Thinking</h3>
+                <p>Gemini AI doesn't just judge—it facilitates deeper inquiry, suggests connections, and helps you refine your reasoning.</p>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">📚</span>
+                <h3>Multiple Formats</h3>
+                <p>From casual threads to Socratic circles to formal debates. Your choice of depth, your choice of engagement.</p>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">⚡</span>
+                <h3>Quality Standards</h3>
+                <p>Reputation-gated access ensures intellectual rigor. Beginners welcome, but excellence required.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formats Section - Dark Background, Asymmetric Grid -->
+    <div class="formats" id="formats">
+        <div class="formats-header">
+            <h2>Choose Your Mode of Inquiry</h2>
+            <p>Three ways to engage, each with its purpose</p>
+        </div>
+        <div class="formats-grid">
+            <div class="format-card">
+                <span class="format-label">Primary</span>
+                <h3>💭 Discuss</h3>
+                <p>Topic-based conversations on ethics, AI, consciousness, and contemporary philosophical issues. Community-driven discourse without formal judgment.</p>
+                <div class="format-features">
+                    <div class="format-feature-item">
+                        <span class="check-icon">✓</span>
+                        <span>Threaded conversations</span>
+                    </div>
+                    <div class="format-feature-item">
+                        <span class="check-icon">✓</span>
+                        <span>Topic communities</span>
+                    </div>
+                    <div class="format-feature-item">
+                        <span class="check-icon">✓</span>
+                        <span>Collaborative exploration</span>
+                    </div>
+                </div>
+            </div>
+            <div class="format-card">
+                <span class="format-label">Exploratory</span>
+                <h3>🤔 Inquire</h3>
+                <p>Socratic circles and guided questioning. Small-group inquiry focused on truth-seeking, not victory.</p>
+                <div class="format-features">
+                    <div class="format-feature-item">
+                        <span class="check-icon">✓</span>
+                        <span>Daily dilemmas</span>
+                    </div>
+                    <div class="format-feature-item">
+                        <span class="check-icon">✓</span>
+                        <span>Guided sessions</span>
+                    </div>
+                </div>
+            </div>
+            <div class="format-card">
+                <span class="format-label">Competitive</span>
+                <h3>⚔️ Debate</h3>
+                <p>Formal arguments judged by AI on logic, evidence, and rhetoric. Earn your rating through rigorous discourse.</p>
+                <div class="format-features">
+                    <div class="format-feature-item">
+                        <span class="check-icon">✓</span>
+                        <span>AI judgment</span>
+                    </div>
+                    <div class="format-feature-item">
+                        <span class="check-icon">✓</span>
+                        <span>Rating system</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="stats">
+            <div class="stat">
+                <h3>500+</h3>
+                <p>Active participants</p>
+            </div>
+            <div class="stat">
+                <h3>2,300+</h3>
+                <p>Discussions</p>
+            </div>
+            <div class="stat">
+                <h3>12+</h3>
+                <p>Topic communities</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <div class="cta-section">
+        <h2>Ready to Engage?</h2>
+        <p>Join a community of thinkers exploring ethics, consciousness, AI, and the ideas that shape our understanding of the world.</p>
+        <a href="#" class="btn-primary" style="font-size: 18px; padding: 16px 40px;">Enter ARGUED</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo">ARGUED</span>
+                <p>Where intellectuals converge to explore the questions that matter.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Formats</a></li>
+                    <li><a href="#">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Topics</a></li>
+                    <li><a href="#">Guidelines</a></li>
+                    <li><a href="#">Leaderboard</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 ARGUED. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
