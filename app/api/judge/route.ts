@@ -65,6 +65,30 @@ export async function POST(request: NextRequest) {
 
     if (updateError) throw updateError;
 
+    // Calculate DeLO ratings for both participants (non-critical background task)
+    try {
+      const baseUrl = process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : 'http://localhost:3000';
+
+      const ratingResponse = await fetch(`${baseUrl}/api/rating`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Internal-Call': 'true' // Mark as internal API call to bypass auth
+        },
+        body: JSON.stringify({ debateId })
+      });
+
+      if (!ratingResponse.ok) {
+        console.warn('Failed to calculate ratings:', await ratingResponse.text());
+        // Don't fail the judgment if rating calculation fails - it can be calculated later
+      }
+    } catch (ratingError) {
+      console.warn('Error calculating ratings:', ratingError);
+      // Non-critical error, judgment still succeeded
+    }
+
     return NextResponse.json({ success: true, judgment });
   } catch (error: any) {
     console.error('Error judging debate:', error);
