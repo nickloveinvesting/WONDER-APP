@@ -1,0 +1,21 @@
+name: Cleanup Old Routes
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: feature/add-navigation-sidebar
+      
+      - name: Remove old debate routes
+        run: |
+          rm -rf app/debates
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "fix: Remove duplicate debate routes"
+          git push
