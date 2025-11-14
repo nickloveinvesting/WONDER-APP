@@ -21,9 +21,9 @@ export default async function DebateDetailPage({
     .from('debates')
     .select(`
       *,
-      creator:created_by(username, display_name, reputation_score),
-      for_user:for_participant(username, display_name, reputation_score),
-      against_user:against_participant(username, display_name, reputation_score)
+      creator:created_by(username, display_name, delo_rating),
+      for_user:for_participant(username, display_name, delo_rating),
+      against_user:against_participant(username, display_name, delo_rating)
     `)
     .eq('id', id)
     .single();
@@ -100,7 +100,7 @@ export default async function DebateDetailPage({
                 <div className="text-white">
                   {debate.for_user.display_name || debate.for_user.username}
                   <span className="text-gray-400 ml-2">
-                    ★ {debate.for_user.reputation_score}
+                    ★ {debate.for_user.delo_rating || debate.for_user.reputation_score}
                   </span>
                 </div>
               ) : (
@@ -114,7 +114,7 @@ export default async function DebateDetailPage({
                 <div className="text-white">
                   {debate.against_user.display_name || debate.against_user.username}
                   <span className="text-gray-400 ml-2">
-                    ★ {debate.against_user.reputation_score}
+                    ★ {debate.against_user.delo_rating || debate.against_user.reputation_score}
                   </span>
                 </div>
               ) : (
