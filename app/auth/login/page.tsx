@@ -22,7 +22,7 @@ export default function LoginPage() {
       }
     };
     checkAuth();
-  }, [router]); // Only depend on router, not supabase
+  }, [router]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,7 +39,14 @@ export default function LoginPage() {
       if (error) throw error;
 
       if (data.user && data.session) {
-        // Session is ready, navigate
+        // CRITICAL FIX: Refresh the router to sync server-side state before navigating
+        // This ensures the server can see the auth cookies before the page loads
+        router.refresh();
+        
+        // Small delay to ensure refresh completes
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        // Now navigate to debates
         router.push('/debates');
       }
     } catch (err: any) {
