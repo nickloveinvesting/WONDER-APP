@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
+import Logo from '@/components/Logo';
 
 export default async function Home() {
   const supabase = await createClient();
@@ -15,6 +16,9 @@ export default async function Home() {
       <div className="container mx-auto px-4 py-16">
         {/* Hero */}
         <div className="text-center max-w-4xl mx-auto">
+          <div className="flex justify-center mb-8">
+            <Logo variant="white" size="lg" clickable={false} />
+          </div>
           <h1 className="text-6xl font-bold text-white mb-6">
             Where Philosophy Comes Alive
           </h1>

@@ -7,6 +7,7 @@ import { createClient } from '@/lib/supabase/client';
 import { signOut } from '@/app/auth/actions';
 import { Menu, X, ChevronDown, User, Settings, LogOut } from 'lucide-react';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
+import Logo from './Logo';
 
 interface Profile {
   username: string;
@@ -130,13 +131,7 @@ export default function Navigation() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link
-            href={user ? '/debates' : '/'}
-            className="flex items-center space-x-2 text-white font-bold text-xl hover:text-indigo-100 transition"
-          >
-            <span>⚖️</span>
-            <span>PhiloDuel</span>
-          </Link>
+          <Logo variant="white" size="md" />
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">

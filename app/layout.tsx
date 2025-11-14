@@ -11,6 +11,16 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "PhiloDuel - Where Philosophy Comes Alive",
   description: "Engage in fair, AI-judged philosophical debates. Build reputation, find your community, and sharpen your mind.",
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
+  openGraph: {
+    title: 'PhiloDuel - Where Philosophy Comes Alive',
+    description: 'Engage in fair, AI-judged philosophical debates. Build reputation, find your community, and sharpen your mind.',
+    images: ['/logo-black.png'],
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
