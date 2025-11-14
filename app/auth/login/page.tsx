@@ -1,28 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
-import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
-
-  // Check if user is already logged in
-  useEffect(() => {
-    const checkAuth = async () => {
-      const supabase = createClient();
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        router.push('/debates');
-      }
-    };
-    checkAuth();
-  }, [router]);
+  const supabase = createClient();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,7 +17,6 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const supabase = createClient();
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -38,16 +24,12 @@ export default function LoginPage() {
 
       if (error) throw error;
 
-      if (data.user && data.session) {
-        // CRITICAL FIX: Refresh the router to sync server-side state before navigating
-        // This ensures the server can see the auth cookies before the page loads
-        router.refresh();
+      if (data.user) {
+        // Wait for session to sync
+        await new Promise(resolve => setTimeout(resolve, 500));
         
-        // Small delay to ensure refresh completes
-        await new Promise(resolve => setTimeout(resolve, 100));
-        
-        // Now navigate to debates
-        router.push('/debates');
+        // Force a hard navigation to ensure clean state
+        window.location.href = '/debates';
       }
     } catch (err: any) {
       setError(err.message || 'Failed to log in');
