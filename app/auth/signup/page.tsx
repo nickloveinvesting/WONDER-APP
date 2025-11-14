@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
@@ -14,6 +14,17 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const supabase = createClient();
+
+  // Check if user is already logged in
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        router.push('/debates');
+      }
+    };
+    checkAuth();
+  }, [router, supabase.auth]);
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,11 +55,13 @@ export default function SignupPage() {
         if (data.user.identities?.length === 0) {
           setError('This email is already registered. Please log in.');
           setLoading(false);
-        } else {
-          // Wait for session to be stored and profile to be created
-          await new Promise(resolve => setTimeout(resolve, 1000));
+        } else if (data.session) {
+          // Session is ready, navigate
           router.push('/debates');
-          router.refresh();
+        } else {
+          // No session yet, might need email confirmation
+          setError('Account created! Please check your email to confirm.');
+          setLoading(false);
         }
       }
     } catch (err: any) {
