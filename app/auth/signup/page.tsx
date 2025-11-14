@@ -13,18 +13,18 @@ export default function SignupPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const supabase = createClient();
 
   // Check if user is already logged in
   useEffect(() => {
     const checkAuth = async () => {
+      const supabase = createClient();
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
         router.push('/debates');
       }
     };
     checkAuth();
-  }, [router, supabase.auth]);
+  }, [router]); // Only depend on router, not supabase
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,6 +37,7 @@ export default function SignupPage() {
         throw new Error('Username must be 3-30 characters');
       }
 
+      const supabase = createClient();
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
