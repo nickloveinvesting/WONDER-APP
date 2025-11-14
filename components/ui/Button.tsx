@@ -1,7 +1,7 @@
 /**
  * ARGUED Button Component
  * Supports primary (navy), secondary (brown), and outline variants
- * Follows ARGUED branding guidelines
+ * Follows ARGUED branding guidelines with improved contrast
  */
 
 import { ButtonHTMLAttributes, ReactNode } from 'react';
@@ -22,13 +22,13 @@ export function Button({
   disabled,
   ...props
 }: ButtonProps) {
-  const baseClasses = 'rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseClasses = 'rounded-lg font-bold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed';
 
   const variantClasses = {
     primary: 'bg-argued-navy text-white hover:bg-argued-brown shadow-sm hover:shadow-md',
     secondary: 'bg-argued-brown text-white hover:bg-argued-navy shadow-sm hover:shadow-md',
-    outline: 'border-2 border-argued-navy text-argued-navy hover:bg-argued-navy hover:text-white',
-    ghost: 'text-argued-navy hover:bg-argued-cream',
+    outline: 'border-2 border-black text-black hover:bg-black hover:text-white',
+    ghost: 'text-black hover:bg-white border-2 border-transparent hover:border-black',
   };
 
   const sizeClasses = {
