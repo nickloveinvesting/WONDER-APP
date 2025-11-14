@@ -1,41 +1,49 @@
 'use client';
 
-import { useState } from 'react';
+import { useFormState, useFormStatus } from 'react-dom';
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/client';
+import { signIn } from './actions';
 
+/**
+ * Submit button with loading state
+ * Uses useFormStatus to show loading indicator during form submission
+ */
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="w-full px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+    >
+      {pending ? 'Logging in...' : 'Log In'}
+    </button>
+  );
+}
+
+/**
+ * Login Page - Uses Server Actions for authentication
+ * 
+ * Key features:
+ * - All auth happens server-side (no race conditions)
+ * - useFormState for error handling
+ * - useFormStatus for loading states
+ * - Progressive enhancement (works without JS)
+ * - No client-side navigation needed
+ * 
+ * The Server Action (signIn) handles:
+ * 1. Authentication with Supabase
+ * 2. Setting cookies server-side
+ * 3. Server-side redirect to /debates
+ * 
+ * This eliminates the race condition where client-side router.push()
+ * would navigate before cookies propagated to the server.
+ */
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const supabase = createClient();
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
-
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) throw error;
-
-      if (data.user) {
-        // Wait for session to sync
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
-        // Force a hard navigation to ensure clean state
-        window.location.href = '/debates';
-      }
-    } catch (err: any) {
-      setError(err.message || 'Failed to log in');
-      setLoading(false);
-    }
-  };
+  // useFormState manages form submission and errors
+  // initialState is null, signIn is the server action
+  const [state, formAction] = useFormState(signIn, null);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-primary-900 to-slate-900 flex items-center justify-center px-4">
@@ -48,10 +56,12 @@ export default function LoginPage() {
         </div>
 
         <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20">
-          <form onSubmit={handleLogin} className="space-y-6">
-            {error && (
+          {/* Form using Server Action - no onSubmit handler needed */}
+          <form action={formAction} className="space-y-6">
+            {/* Error message from server action */}
+            {state?.error && (
               <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 rounded">
-                {error}
+                {state.error}
               </div>
             )}
 
@@ -61,10 +71,10 @@ export default function LoginPage() {
               </label>
               <input
                 id="email"
+                name="email"
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 required
+                autoComplete="email"
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-accent-500 transition"
                 placeholder="philosopher@example.com"
               />
@@ -76,22 +86,17 @@ export default function LoginPage() {
               </label>
               <input
                 id="password"
+                name="password"
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
                 required
+                autoComplete="current-password"
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-accent-500 transition"
                 placeholder="••••••••"
               />
             </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition disabled:opacity-50 disabled:cursor-not-allowed font-medium"
-            >
-              {loading ? 'Logging in...' : 'Log In'}
-            </button>
+            {/* Submit button with loading state */}
+            <SubmitButton />
           </form>
 
           <div className="mt-6 text-center">
