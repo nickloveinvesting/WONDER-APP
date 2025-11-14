@@ -31,7 +31,7 @@ export default function SignupPage() {
         password,
         options: {
           data: {
-            username,
+            username: username.toLowerCase().trim(),
             display_name: displayName || username,
           },
         },
@@ -43,16 +43,16 @@ export default function SignupPage() {
         // Check if email confirmation is required
         if (data.user.identities?.length === 0) {
           setError('This email is already registered. Please log in.');
+          setLoading(false);
         } else {
-          // Wait for session to be stored in cookies, then redirect to debates
-          await new Promise(resolve => setTimeout(resolve, 500));
+          // Wait for session to be stored and profile to be created
+          await new Promise(resolve => setTimeout(resolve, 1000));
           router.push('/debates');
           router.refresh();
         }
       }
     } catch (err: any) {
       setError(err.message || 'Failed to sign up');
-    } finally {
       setLoading(false);
     }
   };
