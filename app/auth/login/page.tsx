@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
@@ -12,6 +12,17 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const supabase = createClient();
+
+  // Check if user is already logged in
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        router.push('/debates');
+      }
+    };
+    checkAuth();
+  }, [router, supabase.auth]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,11 +37,9 @@ export default function LoginPage() {
 
       if (error) throw error;
 
-      if (data.user) {
-        // Wait for session to be stored in cookies and synced by middleware
-        await new Promise(resolve => setTimeout(resolve, 1000));
+      if (data.user && data.session) {
+        // Session is ready, navigate
         router.push('/debates');
-        router.refresh();
       }
     } catch (err: any) {
       setError(err.message || 'Failed to log in');
