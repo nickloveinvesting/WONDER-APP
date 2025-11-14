@@ -22,15 +22,6 @@ export default function Navigation() {
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
 
-  // Hide navigation on authenticated routes
-  // The authenticated layout has its own Header component
-  const authenticatedRoutes = ['/debates', '/leaderboard', '/profile', '/settings'];
-  const isAuthenticatedRoute = authenticatedRoutes.some(route => pathname?.startsWith(route));
-  
-  if (isAuthenticatedRoute) {
-    return null; // Don't render on authenticated pages
-  }
-
   // Fetch user and profile data
   useEffect(() => {
     const fetchUserData = async () => {
@@ -104,6 +95,15 @@ export default function Navigation() {
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
   }, [userMenuOpen]);
+
+  // Hide navigation on authenticated routes (AFTER all hooks)
+  // The authenticated layout has its own Header component
+  const authenticatedRoutes = ['/debates', '/leaderboard', '/profile', '/settings'];
+  const isAuthenticatedRoute = authenticatedRoutes.some(route => pathname?.startsWith(route));
+  
+  if (isAuthenticatedRoute) {
+    return null; // Don't render on authenticated pages
+  }
 
   const isActive = (path: string) => {
     if (path === '/') {
