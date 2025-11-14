@@ -48,18 +48,33 @@ export async function POST(request: NextRequest) {
     // Get debate details
     const { data: debate, error: debateError } = await supabase
       .from('debates')
-      .select(
-        `*,
-        for_args:arguments(id, user_id, upvote_ratio, word_count, quality_score)
-        .eq(position, 'for'),
-        against_args:arguments(id, user_id, upvote_ratio, word_count, quality_score)
-        .eq(position, 'against')`
-      )
+      .select('*')
       .eq('id', debateId)
       .single();
 
     if (debateError || !debate) {
       return NextResponse.json({ error: 'Debate not found' }, { status: 404 });
+    }
+
+    // Get arguments for both positions
+    const { data: forArgs, error: forArgsError } = await supabase
+      .from('arguments')
+      .select('id, user_id, upvote_ratio, word_count, quality_score')
+      .eq('debate_id', debateId)
+      .eq('position', 'for');
+
+    const { data: againstArgs, error: againstArgsError } = await supabase
+      .from('arguments')
+      .select('id, user_id, upvote_ratio, word_count, quality_score')
+      .eq('debate_id', debateId)
+      .eq('position', 'against');
+
+    if (forArgsError || !forArgs || !forArgs[0]) {
+      return NextResponse.json({ error: 'FOR argument not found' }, { status: 404 });
+    }
+
+    if (againstArgsError || !againstArgs || !againstArgs[0]) {
+      return NextResponse.json({ error: 'AGAINST argument not found' }, { status: 404 });
     }
 
     // Check if already processed
@@ -85,7 +100,7 @@ export async function POST(request: NextRequest) {
     const { data: forProfile, error: forError } = await supabase
       .from('profiles')
       .select(
-        'id, delo_rating, delo_rating_provisional, debate_won, win_loss_record, delo_categories'
+        'id, delo_rating, delo_rating_provisional, peak_rating, win_loss_record, delo_categories'
       )
       .eq('id', debate.for_participant)
       .single();
@@ -93,7 +108,7 @@ export async function POST(request: NextRequest) {
     const { data: againstProfile, error: againstError } = await supabase
       .from('profiles')
       .select(
-        'id, delo_rating, delo_rating_provisional, debates_won, win_loss_record, delo_categories'
+        'id, delo_rating, delo_rating_provisional, peak_rating, win_loss_record, delo_categories'
       )
       .eq('id', debate.against_participant)
       .single();
@@ -108,15 +123,8 @@ export async function POST(request: NextRequest) {
     const againstQuality = aiQualityScores?.against_quality || 0.5;
 
     // Get argument stats
-    const forArg = (debate.for_args || [])[0];
-    const againstArg = (debate.against_args || [])[0];
-
-    if (!forArg || !againstArg) {
-      return NextResponse.json(
-        { error: 'Arguments not found for debate' },
-        { status: 400 }
-      );
-    }
+    const forArg = forArgs[0];
+    const againstArg = againstArgs[0];
 
     // Determine outcomes
     const forOutcome: DebateOutcome =
