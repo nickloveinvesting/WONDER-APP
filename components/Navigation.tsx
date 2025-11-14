@@ -96,10 +96,15 @@ export default function Navigation() {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [userMenuOpen]);
 
-  // Hide navigation on authenticated routes (AFTER all hooks)
+  // IMPROVED: Hide navigation on authenticated routes
   // The authenticated layout has its own Header component
-  const authenticatedRoutes = ['/debates', '/leaderboard', '/profile', '/settings'];
-  const isAuthenticatedRoute = authenticatedRoutes.some(route => pathname?.startsWith(route));
+  // Match exact routes AND dynamic routes (e.g., /debates/[id])
+  const isAuthenticatedRoute = pathname && (
+    pathname.startsWith('/debates') ||
+    pathname.startsWith('/leaderboard') ||
+    pathname.startsWith('/profile') ||
+    pathname.startsWith('/settings')
+  );
   
   if (isAuthenticatedRoute) {
     return null; // Don't render on authenticated pages
