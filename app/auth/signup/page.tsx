@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
@@ -13,18 +13,6 @@ export default function SignupPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
-  // Check if user is already logged in
-  useEffect(() => {
-    const checkAuth = async () => {
-      const supabase = createClient();
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        router.push('/debates');
-      }
-    };
-    checkAuth();
-  }, [router]);
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,15 +45,11 @@ export default function SignupPage() {
           setError('This email is already registered. Please log in.');
           setLoading(false);
         } else if (data.session) {
-          // CRITICAL FIX: Refresh the router to sync server-side state before navigating
-          // This ensures the server can see the auth cookies before the page loads
-          router.refresh();
+          // Wait for session to fully sync
+          await new Promise(resolve => setTimeout(resolve, 500));
           
-          // Small delay to ensure refresh completes
-          await new Promise(resolve => setTimeout(resolve, 100));
-          
-          // Now navigate to debates
-          router.push('/debates');
+          // Force a hard navigation to ensure clean state
+          window.location.href = '/debates';
         } else {
           // No session yet, might need email confirmation
           setError('Account created! Please check your email to confirm.');
