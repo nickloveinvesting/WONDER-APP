@@ -146,9 +146,9 @@ export default async function ProfilePage({
           </div>
 
           <div className="flex flex-col gap-4">
-            <div className="bg-gradient-to-br from-primary-500/20 to-accent-500/20 rounded-lg p-6 border border-accent-500/30 text-center">
+            <div className="bg-gradient-to-br from-primary-600/20 to-accent-500/20 rounded-lg p-6 border border-accent-500/30 text-center">
               <p className="text-gray-300 text-sm mb-1">DeLO Rating</p>
-              <p className="text-5xl font-bold text-accent-500">{profile?.reputation_score ?? 0}</p>
+              <p className="text-5xl font-bold text-accent-400">{profile?.reputation_score ?? 0}</p>
             </div>
           </div>
         </div>
@@ -173,7 +173,7 @@ export default async function ProfilePage({
 
         <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 text-center">
           <p className="text-gray-400 text-sm mb-2">Win Rate</p>
-          <p className="text-3xl font-bold text-accent-500">{winRate}%</p>
+          <p className="text-3xl font-bold text-accent-400">{winRate}%</p>
         </div>
       </div>
 
@@ -181,15 +181,15 @@ export default async function ProfilePage({
       <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 mb-6">
         <h2 className="text-2xl font-bold text-white mb-4">Average Scores</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-primary-500/10 rounded-lg p-4 border border-primary-500/30">
+          <div className="bg-primary-600/10 rounded-lg p-4 border border-primary-500/30">
             <p className="text-gray-300 text-sm mb-1">Logic</p>
             <p className="text-2xl font-bold text-white">{avgLogic}/10</p>
           </div>
-          <div className="bg-primary-500/10 rounded-lg p-4 border border-primary-500/30">
+          <div className="bg-primary-600/10 rounded-lg p-4 border border-primary-500/30">
             <p className="text-gray-300 text-sm mb-1">Evidence</p>
             <p className="text-2xl font-bold text-white">{avgEvidence}/10</p>
           </div>
-          <div className="bg-primary-500/10 rounded-lg p-4 border border-primary-500/30">
+          <div className="bg-primary-600/10 rounded-lg p-4 border border-primary-500/30">
             <p className="text-gray-300 text-sm mb-1">Rhetoric</p>
             <p className="text-2xl font-bold text-white">{avgRhetoric}/10</p>
           </div>
@@ -268,7 +268,7 @@ export default async function ProfilePage({
             <p className="text-gray-400 mb-4">No debates yet. Start your philosophical journey!</p>
             <Link
               href="/debates"
-              className="inline-block px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition"
+              className="inline-block px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition shadow-md"
             >
               Browse Debates
             </Link>
@@ -298,7 +298,7 @@ export default async function ProfilePage({
                     href={`/profile?page=${pageNum}`}
                     className={`px-4 py-2 rounded-lg transition ${
                       pageNum === currentPage
-                        ? 'bg-accent-500 text-white'
+                        ? 'bg-accent-500 text-white shadow-md'
                         : 'bg-white/5 text-white hover:bg-white/10'
                     }`}
                   >

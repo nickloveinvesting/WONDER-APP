@@ -102,7 +102,7 @@ export default async function LeaderboardPage() {
         <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-accent-500/20 rounded-lg">
-              <Trophy className="text-accent-500" size={24} />
+              <Trophy className="text-accent-400" size={24} />
             </div>
             <div>
               <p className="text-gray-400 text-sm">Total Philosophers</p>
@@ -113,8 +113,8 @@ export default async function LeaderboardPage() {
 
         <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-primary-500/20 rounded-lg">
-              <Medal className="text-primary-400" size={24} />
+            <div className="p-3 bg-primary-600/20 rounded-lg">
+              <Medal className="text-primary-300" size={24} />
             </div>
             <div>
               <p className="text-gray-400 text-sm">Highest DeLO</p>
@@ -190,7 +190,7 @@ export default async function LeaderboardPage() {
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="text-accent-500 font-bold text-lg">
+                        <span className="text-accent-400 font-bold text-lg">
                           {profile.delo_rating}
                         </span>
                       </td>
@@ -273,7 +273,7 @@ export default async function LeaderboardPage() {
                             </span>
                           )}
                         </div>
-                        <div className="text-accent-500 font-bold text-lg">
+                        <div className="text-accent-400 font-bold text-lg">
                           {profile.delo_rating} DeLO
                         </div>
                       </div>
@@ -337,8 +337,8 @@ export default async function LeaderboardPage() {
       </div>
 
       {/* Footer Info */}
-      <div className="mt-6 p-4 bg-primary-500/10 border border-primary-500/30 rounded-xl">
-        <p className="text-primary-300 text-sm">
+      <div className="mt-6 p-4 bg-primary-600/10 border border-primary-500/30 rounded-xl">
+        <p className="text-primary-200 text-sm">
           <strong>DeLO Rating System:</strong> Similar to chess Elo, your DeLO rating increases when you win debates
           and decreases when you lose. All philosophers start at 1000 DeLO. The more debates you win, the higher you climb!
         </p>

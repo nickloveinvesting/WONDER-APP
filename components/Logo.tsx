@@ -15,9 +15,9 @@ export default function Logo({
   clickable = true
 }: LogoProps) {
   const sizes = {
-    sm: { width: 100, height: 32 },
-    md: { width: 140, height: 45 },
-    lg: { width: 180, height: 58 }
+    sm: { width: 80, height: 26 },
+    md: { width: 110, height: 35 },
+    lg: { width: 140, height: 45 }
   }
 
   const logoSrc = variant === 'white' ? '/logo-white.png' : '/logo-black.png'

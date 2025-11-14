@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import DebateActions from './DebateActions';
+import DeleteDebateButton from './DeleteDebateButton';
 
 export default async function DebateDetailPage({
   params,
@@ -54,13 +55,17 @@ export default async function DebateDetailPage({
     debate.status === 'in_progress' &&
     isParticipant &&
     !debateArgs?.find((arg: any) => arg.user_id === user.id);
+  const isCreator = user.id === debate.created_by;
 
   return (
     <div className="container mx-auto px-4 py-8 lg:px-8 max-w-4xl">
-      <div className="mb-4">
+      <div className="mb-4 flex justify-between items-center">
         <Link href="/debates" className="text-gray-400 hover:text-white transition">
           ← Back to Debates
         </Link>
+        {isCreator && (
+          <DeleteDebateButton debateId={id} debateTopic={debate.topic} />
+        )}
       </div>
 
       <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20 mb-6">

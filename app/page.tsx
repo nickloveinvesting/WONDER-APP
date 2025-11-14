@@ -12,7 +12,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-primary-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-primary-800 to-slate-900">
       <div className="container mx-auto px-4 py-16">
         {/* Hero */}
         <div className="text-center max-w-4xl mx-auto">
@@ -28,7 +28,7 @@ export default async function Home() {
           </p>
           <Link
             href="/auth/signup"
-            className="inline-block px-8 py-4 bg-accent-500 text-white text-lg rounded-lg hover:bg-accent-600 transition transform hover:scale-105"
+            className="inline-block px-8 py-4 bg-accent-500 text-white text-lg rounded-lg hover:bg-accent-600 transition transform hover:scale-105 shadow-lg"
           >
             Start Your First Duel
           </Link>

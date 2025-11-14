@@ -15,7 +15,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="w-full px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+      className="w-full px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition disabled:opacity-50 disabled:cursor-not-allowed font-medium shadow-md"
     >
       {pending ? 'Logging in...' : 'Log In'}
     </button>
@@ -35,7 +35,7 @@ export default function LoginForm() {
   const [state, formAction] = useFormState(signIn, null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-primary-900 to-slate-900 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-primary-800 to-slate-900 flex items-center justify-center px-4">
       <div className="max-w-md w-full">
         <div className="text-center mb-8">
           <Link href="/" className="text-4xl font-bold text-white">
@@ -88,7 +88,7 @@ export default function LoginForm() {
           <div className="mt-6 text-center">
             <p className="text-gray-300">
               Don't have an account?{' '}
-              <Link href="/auth/signup" className="text-accent-500 hover:text-accent-400 transition">
+              <Link href="/auth/signup" className="text-accent-400 hover:text-accent-300 transition">
                 Sign up
               </Link>
             </p>

@@ -96,7 +96,7 @@ export default function CreateDebatePage() {
             />
           </div>
 
-          <div className="bg-primary-500/10 border border-primary-500/30 rounded-lg p-4">
+          <div className="bg-primary-600/10 border border-primary-500/30 rounded-lg p-4">
             <h3 className="text-white font-medium mb-2">How it works:</h3>
             <ol className="text-gray-300 text-sm space-y-1 list-decimal list-inside">
               <li>You create the debate topic</li>
@@ -111,7 +111,7 @@ export default function CreateDebatePage() {
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+              className="flex-1 px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition disabled:opacity-50 disabled:cursor-not-allowed font-medium shadow-md"
             >
               {loading ? 'Creating...' : 'Create Debate'}
             </button>
