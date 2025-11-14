@@ -1,6 +1,14 @@
-import { createClient as createSupabaseClient } from '@supabase/supabase-js'
+import { createClient as createSupabaseClient, SupabaseClient } from '@supabase/supabase-js'
+
+// Singleton instance
+let supabaseInstance: SupabaseClient | null = null;
 
 export function createClient() {
+  // Return existing instance if it exists
+  if (supabaseInstance) {
+    return supabaseInstance;
+  }
+
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -26,11 +34,15 @@ export function createClient() {
     );
   }
 
-  return createSupabaseClient(supabaseUrl, supabaseAnonKey, {
+  // Create and store the instance
+  supabaseInstance = createSupabaseClient(supabaseUrl, supabaseAnonKey, {
     auth: {
       autoRefreshToken: true,
       persistSession: true,
-      detectSessionInUrl: true
+      detectSessionInUrl: true,
+      storage: typeof window !== 'undefined' ? window.localStorage : undefined,
     }
-  })
+  });
+
+  return supabaseInstance;
 }
