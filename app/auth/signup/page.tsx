@@ -24,7 +24,7 @@ export default function SignupPage() {
       }
     };
     checkAuth();
-  }, [router]); // Only depend on router, not supabase
+  }, [router]);
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,7 +57,14 @@ export default function SignupPage() {
           setError('This email is already registered. Please log in.');
           setLoading(false);
         } else if (data.session) {
-          // Session is ready, navigate
+          // CRITICAL FIX: Refresh the router to sync server-side state before navigating
+          // This ensures the server can see the auth cookies before the page loads
+          router.refresh();
+          
+          // Small delay to ensure refresh completes
+          await new Promise(resolve => setTimeout(resolve, 100));
+          
+          // Now navigate to debates
           router.push('/debates');
         } else {
           // No session yet, might need email confirmation
