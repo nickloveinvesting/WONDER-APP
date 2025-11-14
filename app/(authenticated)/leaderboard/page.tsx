@@ -23,18 +23,18 @@ function getRankIcon(rank: number) {
     case 3:
       return <span className="text-2xl">🥉</span>;
     default:
-      return <span className="text-gray-400 font-semibold">#{rank}</span>;
+      return <span className="text-argued-gray font-semibold">#{rank}</span>;
   }
 }
 
 function getRankBgColor(rank: number) {
   switch (rank) {
     case 1:
-      return 'bg-gradient-to-r from-yellow-500/20 to-yellow-600/10 border-yellow-500/30';
+      return 'bg-argued-brown/10 border-l-4 border-argued-brown';
     case 2:
-      return 'bg-gradient-to-r from-gray-400/20 to-gray-500/10 border-gray-400/30';
+      return 'bg-argued-navy/10 border-l-4 border-argued-navy';
     case 3:
-      return 'bg-gradient-to-r from-orange-600/20 to-orange-700/10 border-orange-600/30';
+      return 'bg-argued-success/10 border-l-4 border-argued-success';
     default:
       return '';
   }
@@ -91,48 +91,48 @@ export default async function LeaderboardPage() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <Trophy className="text-accent-500" size={32} />
-          <h1 className="text-4xl font-bold text-white">Philosopher Leaderboard</h1>
+          <Trophy className="text-argued-brown" size={32} />
+          <h1 className="text-4xl font-bold text-argued-navy">Philosopher Leaderboard</h1>
         </div>
-        <p className="text-gray-400">Top 100 philosophers ranked by DeLO rating</p>
+        <p className="text-argued-gray">Top 100 philosophers ranked by DeLO rating</p>
       </div>
 
       {/* Stats Summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+        <div className="bg-white rounded-xl p-6 border border-argued-cream shadow-sm">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-accent-500/20 rounded-lg">
-              <Trophy className="text-accent-500" size={24} />
+            <div className="p-3 bg-argued-brown/10 rounded-lg">
+              <Trophy className="text-argued-brown" size={24} />
             </div>
             <div>
-              <p className="text-gray-400 text-sm">Total Philosophers</p>
-              <p className="text-2xl font-bold text-white">{leaderboard.length}</p>
+              <p className="text-argued-gray text-sm">Total Philosophers</p>
+              <p className="text-2xl font-bold text-argued-navy">{leaderboard.length}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+        <div className="bg-white rounded-xl p-6 border border-argued-cream shadow-sm">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-primary-500/20 rounded-lg">
-              <Medal className="text-primary-400" size={24} />
+            <div className="p-3 bg-argued-navy/10 rounded-lg">
+              <Medal className="text-argued-navy" size={24} />
             </div>
             <div>
-              <p className="text-gray-400 text-sm">Highest DeLO</p>
-              <p className="text-2xl font-bold text-white">
+              <p className="text-argued-gray text-sm">Highest DeLO</p>
+              <p className="text-2xl font-bold text-argued-navy">
                 {leaderboard[0]?.delo_rating || 1000}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+        <div className="bg-white rounded-xl p-6 border border-argued-cream shadow-sm">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-green-500/20 rounded-lg">
-              <Award className="text-green-400" size={24} />
+            <div className="p-3 bg-argued-success/10 rounded-lg">
+              <Award className="text-argued-success" size={24} />
             </div>
             <div>
-              <p className="text-gray-400 text-sm">Best Win Rate</p>
-              <p className="text-2xl font-bold text-white">
+              <p className="text-argued-gray text-sm">Best Win Rate</p>
+              <p className="text-2xl font-bold text-argued-navy">
                 {Math.max(...leaderboard.map(p => p.win_rate), 0)}%
               </p>
             </div>
@@ -141,22 +141,22 @@ export default async function LeaderboardPage() {
       </div>
 
       {/* Leaderboard Table */}
-      <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 overflow-hidden">
+      <div className="bg-white rounded-xl border border-argued-cream overflow-hidden shadow-sm">
         {/* Desktop Table */}
         <div className="hidden md:block overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-white/5 border-b border-white/10 sticky top-0 backdrop-blur-lg">
+            <thead className="bg-argued-cream border-b border-argued-navy/10 sticky top-0">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400 w-20">Rank</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Username</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">DeLO Rating</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Reputation</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Debates</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Wins</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Win Rate</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy w-20">Rank</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy">Username</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy">DeLO Rating</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy">Reputation</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy">Debates</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy">Wins</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-argued-navy">Win Rate</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/10">
+            <tbody className="divide-y divide-argued-cream">
               {leaderboard && leaderboard.length > 0 ? (
                 leaderboard.map((profile, index) => {
                   const rank = index + 1;
@@ -167,9 +167,9 @@ export default async function LeaderboardPage() {
                     <tr
                       key={profile.id}
                       className={`
-                        transition-colors
-                        ${rankBg ? `${rankBg} border-l-4` : 'hover:bg-white/5'}
-                        ${isCurrentUser ? 'bg-primary-600/20 border-l-4 border-primary-500' : ''}
+                        transition-colors hover:bg-argued-cream/50
+                        ${rankBg}
+                        ${isCurrentUser ? 'bg-argued-navy/10' : ''}
                       `}
                     >
                       <td className="px-6 py-4">
@@ -179,41 +179,41 @@ export default async function LeaderboardPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
-                          <span className="text-white font-medium">
+                          <span className="text-argued-navy font-medium">
                             {profile.username}
                           </span>
                           {isCurrentUser && (
-                            <span className="px-2 py-1 bg-primary-500/20 text-primary-300 text-xs rounded-full">
+                            <span className="px-2 py-1 bg-argued-navy/10 text-argued-navy text-xs rounded-full font-medium">
                               You
                             </span>
                           )}
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="text-accent-500 font-bold text-lg">
+                        <span className="text-argued-brown font-bold text-lg">
                           {profile.delo_rating}
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="text-yellow-400 font-medium">
-                          ★ {profile.reputation_score}
+                        <span className="text-argued-navy font-medium">
+                          ⭐ {profile.reputation_score}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-white">
+                      <td className="px-6 py-4 text-argued-navy">
                         {profile.total_debates}
                       </td>
-                      <td className="px-6 py-4 text-green-400 font-medium">
+                      <td className="px-6 py-4 text-argued-success font-medium">
                         {profile.debates_won}
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
-                          <div className="flex-1 bg-gray-700 rounded-full h-2 w-20">
+                          <div className="flex-1 bg-argued-cream rounded-full h-2 w-20">
                             <div
-                              className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full transition-all"
+                              className="bg-gradient-to-r from-argued-success to-argued-brown h-2 rounded-full transition-all"
                               style={{ width: `${profile.win_rate}%` }}
                             />
                           </div>
-                          <span className="text-white font-medium text-sm w-12 text-right">
+                          <span className="text-argued-navy font-medium text-sm w-12 text-right">
                             {profile.win_rate}%
                           </span>
                         </div>
@@ -225,12 +225,12 @@ export default async function LeaderboardPage() {
                 <tr>
                   <td colSpan={7} className="px-6 py-16 text-center">
                     <div className="flex flex-col items-center gap-4">
-                      <Trophy className="text-gray-600" size={64} />
+                      <Trophy className="text-argued-gray" size={64} />
                       <div>
-                        <h3 className="text-xl font-bold text-white mb-2">
+                        <h3 className="text-xl font-bold text-argued-navy mb-2">
                           Be the First Philosopher!
                         </h3>
-                        <p className="text-gray-400">
+                        <p className="text-argued-gray">
                           Start debating to appear on the leaderboard
                         </p>
                       </div>
@@ -243,7 +243,7 @@ export default async function LeaderboardPage() {
         </div>
 
         {/* Mobile Cards */}
-        <div className="md:hidden divide-y divide-white/10">
+        <div className="md:hidden divide-y divide-argued-cream">
           {leaderboard && leaderboard.length > 0 ? (
             leaderboard.map((profile, index) => {
               const rank = index + 1;
@@ -255,8 +255,8 @@ export default async function LeaderboardPage() {
                   key={profile.id}
                   className={`
                     p-4
-                    ${rankBg ? `${rankBg} border-l-4` : ''}
-                    ${isCurrentUser ? 'bg-primary-600/20 border-l-4 border-primary-500' : ''}
+                    ${rankBg}
+                    ${isCurrentUser ? 'bg-argued-navy/10' : ''}
                   `}
                 >
                   <div className="flex items-start justify-between mb-3">
@@ -266,14 +266,14 @@ export default async function LeaderboardPage() {
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="text-white font-bold">{profile.username}</span>
+                          <span className="text-argued-navy font-bold">{profile.username}</span>
                           {isCurrentUser && (
-                            <span className="px-2 py-1 bg-primary-500/20 text-primary-300 text-xs rounded-full">
+                            <span className="px-2 py-1 bg-argued-navy/10 text-argued-navy text-xs rounded-full font-medium">
                               You
                             </span>
                           )}
                         </div>
-                        <div className="text-accent-500 font-bold text-lg">
+                        <div className="text-argued-brown font-bold text-lg">
                           {profile.delo_rating} DeLO
                         </div>
                       </div>
@@ -282,35 +282,35 @@ export default async function LeaderboardPage() {
 
                   <div className="grid grid-cols-2 gap-3 text-sm">
                     <div>
-                      <span className="text-gray-400">Reputation:</span>
-                      <span className="ml-2 text-yellow-400 font-medium">
-                        ★ {profile.reputation_score}
+                      <span className="text-argued-gray">Reputation:</span>
+                      <span className="ml-2 text-argued-navy font-medium">
+                        ⭐ {profile.reputation_score}
                       </span>
                     </div>
                     <div>
-                      <span className="text-gray-400">Debates:</span>
-                      <span className="ml-2 text-white font-medium">
+                      <span className="text-argued-gray">Debates:</span>
+                      <span className="ml-2 text-argued-navy font-medium">
                         {profile.total_debates}
                       </span>
                     </div>
                     <div>
-                      <span className="text-gray-400">Wins:</span>
-                      <span className="ml-2 text-green-400 font-medium">
+                      <span className="text-argued-gray">Wins:</span>
+                      <span className="ml-2 text-argued-success font-medium">
                         {profile.debates_won}
                       </span>
                     </div>
                     <div>
-                      <span className="text-gray-400">Win Rate:</span>
-                      <span className="ml-2 text-white font-medium">
+                      <span className="text-argued-gray">Win Rate:</span>
+                      <span className="ml-2 text-argued-navy font-medium">
                         {profile.win_rate}%
                       </span>
                     </div>
                   </div>
 
                   <div className="mt-3">
-                    <div className="bg-gray-700 rounded-full h-2">
+                    <div className="bg-argued-cream rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full transition-all"
+                        className="bg-gradient-to-r from-argued-success to-argued-brown h-2 rounded-full transition-all"
                         style={{ width: `${profile.win_rate}%` }}
                       />
                     </div>
@@ -321,12 +321,12 @@ export default async function LeaderboardPage() {
           ) : (
             <div className="px-6 py-16 text-center">
               <div className="flex flex-col items-center gap-4">
-                <Trophy className="text-gray-600" size={64} />
+                <Trophy className="text-argued-gray" size={64} />
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">
+                  <h3 className="text-xl font-bold text-argued-navy mb-2">
                     Be the First Philosopher!
                   </h3>
-                  <p className="text-gray-400">
+                  <p className="text-argued-gray">
                     Start debating to appear on the leaderboard
                   </p>
                 </div>
@@ -337,8 +337,8 @@ export default async function LeaderboardPage() {
       </div>
 
       {/* Footer Info */}
-      <div className="mt-6 p-4 bg-primary-500/10 border border-primary-500/30 rounded-xl">
-        <p className="text-primary-300 text-sm">
+      <div className="mt-6 p-4 bg-argued-navy/10 border border-argued-navy/20 rounded-xl">
+        <p className="text-argued-navy text-sm">
           <strong>DeLO Rating System:</strong> Similar to chess Elo, your DeLO rating increases when you win debates
           and decreases when you lose. All philosophers start at 1000 DeLO. The more debates you win, the higher you climb!
         </p>

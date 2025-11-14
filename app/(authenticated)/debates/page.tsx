@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
+import { Button } from '@/components/ui/Button';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -28,23 +29,25 @@ export default async function DebatesPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'open':
-        return 'bg-green-500/20 text-green-300';
+        return 'bg-argued-success/20 text-argued-success border border-argued-success/30';
       case 'in_progress':
-        return 'bg-yellow-500/20 text-yellow-300';
+        return 'bg-argued-brown/20 text-argued-brown border border-argued-brown/30';
       default:
-        return 'bg-gray-500/20 text-gray-300';
+        return 'bg-argued-gray/20 text-argued-gray border border-argued-gray/30';
     }
   };
 
   return (
     <div className="container mx-auto px-4 py-8 lg:px-8">
       <div className="mb-8 flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-white">Active Debates</h1>
-        <Link
-          href="/debates/create"
-          className="px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition font-medium"
-        >
-          + Create Debate
+        <div>
+          <h1 className="text-4xl font-bold text-argued-navy mb-2">Active Debates</h1>
+          <p className="text-argued-gray">Join philosophical discourse and earn DeLO rating</p>
+        </div>
+        <Link href="/debates/create">
+          <Button variant="primary" size="lg">
+            + Create Debate
+          </Button>
         </Link>
       </div>
 
@@ -54,29 +57,32 @@ export default async function DebatesPage() {
             <Link
               key={debate.id}
               href={`/debates/${debate.id}`}
-              className="block bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:border-accent-500 transition"
+              className="block bg-white rounded-xl p-6 border border-argued-cream hover:border-argued-navy hover:shadow-lg transition"
             >
               <div className="flex justify-between items-start mb-4">
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-white mb-2">{debate.topic}</h3>
+                  <h3 className="text-xl font-bold text-argued-navy mb-2">{debate.topic}</h3>
                   {debate.description && (
-                    <p className="text-gray-300 mb-3">{debate.description}</p>
+                    <p className="text-argued-gray mb-3">{debate.description}</p>
                   )}
                 </div>
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(debate.status)}`}>
-                  {debate.status?.replace('_', ' ')}
+                <span className={`px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap ml-4 ${getStatusColor(debate.status)}`}>
+                  {debate.status?.replace('_', ' ').toUpperCase()}
                 </span>
+              </div>
+              <div className="flex gap-4 text-sm text-argued-gray">
+                <span>👤 {debate.participant_count || 2} participants</span>
+                <span>🗣️ {debate.argument_count || 0} arguments</span>
               </div>
             </Link>
           ))
         ) : (
-          <div className="text-center py-12">
-            <p className="text-gray-400 text-lg mb-4">No debates yet. Be the first!</p>
-            <Link
-              href="/debates/create"
-              className="inline-block px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition"
-            >
-              Create First Debate
+          <div className="text-center py-16 bg-white rounded-xl border border-argued-cream">
+            <p className="text-argued-navy text-lg font-medium mb-4">No debates yet. Be the first!</p>
+            <Link href="/debates/create">
+              <Button variant="primary" size="lg">
+                Create First Debate
+              </Button>
             </Link>
           </div>
         )}
