@@ -99,9 +99,12 @@ export default async function SettingsPage() {
           <div className="space-y-3">
             <p className="text-argued-navy text-sm font-medium">Sign out of your account and return to the home page.</p>
             <form action={signOut}>
-              <Button variant="error" size="lg">
+              <button
+                type="submit"
+                className="px-6 py-3 text-lg font-bold rounded-lg transition-all duration-200 bg-argued-error text-white hover:bg-argued-error/90 shadow-sm hover:shadow-md"
+              >
                 Sign Out
-              </Button>
+              </button>
             </form>
           </div>
         </div>
