@@ -44,6 +44,8 @@ export default function SignupPage() {
         if (data.user.identities?.length === 0) {
           setError('This email is already registered. Please log in.');
         } else {
+          // Wait for session to be stored in cookies, then redirect to debates
+          await new Promise(resolve => setTimeout(resolve, 500));
           router.push('/debates');
           router.refresh();
         }
