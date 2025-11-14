@@ -1,7 +1,7 @@
 /**
  * ARGUED Header Component
  * Top navigation with logo, nav links, and user menu
- * Cream background with navy accents
+ * Cream background with high-contrast navy/black text for readability
  */
 
 'use client';
@@ -59,7 +59,7 @@ export function Header({ user, onSignOut }: HeaderProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-argued-navy font-medium hover:text-argued-brown transition-colors"
+                className="text-argued-black font-semibold text-base hover:text-argued-brown transition-colors"
               >
                 {item.label}
               </Link>
@@ -72,9 +72,9 @@ export function Header({ user, onSignOut }: HeaderProps) {
               <div className="relative">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-argued-navy hover:bg-argued-cream transition"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-argued-black font-medium hover:bg-white transition border border-transparent hover:border-argued-navy"
                 >
-                  <span className="font-medium">{user.username}</span>
+                  <span className="font-semibold">{user.username}</span>
                   <Badge type="rating" size="sm">
                     {user.reputationScore}
                   </Badge>
@@ -90,14 +90,14 @@ export function Header({ user, onSignOut }: HeaderProps) {
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 border-2 border-argued-navy">
                     <Link
                       href="/profile"
-                      className="flex items-center px-4 py-2 text-sm text-argued-black hover:bg-argued-cream transition"
+                      className="flex items-center px-4 py-2 text-sm font-medium text-argued-black hover:bg-argued-cream transition"
                     >
                       <User className="w-4 h-4 mr-2" />
                       My Profile
                     </Link>
                     <Link
                       href="/settings"
-                      className="flex items-center px-4 py-2 text-sm text-argued-black hover:bg-argued-cream transition"
+                      className="flex items-center px-4 py-2 text-sm font-medium text-argued-black hover:bg-argued-cream transition"
                     >
                       <Settings className="w-4 h-4 mr-2" />
                       Settings
@@ -105,7 +105,7 @@ export function Header({ user, onSignOut }: HeaderProps) {
                     <hr className="my-1 border-argued-cream" />
                     <button
                       onClick={onSignOut}
-                      className="flex items-center w-full px-4 py-2 text-sm text-argued-error hover:bg-argued-cream transition"
+                      className="flex items-center w-full px-4 py-2 text-sm font-medium text-argued-error hover:bg-argued-cream transition"
                     >
                       <LogOut className="w-4 h-4 mr-2" />
                       Logout
@@ -128,7 +128,7 @@ export function Header({ user, onSignOut }: HeaderProps) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-md text-argued-navy hover:bg-argued-cream transition"
+            className="md:hidden p-2 rounded-md text-argued-black hover:bg-white border border-transparent hover:border-argued-navy transition"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -136,13 +136,13 @@ export function Header({ user, onSignOut }: HeaderProps) {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pt-4 border-t border-argued-navy">
+          <div className="md:hidden mt-4 pt-4 border-t-2 border-argued-navy">
             <div className="space-y-2">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block px-4 py-2 text-argued-navy font-medium hover:bg-argued-cream rounded-lg transition"
+                  className="block px-4 py-2 text-argued-black font-semibold hover:bg-white rounded-lg transition border border-transparent hover:border-argued-navy"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
@@ -151,8 +151,8 @@ export function Header({ user, onSignOut }: HeaderProps) {
             </div>
 
             {user ? (
-              <div className="mt-4 pt-4 border-t border-argued-cream">
-                <div className="px-4 py-2 text-argued-navy font-medium">
+              <div className="mt-4 pt-4 border-t border-argued-navy">
+                <div className="px-4 py-2 text-argued-black font-semibold">
                   {user.username}
                   <Badge type="rating" size="sm" className="ml-2">
                     {user.reputationScore}
@@ -160,14 +160,14 @@ export function Header({ user, onSignOut }: HeaderProps) {
                 </div>
                 <Link
                   href="/profile"
-                  className="block px-4 py-2 text-argued-black hover:bg-argued-cream rounded-lg"
+                  className="block px-4 py-2 text-argued-black font-medium hover:bg-white rounded-lg border border-transparent hover:border-argued-navy"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   My Profile
                 </Link>
                 <Link
                   href="/settings"
-                  className="block px-4 py-2 text-argued-black hover:bg-argued-cream rounded-lg"
+                  className="block px-4 py-2 text-argued-black font-medium hover:bg-white rounded-lg border border-transparent hover:border-argued-navy"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Settings
@@ -177,13 +177,13 @@ export function Header({ user, onSignOut }: HeaderProps) {
                     onSignOut?.();
                     setMobileMenuOpen(false);
                   }}
-                  className="block w-full text-left px-4 py-2 text-argued-error hover:bg-argued-cream rounded-lg"
+                  className="block w-full text-left px-4 py-2 text-argued-error font-medium hover:bg-white rounded-lg border border-transparent hover:border-argued-navy"
                 >
                   Logout
                 </button>
               </div>
             ) : (
-              <div className="mt-4 pt-4 border-t border-argued-cream space-y-2">
+              <div className="mt-4 pt-4 border-t border-argued-navy space-y-2">
                 <Link href="/auth/login" onClick={() => setMobileMenuOpen(false)}>
                   <Button variant="ghost" fullWidth>
                     Log In
