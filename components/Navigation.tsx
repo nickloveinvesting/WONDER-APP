@@ -96,18 +96,19 @@ export default function Navigation() {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [userMenuOpen]);
 
-  // IMPROVED: Hide navigation on authenticated routes
-  // The authenticated layout has its own Header component
-  // Match exact routes AND dynamic routes (e.g., /debates/[id])
-  const isAuthenticatedRoute = pathname && (
+  // IMPROVED: Hide navigation on homepage AND authenticated routes
+  // - Homepage has its own built-in header (white sticky header)
+  // - Authenticated layout has its own Header component
+  const shouldHideNavigation = pathname && (
+    pathname === '/' ||  // Landing page has its own header
     pathname.startsWith('/debates') ||
     pathname.startsWith('/leaderboard') ||
     pathname.startsWith('/profile') ||
     pathname.startsWith('/settings')
   );
   
-  if (isAuthenticatedRoute) {
-    return null; // Don't render on authenticated pages
+  if (shouldHideNavigation) {
+    return null; // Don't render on these pages
   }
 
   const isActive = (path: string) => {
