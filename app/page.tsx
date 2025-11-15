@@ -13,12 +13,12 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Header/Navigation - REDUCED HEIGHT */}
+      {/* Header/Navigation - FURTHER REDUCED HEIGHT */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-2">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-1">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <Logo variant="black" size="md" clickable={true} />
+              <Logo variant="black" size="sm" clickable={true} />
             </div>
             <div className="flex items-center space-x-4">
               <Link
