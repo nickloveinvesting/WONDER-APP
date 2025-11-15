@@ -38,57 +38,108 @@ export default async function Home() {
         </div>
       </header>
 
-      {/* Hero Section */}
+      {/* Hero Section with Visual Element */}
       <section className="relative py-20 lg:py-32 bg-gradient-to-b from-stone-50 via-white to-stone-50 overflow-hidden">
+        {/* Background Decorative Blurs */}
         <div className="absolute top-20 right-20 w-96 h-96 bg-teal-100/30 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-slate-100/30 rounded-full blur-3xl"></div>
         
-        <div className="max-w-6xl mx-auto px-6 lg:px-8 text-center relative">
-          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-teal-50 border border-teal-200 rounded-full mb-8">
-            <div className="flex -space-x-2">
-              <div className="w-6 h-6 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full border-2 border-white"></div>
-              <div className="w-6 h-6 bg-gradient-to-br from-slate-400 to-slate-600 rounded-full border-2 border-white"></div>
-              <div className="w-6 h-6 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full border-2 border-white"></div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column: Content */}
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center space-x-2 px-4 py-2 bg-teal-50 border border-teal-200 rounded-full mb-8">
+                <div className="flex -space-x-2">
+                  <div className="w-6 h-6 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full border-2 border-white"></div>
+                  <div className="w-6 h-6 bg-gradient-to-br from-slate-400 to-slate-600 rounded-full border-2 border-white"></div>
+                  <div className="w-6 h-6 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full border-2 border-white"></div>
+                </div>
+                <span className="text-sm font-bold text-slate-700">Join 500+ curious minds</span>
+              </div>
+              
+              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-black text-slate-900 mb-6 leading-tight tracking-tight">
+                Your philosophical<br/>community starts here
+              </h1>
+              
+              <p className="text-xl lg:text-2xl text-slate-600 leading-relaxed mb-10 font-medium">
+                A welcoming space for serious thinkers. Explore ethics, consciousness, AI, and the questions 
+                that matter — <strong className="text-slate-900 font-bold">without needing a PhD</strong>.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row lg:flex-row items-center lg:items-start justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
+                <Link
+                  href="/auth/signup"
+                  className="px-10 py-4 bg-teal-500 text-white text-lg font-black rounded-xl hover:bg-teal-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+                >
+                  Join ARGUED Free
+                </Link>
+                <Link
+                  href="/debates"
+                  className="px-10 py-4 border-2 border-slate-300 text-slate-700 text-lg font-black rounded-xl hover:border-teal-500 hover:bg-teal-50 transition-all shadow-lg"
+                >
+                  Explore Discussions
+                </Link>
+              </div>
+              
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-slate-500 font-bold">
+                <div className="flex items-center space-x-2">
+                  <svg className="w-5 h-5 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                  </svg>
+                  <span>No credit card needed</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <svg className="w-5 h-5 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                  </svg>
+                  <span>Always free</span>
+                </div>
+              </div>
             </div>
-            <span className="text-sm font-bold text-slate-700">Join 500+ curious minds</span>
-          </div>
-          
-          <h1 className="text-5xl lg:text-7xl font-black text-slate-900 mb-6 leading-tight tracking-tight">
-            Your philosophical<br/>community starts here
-          </h1>
-          
-          <p className="text-xl lg:text-2xl text-slate-600 leading-relaxed mb-10 max-w-3xl mx-auto font-medium">
-            A welcoming space for serious thinkers. Explore ethics, consciousness, AI, and the questions 
-            that matter — <strong className="text-slate-900 font-bold">without needing a PhD</strong>.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
-            <Link
-              href="/auth/signup"
-              className="px-10 py-4 bg-teal-500 text-white text-lg font-black rounded-xl hover:bg-teal-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
-            >
-              Join ARGUED Free
-            </Link>
-            <Link
-              href="/debates"
-              className="px-10 py-4 border-2 border-slate-300 text-slate-700 text-lg font-black rounded-xl hover:border-teal-500 hover:bg-teal-50 transition-all shadow-lg"
-            >
-              Explore Discussions
-            </Link>
-          </div>
-          
-          <div className="flex items-center justify-center space-x-8 text-sm text-slate-500 font-bold">
-            <div className="flex items-center space-x-2">
-              <svg className="w-5 h-5 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-              </svg>
-              <span>No credit card needed</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <svg className="w-5 h-5 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-              </svg>
-              <span>Always free</span>
+
+            {/* Right Column: Visual Element */}
+            <div className="hidden lg:block relative">
+              <div className="relative w-full aspect-square">
+                {/* Animated Geometric Shapes */}
+                
+                {/* Large Circle - Teal */}
+                <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full opacity-20 animate-pulse"></div>
+                
+                {/* Medium Circle - Slate */}
+                <div className="absolute bottom-10 left-10 w-64 h-64 bg-gradient-to-br from-slate-600 to-slate-800 rounded-full opacity-15"></div>
+                
+                {/* Small Circle - Teal Accent */}
+                <div className="absolute top-1/3 left-1/4 w-40 h-40 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full opacity-25 animate-pulse" style={{ animationDelay: '1s' }}></div>
+                
+                {/* Thought Bubble Icons */}
+                <div className="absolute top-20 right-20 w-20 h-20 bg-white rounded-full shadow-2xl flex items-center justify-center border-4 border-teal-500">
+                  <span className="text-3xl">💭</span>
+                </div>
+                
+                <div className="absolute bottom-32 right-32 w-16 h-16 bg-white rounded-full shadow-xl flex items-center justify-center border-4 border-slate-700 animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3s' }}>
+                  <span className="text-2xl">🤔</span>
+                </div>
+                
+                <div className="absolute top-1/2 left-20 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center border-4 border-teal-400">
+                  <span className="text-xl">✨</span>
+                </div>
+                
+                {/* Abstract Lines/Connections */}
+                <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="30%" y1="20%" x2="70%" y2="60%" stroke="#14b8a6" strokeWidth="3" strokeDasharray="10,5" />
+                  <line x1="60%" y1="30%" x2="40%" y2="80%" stroke="#475569" strokeWidth="3" strokeDasharray="10,5" />
+                  <line x1="20%" y1="50%" x2="80%" y2="40%" stroke="#14b8a6" strokeWidth="3" strokeDasharray="10,5" />
+                </svg>
+                
+                {/* Floating Cards/Text Snippets */}
+                <div className="absolute top-10 left-0 bg-white rounded-xl shadow-2xl p-4 border-l-4 border-teal-500 max-w-[200px] transform -rotate-3">
+                  <p className="text-xs font-bold text-slate-700">"What is the nature of consciousness?"</p>
+                </div>
+                
+                <div className="absolute bottom-20 right-10 bg-white rounded-xl shadow-2xl p-4 border-l-4 border-slate-700 max-w-[180px] transform rotate-2">
+                  <p className="text-xs font-bold text-slate-700">"Can AI truly understand ethics?"</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
