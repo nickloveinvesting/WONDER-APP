@@ -13,6 +13,7 @@
 
 - `20250113_init.sql` - Initial database schema (profiles, debates, arguments, judgments)
 - `20250114_add_delo_rating.sql` - Adds DeLO rating system to profiles table
+- `20250117_discussions.sql` - Adds discussion system (discussions, comments, votes, and RPC functions)
 
 ## Important Notes
 
