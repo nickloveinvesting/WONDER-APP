@@ -1,52 +1,114 @@
-/**
- * ARGUED Badge Component
- * Used for status indicators, achievements, and ratings
- * Supports multiple color types per branding guidelines
- */
+import React from 'react';
+import { cn } from '@/lib/utils';
 
-import { ReactNode } from 'react';
+export type BadgeVariant = 'social' | 'topic' | 'status' | 'stat';
+export type BadgeColor = 'teal' | 'slate' | 'neutral';
+export type BadgeType = 'rating' | 'social' | 'topic' | 'status' | 'stat' | 'success' | 'error' | 'achievement' | 'default' | 'for' | 'against';
+export type BadgeSize = 'sm' | 'md' | 'lg';
 
-interface BadgeProps {
-  children: ReactNode;
-  type?: 'default' | 'achievement' | 'rating' | 'success' | 'error' | 'for' | 'against';
-  size?: 'sm' | 'md' | 'lg';
+export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+  variant?: BadgeVariant;
+  color?: BadgeColor;
+  type?: BadgeType;
+  size?: BadgeSize;
+  children: React.ReactNode;
   className?: string;
 }
 
-export function Badge({
-  children,
-  type = 'default',
-  size = 'md',
-  className = '',
-}: BadgeProps) {
-  const baseClasses = 'inline-flex items-center justify-center rounded-full font-medium';
+const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
+  ({ variant = 'topic', color = 'teal', type, size = 'md', children, className, ...props }, ref) => {
+    // Support legacy 'type' prop by mapping it to variant
+    const typeToVariant: Record<string, string> = {
+      'rating': 'stat',
+      'success': 'status',
+      'error': 'status',
+      'achievement': 'stat',
+      'default': 'topic',
+      'for': 'topic',
+      'against': 'topic',
+    };
+    const effectiveVariant = type ? (typeToVariant[type] || type) : variant;
 
-  const typeClasses = {
-    default: 'bg-argued-navy text-white',
-    achievement: 'bg-argued-brown text-white',
-    rating: 'bg-argued-gold text-argued-black',
-    success: 'bg-argued-success text-white',
-    error: 'bg-argued-error text-white',
-    for: 'bg-argued-success/20 text-argued-success border border-argued-success/30',
-    against: 'bg-argued-error/20 text-argued-error border border-argued-error/30',
-  };
+    const baseStyles = "inline-flex items-center font-bold transition-colors";
 
-  const sizeClasses = {
-    sm: 'px-2 py-0.5 text-xs',
-    md: 'px-3 py-1 text-sm',
-    lg: 'px-4 py-1.5 text-base',
-  };
+    const sizeStyles = {
+      sm: "text-xs px-2 py-0.5",
+      md: "text-sm px-3 py-1",
+      lg: "text-base px-4 py-1.5",
+    };
 
-  return (
-    <span
-      className={`
-        ${baseClasses}
-        ${typeClasses[type]}
-        ${sizeClasses[size]}
-        ${className}
-      `}
-    >
-      {children}
-    </span>
-  );
-}
+    const variantStyles: Record<string, string> = {
+      social: "px-4 py-2 rounded-full border",
+      topic: "px-2 py-1 rounded border text-xs",
+      status: "px-2 py-1 rounded text-xs",
+      stat: "rounded-full",
+      rating: "rounded-full",
+      success: "px-2 py-1 rounded text-xs",
+      error: "px-2 py-1 rounded text-xs",
+      achievement: "rounded-full",
+      default: "px-2 py-1 rounded border text-xs",
+      for: "px-2 py-1 rounded border text-xs",
+      against: "px-2 py-1 rounded border text-xs",
+    };
+
+    const colorStyles: Record<string, Record<string, string>> = {
+      teal: {
+        social: "bg-teal-50 border-teal-200 text-slate-700",
+        topic: "bg-teal-100 text-teal-700 border-teal-300",
+        status: "bg-teal-50 text-teal-600",
+        stat: "bg-teal-500/20 text-teal-600",
+        rating: "bg-teal-500/20 text-teal-600",
+        success: "bg-green-50 text-green-600",
+        error: "bg-red-50 text-red-600",
+        achievement: "bg-yellow-500/20 text-yellow-700",
+        default: "bg-slate-100 text-slate-700 border-slate-300",
+        for: "bg-green-100 text-green-700 border-green-300",
+        against: "bg-red-100 text-red-700 border-red-300",
+      },
+      slate: {
+        social: "bg-slate-50 border-slate-200 text-slate-700",
+        topic: "bg-slate-100 text-slate-700 border-slate-300",
+        status: "bg-slate-50 text-slate-600",
+        stat: "bg-slate-500/20 text-slate-600",
+        rating: "bg-slate-500/20 text-slate-600",
+        success: "bg-green-50 text-green-600",
+        error: "bg-red-50 text-red-600",
+        achievement: "bg-yellow-500/20 text-yellow-700",
+        default: "bg-slate-100 text-slate-700 border-slate-300",
+        for: "bg-green-100 text-green-700 border-green-300",
+        against: "bg-red-100 text-red-700 border-red-300",
+      },
+      neutral: {
+        social: "bg-stone-50 border-stone-200 text-slate-700",
+        topic: "bg-stone-100 text-slate-700 border-stone-300",
+        status: "bg-stone-50 text-slate-600",
+        stat: "bg-stone-500/20 text-slate-600",
+        rating: "bg-stone-500/20 text-slate-600",
+        success: "bg-green-50 text-green-600",
+        error: "bg-red-50 text-red-600",
+        achievement: "bg-yellow-500/20 text-yellow-700",
+        default: "bg-slate-100 text-slate-700 border-slate-300",
+        for: "bg-green-100 text-green-700 border-green-300",
+        against: "bg-red-100 text-red-700 border-red-300",
+      },
+    };
+
+    const combinedClassName = cn(
+      baseStyles,
+      variantStyles[effectiveVariant] || variantStyles.topic,
+      (effectiveVariant === 'stat' || effectiveVariant === 'rating' || effectiveVariant === 'achievement') ? sizeStyles[size] : '',
+      colorStyles[color]?.[effectiveVariant] || colorStyles.teal.topic,
+      className
+    );
+
+    return (
+      <span ref={ref} className={combinedClassName} {...props}>
+        {children}
+      </span>
+    );
+  }
+);
+
+Badge.displayName = 'Badge';
+
+export { Badge };

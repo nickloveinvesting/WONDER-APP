@@ -1,15 +1,15 @@
 /**
  * ARGUED Header Component
  * Top navigation with logo, nav links, and user menu
- * Cream background with high-contrast BLACK text for maximum readability
+ * Matches the landing page design: compact, white/backdrop blur, teal accents
  */
 
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, User, Settings, LogOut } from 'lucide-react';
-import Image from 'next/image';
+import Logo from '@/components/Logo';
 import { Button } from './Button';
 import { Badge } from './Badge';
 
@@ -26,6 +26,19 @@ export function Header({ user, onSignOut }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
+  // Close user menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (userMenuOpen && !target.closest('.user-menu-container')) {
+        setUserMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [userMenuOpen]);
+
   const navItems = user
     ? [
         { href: '/debates', label: 'Debates' },
@@ -38,28 +51,21 @@ export function Header({ user, onSignOut }: HeaderProps) {
       ];
 
   return (
-    <header className="sticky top-0 z-50 bg-argued-cream border-b-2 border-black shadow-sm">
-      <nav className="max-w-7xl mx-auto px-4 py-4">
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
+      <nav className="max-w-7xl mx-auto px-6 lg:px-8 py-1.5">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/logo-black.png"
-              alt="ARGUED"
-              width={140}
-              height={45}
-              priority
-              className="h-10 w-auto"
-            />
-          </Link>
+          <div className="flex items-center">
+            <Logo variant="black" size="sm" clickable={true} />
+          </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-black font-bold text-lg hover:text-argued-brown transition-colors"
+                className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
               >
                 {item.label}
               </Link>
@@ -67,19 +73,19 @@ export function Header({ user, onSignOut }: HeaderProps) {
           </div>
 
           {/* Desktop Auth / User Menu */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center space-x-4">
             {user ? (
-              <div className="relative">
+              <div className="relative user-menu-container">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-black font-bold hover:bg-white transition border-2 border-transparent hover:border-black"
+                  className="flex items-center space-x-2 px-4 py-1.5 rounded-lg text-slate-700 font-bold hover:text-teal-600 hover:bg-teal-50 transition-all text-sm"
                 >
-                  <span className="font-bold text-base">{user.username}</span>
-                  <Badge type="rating" size="sm">
-                    {user.reputationScore}
+                  <span className="font-bold">{user.username}</span>
+                  <Badge type="rating" size="sm" color="teal">
+                    ★ {user.reputationScore}
                   </Badge>
                   <ChevronDown
-                    className={`w-5 h-5 transition-transform ${
+                    className={`w-4 h-4 transition-transform ${
                       userMenuOpen ? 'rotate-180' : ''
                     }`}
                   />
@@ -87,27 +93,32 @@ export function Header({ user, onSignOut }: HeaderProps) {
 
                 {/* Dropdown Menu */}
                 {userMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-1 border-2 border-black">
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-1 border border-slate-200">
                     <Link
                       href="/profile"
-                      className="flex items-center px-4 py-2 text-base font-semibold text-black hover:bg-argued-cream transition"
+                      className="flex items-center px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+                      onClick={() => setUserMenuOpen(false)}
                     >
-                      <User className="w-5 h-5 mr-2" />
+                      <User className="w-4 h-4 mr-2" />
                       My Profile
                     </Link>
                     <Link
                       href="/settings"
-                      className="flex items-center px-4 py-2 text-base font-semibold text-black hover:bg-argued-cream transition"
+                      className="flex items-center px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+                      onClick={() => setUserMenuOpen(false)}
                     >
-                      <Settings className="w-5 h-5 mr-2" />
+                      <Settings className="w-4 h-4 mr-2" />
                       Settings
                     </Link>
-                    <hr className="my-1 border-gray-300" />
+                    <hr className="my-1 border-slate-200" />
                     <button
-                      onClick={onSignOut}
-                      className="flex items-center w-full px-4 py-2 text-base font-semibold text-argued-error hover:bg-argued-cream transition"
+                      onClick={() => {
+                        onSignOut?.();
+                        setUserMenuOpen(false);
+                      }}
+                      className="flex items-center w-full px-4 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 transition"
                     >
-                      <LogOut className="w-5 h-5 mr-2" />
+                      <LogOut className="w-4 h-4 mr-2" />
                       Logout
                     </button>
                   </div>
@@ -116,10 +127,10 @@ export function Header({ user, onSignOut }: HeaderProps) {
             ) : (
               <>
                 <Link href="/auth/login">
-                  <Button variant="ghost">Log In</Button>
+                  <Button variant="ghost" size="sm">Sign In</Button>
                 </Link>
                 <Link href="/auth/signup">
-                  <Button variant="primary">Sign Up</Button>
+                  <Button variant="compact" size="sm">Join Free</Button>
                 </Link>
               </>
             )}
@@ -128,21 +139,22 @@ export function Header({ user, onSignOut }: HeaderProps) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-md text-black hover:bg-white border-2 border-transparent hover:border-black transition"
+            className="lg:hidden p-2 rounded-md text-slate-700 hover:bg-slate-50 transition"
+            aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pt-4 border-t-2 border-black">
-            <div className="space-y-2">
+          <div className="lg:hidden mt-4 pt-4 border-t border-slate-200">
+            <div className="space-y-1">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block px-4 py-3 text-black font-bold text-base hover:bg-white rounded-lg transition border-2 border-transparent hover:border-black"
+                  className="block px-4 py-2 text-sm font-bold text-slate-700 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
@@ -151,25 +163,27 @@ export function Header({ user, onSignOut }: HeaderProps) {
             </div>
 
             {user ? (
-              <div className="mt-4 pt-4 border-t-2 border-black">
-                <div className="px-4 py-2 text-black font-bold text-base">
-                  {user.username}
-                  <Badge type="rating" size="sm" className="ml-2">
-                    {user.reputationScore}
+              <div className="mt-4 pt-4 border-t border-slate-200">
+                <div className="px-4 py-2 text-sm font-bold text-slate-700 flex items-center space-x-2">
+                  <span>{user.username}</span>
+                  <Badge type="rating" size="sm" color="teal">
+                    ★ {user.reputationScore}
                   </Badge>
                 </div>
                 <Link
                   href="/profile"
-                  className="block px-4 py-3 text-black font-semibold text-base hover:bg-white rounded-lg border-2 border-transparent hover:border-black"
+                  className="flex items-center px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 rounded-lg"
                   onClick={() => setMobileMenuOpen(false)}
                 >
+                  <User className="w-4 h-4 mr-2" />
                   My Profile
                 </Link>
                 <Link
                   href="/settings"
-                  className="block px-4 py-3 text-black font-semibold text-base hover:bg-white rounded-lg border-2 border-transparent hover:border-black"
+                  className="flex items-center px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 rounded-lg"
                   onClick={() => setMobileMenuOpen(false)}
                 >
+                  <Settings className="w-4 h-4 mr-2" />
                   Settings
                 </Link>
                 <button
@@ -177,21 +191,22 @@ export function Header({ user, onSignOut }: HeaderProps) {
                     onSignOut?.();
                     setMobileMenuOpen(false);
                   }}
-                  className="block w-full text-left px-4 py-3 text-argued-error font-semibold text-base hover:bg-white rounded-lg border-2 border-transparent hover:border-black"
+                  className="flex items-center w-full px-4 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 rounded-lg"
                 >
+                  <LogOut className="w-4 h-4 mr-2" />
                   Logout
                 </button>
               </div>
             ) : (
-              <div className="mt-4 pt-4 border-t-2 border-black space-y-2">
+              <div className="mt-4 pt-4 border-t border-slate-200 space-y-2">
                 <Link href="/auth/login" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="ghost" fullWidth>
-                    Log In
+                  <Button variant="ghost" fullWidth size="sm">
+                    Sign In
                   </Button>
                 </Link>
                 <Link href="/auth/signup" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="primary" fullWidth>
-                    Sign Up
+                  <Button variant="compact" fullWidth size="sm">
+                    Join Free
                   </Button>
                 </Link>
               </div>
