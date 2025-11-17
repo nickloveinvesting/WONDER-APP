@@ -14,48 +14,48 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Header/Navigation - ULTRA COMPACT ~40px total */}
+      {/* Header/Navigation - ULTRA COMPACT ~32px total */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-2">
-          <div className="flex items-center justify-between h-8">
-            {/* Logo - Smaller */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-between h-7">
+            {/* Logo - Extra Small */}
             <div className="flex items-center">
               <Logo variant="black" size="sm" clickable={true} />
             </div>
 
-            {/* Desktop Navigation Links - Compact */}
-            <nav className="hidden lg:flex items-center space-x-6">
+            {/* Desktop Navigation Links - Ultra Compact */}
+            <nav className="hidden lg:flex items-center space-x-5">
               <Link
                 href="#community"
-                className="text-xs font-bold text-slate-700 hover:text-teal-600 transition-colors"
+                className="text-[11px] font-bold text-slate-700 hover:text-teal-600 transition-colors"
               >
                 Community
               </Link>
               <Link
                 href="#how-it-works"
-                className="text-xs font-bold text-slate-700 hover:text-teal-600 transition-colors"
+                className="text-[11px] font-bold text-slate-700 hover:text-teal-600 transition-colors"
               >
                 How It Works
               </Link>
               <Link
                 href="#for-me"
-                className="text-xs font-bold text-slate-700 hover:text-teal-600 transition-colors"
+                className="text-[11px] font-bold text-slate-700 hover:text-teal-600 transition-colors"
               >
                 Is This For Me?
               </Link>
             </nav>
 
-            {/* Auth Buttons - Compact */}
-            <div className="flex items-center space-x-3">
+            {/* Auth Buttons - Ultra Compact */}
+            <div className="flex items-center space-x-2">
               <Link
                 href="/auth/login"
-                className="px-4 py-1 text-slate-700 text-xs font-bold hover:text-teal-600 transition-colors"
+                className="px-3 py-0.5 text-slate-700 text-[11px] font-bold hover:text-teal-600 transition-colors"
               >
                 Sign In
               </Link>
               <Link
                 href="/auth/signup"
-                className="px-4 py-1.5 bg-teal-500 text-white text-xs font-bold rounded-lg hover:bg-teal-600 transition-all shadow-md hover:shadow-lg"
+                className="px-3 py-1 bg-teal-500 text-white text-[11px] font-bold rounded-md hover:bg-teal-600 transition-all shadow-md"
               >
                 Join Free
               </Link>
@@ -71,7 +71,7 @@ export default async function Home() {
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-slate-100/30 rounded-full blur-3xl"></div>
         
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left Column: Content */}
             <div className="text-center lg:text-left">
               {/* Simplified Social Proof Badge */}
@@ -123,35 +123,34 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Right Column: Discussion Preview Cards - IMPROVED LAYOUT */}
-            <div className="hidden lg:flex relative justify-center items-start min-h-[500px]">
-              <div className="relative w-full max-w-lg">
-                {/* Background Card 2 - Furthest back */}
-                <div className="absolute top-16 left-8 right-0 opacity-60 blur-[2px] pointer-events-none z-0">
-                  <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-200 transform rotate-1">
-                    <div className="h-6 bg-slate-200 rounded w-3/4 mb-3"></div>
-                    <div className="h-4 bg-slate-100 rounded w-full mb-2"></div>
-                    <div className="h-4 bg-slate-100 rounded w-5/6"></div>
+            {/* Right Column: Discussion Preview Cards - FIXED VISIBILITY */}
+            <div className="hidden lg:block relative h-[550px] pt-8">
+              <div className="relative w-full h-full">
+                {/* Card 2 - Background (visible) */}
+                <div className="absolute top-12 left-6 right-0 z-10 transform rotate-1 opacity-70">
+                  <div className="bg-white rounded-xl p-5 shadow-xl border border-slate-200">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <div className="w-7 h-7 bg-slate-600 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                        JD
+                      </div>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 mb-2 line-clamp-2">
+                      New to philosophy: How do I know if my moral beliefs are justified?
+                    </h3>
+                    <p className="text-sm text-slate-600 mb-3 line-clamp-2">
+                      I've been thinking about this a lot lately...
+                    </p>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="px-2 py-1 rounded border font-bold bg-slate-100 text-slate-700 border-slate-300">
+                        Ethics
+                      </span>
+                      <span className="text-slate-500 font-semibold">3 helpful responses</span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Background Card 1 - Middle depth */}
-                <div className="absolute top-8 left-4 right-0 opacity-75 blur-[1px] pointer-events-none z-10">
-                  <DiscussionPreviewCard
-                    avatars={[
-                      { initials: "JD", role: "beginner" }
-                    ]}
-                    title="New to philosophy: How do I know if my moral beliefs are justified?"
-                    description="I've been thinking about this a lot lately..."
-                    topicTag="Ethics"
-                    topicColor="slate"
-                    activityLevel="Beginner Welcome"
-                    helpfulResponses={3}
-                  />
-                </div>
-                
-                {/* Primary Card - Foreground */}
-                <div className="relative z-20">
+                {/* Card 1 - Foreground (fully visible) */}
+                <div className="absolute top-0 left-0 right-6 z-20">
                   <DiscussionPreviewCard
                     communityVibe="Welcoming & Thoughtful"
                     avatars={[
@@ -169,14 +168,14 @@ export default async function Home() {
                   />
                 </div>
 
-                {/* Floating Activity Indicator - Positioned properly */}
-                <div className="absolute -bottom-2 -right-4 bg-white rounded-xl shadow-xl p-4 border-l-4 border-teal-500 z-30 max-w-[200px]">
-                  <p className="text-xs font-bold text-slate-700 mb-1">
+                {/* Floating Activity Indicator */}
+                <div className="absolute bottom-8 right-0 bg-white rounded-xl shadow-2xl p-4 border-l-4 border-teal-500 z-30 w-56">
+                  <p className="text-sm font-bold text-slate-700 mb-1">
                     2,300+ discussions this month
                   </p>
                   <Link
                     href="/debates"
-                    className="text-xs font-bold text-teal-600 hover:text-teal-700 inline-flex items-center"
+                    className="text-sm font-bold text-teal-600 hover:text-teal-700 inline-flex items-center"
                   >
                     Join them →
                   </Link>
