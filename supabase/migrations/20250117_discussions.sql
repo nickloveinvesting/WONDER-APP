@@ -103,4 +103,4 @@ INSERT INTO discussions (question, description, category) VALUES
   ('Should we prioritize extending human lifespan or improving quality of life?', 'Debate longevity research, resource allocation, and what truly makes life worth living.', 'philosophical'),
   ('Can you be friends with someone whose core values fundamentally oppose yours?', 'Investigate the limits of pluralism, tolerance, and what common ground is necessary for genuine friendship.', 'moral'),
   ('If no one ever found out, would it still be wrong?', 'Challenge consequentialist ethics and explore whether morality depends on outcomes or intentions.', 'moral'),
-  ('What responsibilities do we have to future generations we'll never meet?', 'Consider intergenerational justice, climate ethics, and our obligations to the unborn.', 'philosophical');
+  ('What responsibilities do we have to future generations we''ll never meet?', 'Consider intergenerational justice, climate ethics, and our obligations to the unborn.', 'philosophical');
