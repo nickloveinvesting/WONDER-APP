@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Logo from '@/components/Logo';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
 
@@ -63,25 +64,25 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-primary-900 to-slate-900 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4 py-8">
       <div className="max-w-md w-full">
-        <div className="text-center mb-8">
-          <Link href="/" className="text-4xl font-bold text-white">
-            PhiloDuel
+        <div className="flex flex-col items-center mb-8">
+          <Link href="/" className="mb-4">
+            <Logo variant="white" size="lg" clickable={false} />
           </Link>
-          <p className="text-gray-300 mt-2">Join the arena of ideas</p>
+          <p className="text-slate-300 mt-2 text-lg font-medium">Join the philosophical community</p>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20">
-          <form onSubmit={handleSignup} className="space-y-6">
+        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
+          <form onSubmit={handleSignup} className="space-y-5">
             {error && (
-              <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 rounded">
+              <div className="bg-red-500/20 border border-red-400 text-red-200 px-4 py-3 rounded-lg font-medium">
                 {error}
               </div>
             )}
 
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-200 mb-2">
+              <label htmlFor="username" className="block text-sm font-bold text-slate-200 mb-2">
                 Username
               </label>
               <input
@@ -92,14 +93,14 @@ export default function SignupPage() {
                 required
                 minLength={3}
                 maxLength={30}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-accent-500 transition"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition font-medium"
                 placeholder="socrates"
               />
-              <p className="text-xs text-gray-400 mt-1">3-30 characters</p>
+              <p className="text-xs text-slate-400 mt-1 font-medium">3-30 characters</p>
             </div>
 
             <div>
-              <label htmlFor="displayName" className="block text-sm font-medium text-gray-200 mb-2">
+              <label htmlFor="displayName" className="block text-sm font-bold text-slate-200 mb-2">
                 Display Name (Optional)
               </label>
               <input
@@ -107,13 +108,13 @@ export default function SignupPage() {
                 type="text"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-accent-500 transition"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition font-medium"
                 placeholder="The Philosopher"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-200 mb-2">
+              <label htmlFor="email" className="block text-sm font-bold text-slate-200 mb-2">
                 Email
               </label>
               <input
@@ -122,13 +123,13 @@ export default function SignupPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-accent-500 transition"
-                placeholder="philosopher@example.com"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition font-medium"
+                placeholder="philosopher@argued.com"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-200 mb-2">
+              <label htmlFor="password" className="block text-sm font-bold text-slate-200 mb-2">
                 Password
               </label>
               <input
@@ -138,25 +139,25 @@ export default function SignupPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={6}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-accent-500 transition"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition font-medium"
                 placeholder="••••••••"
               />
-              <p className="text-xs text-gray-400 mt-1">At least 6 characters</p>
+              <p className="text-xs text-slate-400 mt-1 font-medium">At least 6 characters</p>
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+              className="w-full px-8 py-3 bg-teal-500 text-white text-base font-black rounded-xl hover:bg-teal-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
             >
               {loading ? 'Creating account...' : 'Sign Up'}
             </button>
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-gray-300">
+            <p className="text-slate-300 font-medium">
               Already have an account?{' '}
-              <Link href="/auth/login" className="text-accent-500 hover:text-accent-400 transition">
+              <Link href="/auth/login" className="text-teal-400 hover:text-teal-300 transition font-bold">
                 Log in
               </Link>
             </p>
