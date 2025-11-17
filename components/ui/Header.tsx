@@ -8,10 +8,11 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, User, Settings, LogOut } from 'lucide-react';
+import { Menu, X, ChevronDown, User, Settings, LogOut, MessageSquarePlus } from 'lucide-react';
 import Logo from '@/components/Logo';
 import { Button } from './Button';
 import { Badge } from './Badge';
+import { FeedbackModal } from '@/components/FeedbackModal';
 
 interface HeaderProps {
   user?: {
@@ -25,6 +26,7 @@ interface HeaderProps {
 export function Header({ user, onSignOut }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
 
   // Close user menu when clicking outside
   useEffect(() => {
@@ -76,7 +78,19 @@ export function Header({ user, onSignOut }: HeaderProps) {
           {/* Desktop Auth / User Menu */}
           <div className="hidden lg:flex items-center space-x-4">
             {user ? (
-              <div className="relative user-menu-container">
+              <>
+                {/* Feedback Button */}
+                <button
+                  onClick={() => setFeedbackModalOpen(true)}
+                  className="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-700 hover:text-teal-600 hover:bg-teal-50 transition-all"
+                  title="Share feedback"
+                >
+                  <MessageSquarePlus className="w-4 h-4" />
+                  <span>Feedback</span>
+                </button>
+
+                {/* User Menu */}
+                <div className="relative user-menu-container">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
                   className="flex items-center space-x-2 px-4 py-1.5 rounded-lg text-slate-700 font-bold hover:text-teal-600 hover:bg-teal-50 transition-all text-sm"
@@ -124,7 +138,8 @@ export function Header({ user, onSignOut }: HeaderProps) {
                     </button>
                   </div>
                 )}
-              </div>
+                </div>
+              </>
             ) : (
               <>
                 <Link href="/auth/login">
@@ -171,6 +186,16 @@ export function Header({ user, onSignOut }: HeaderProps) {
                     ★ {user.reputationScore}
                   </Badge>
                 </div>
+                <button
+                  onClick={() => {
+                    setFeedbackModalOpen(true);
+                    setMobileMenuOpen(false);
+                  }}
+                  className="flex items-center w-full px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 rounded-lg"
+                >
+                  <MessageSquarePlus className="w-4 h-4 mr-2" />
+                  Share Feedback
+                </button>
                 <Link
                   href="/profile"
                   className="flex items-center px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 rounded-lg"
@@ -215,6 +240,12 @@ export function Header({ user, onSignOut }: HeaderProps) {
           </div>
         )}
       </nav>
+
+      {/* Feedback Modal */}
+      <FeedbackModal
+        isOpen={feedbackModalOpen}
+        onClose={() => setFeedbackModalOpen(false)}
+      />
     </header>
   );
 }

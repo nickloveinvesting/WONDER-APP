@@ -31,7 +31,16 @@ NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 GEMINI_API_KEY=your_gemini_api_key
+GITHUB_TOKEN=your_github_personal_access_token
+GITHUB_REPO=nickloveinvesting/Philosophy-app
 ```
+
+**GitHub Token Setup** (for feedback feature):
+1. Go to https://github.com/settings/tokens
+2. Click "Generate new token (classic)"
+3. Give it a descriptive name (e.g., "Ponder Feedback Integration")
+4. Select the `repo` scope (required for creating issues)
+5. Generate the token and copy it to your `.env.local` file
 
 ## Architecture
 
@@ -74,6 +83,24 @@ Gemini AI (`lib/gemini.ts`) judges debates based on:
 
 The `judgeDebate()` function returns structured JSON with winner determination, detailed reasoning, fact checks, and scores. Currently uses `gemini-2.0-flash-exp` model.
 
+### Feedback Feature
+The in-app feedback system allows authenticated users to submit feature requests and bug reports directly to GitHub.
+
+**Components**:
+- `components/FeedbackModal.tsx`: Modal form for submitting feedback
+- `app/api/feedback/route.ts`: API endpoint that creates GitHub issues
+
+**How it works**:
+1. User clicks "Feedback" button in header (visible only when authenticated)
+2. Modal opens with options for "Feature Request" or "Bug Report"
+3. User fills in title and description
+4. Submission creates a GitHub issue with labels (`enhancement` or `bug`) and `user-feedback`
+5. Issue includes user attribution (username, user ID) and timestamp
+
+**Setup Requirements**:
+- GitHub personal access token with `repo` scope (see Environment Variables section)
+- Issues are created in the repository specified by `GITHUB_REPO` env variable
+
 ### Server Actions
 Server actions in `lib/actions.ts` use `'use server'` directive. Currently implements:
 - `signOut()`: Signs out user and redirects to home page
@@ -106,7 +133,8 @@ Server actions in `lib/actions.ts` use `'use server'` directive. Currently imple
 - `components/Navigation.tsx`: Main navigation with auth-aware menu
 - `components/Sidebar.tsx`: Side navigation for authenticated users
 - `components/Logo.tsx`: Brand logo component
-- `components/ui/Header.tsx`: Header component used in authenticated layout
+- `components/ui/Header.tsx`: Header component used in authenticated layout (includes feedback button)
+- `components/FeedbackModal.tsx`: In-app feedback submission modal
 - `components/DiscussionPreviewCard.tsx`: Preview card for debate discussions
 - `components/templates/`: Reusable page templates
 - `components/ui/`: UI primitives and shared components
