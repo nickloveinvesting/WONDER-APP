@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Logo from '@/components/Logo';
+import DiscussionPreviewCard from '@/components/DiscussionPreviewCard';
 
 export default async function Home() {
   const supabase = await createClient();
@@ -13,13 +14,38 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Header/Navigation - ULTRA THIN ~50px */}
+      {/* Header/Navigation - Matches target design */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-1.5">
           <div className="flex items-center justify-between">
+            {/* Logo */}
             <div className="flex items-center space-x-3">
               <Logo variant="black" size="sm" clickable={true} />
             </div>
+
+            {/* Desktop Navigation Links */}
+            <nav className="hidden lg:flex items-center space-x-8">
+              <Link
+                href="#community"
+                className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
+              >
+                Community
+              </Link>
+              <Link
+                href="#how-it-works"
+                className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
+              >
+                How It Works
+              </Link>
+              <Link
+                href="#for-me"
+                className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
+              >
+                Is This For Me?
+              </Link>
+            </nav>
+
+            {/* Auth Buttons */}
             <div className="flex items-center space-x-4">
               <Link
                 href="/auth/login"
@@ -38,32 +64,32 @@ export default async function Home() {
         </div>
       </header>
 
-      {/* Hero Section with Visual Element */}
-      <section className="relative py-20 lg:py-32 bg-gradient-to-b from-stone-50 via-white to-stone-50 overflow-hidden">
+      {/* Hero Section - Reduced spacing to match target */}
+      <section className="relative py-8 lg:py-12 bg-gradient-to-b from-stone-50 via-white to-stone-50 overflow-hidden">
         {/* Background Decorative Blurs */}
         <div className="absolute top-20 right-20 w-96 h-96 bg-teal-100/30 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-slate-100/30 rounded-full blur-3xl"></div>
         
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             {/* Left Column: Content */}
             <div className="text-center lg:text-left">
-              <div className="inline-flex items-center space-x-2 px-4 py-2 bg-teal-50 border border-teal-200 rounded-full mb-8">
-                <div className="flex -space-x-2">
-                  <div className="w-6 h-6 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full border-2 border-white"></div>
-                  <div className="w-6 h-6 bg-gradient-to-br from-slate-400 to-slate-600 rounded-full border-2 border-white"></div>
-                  <div className="w-6 h-6 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full border-2 border-white"></div>
-                </div>
-                <span className="text-sm font-bold text-slate-700">Join 500+ curious minds</span>
+              {/* Simplified Social Proof Badge */}
+              <div className="inline-flex items-center px-4 py-2 bg-teal-50 border border-teal-200 rounded-full mb-8">
+                <span className="text-sm font-bold text-slate-700">
+                  500+ curious minds • Free to join
+                </span>
               </div>
               
               <h1 className="text-5xl lg:text-6xl xl:text-7xl font-black text-slate-900 mb-6 leading-tight tracking-tight">
-                Your philosophical<br/>community starts here
+                Your philosophical<br/>community.<br/>
+                <span className="text-teal-600">Curious minds</span><br/>
+                <span className="text-teal-600">welcome.</span>
               </h1>
               
               <p className="text-xl lg:text-2xl text-slate-600 leading-relaxed mb-10 font-medium">
-                A welcoming space for serious thinkers. Explore ethics, consciousness, AI, and the questions 
-                that matter — <strong className="text-slate-900 font-bold">without needing a PhD</strong>.
+                Finally, a place where your big questions belong. Think deeply with others who care 
+                about ethics, consciousness, AI, and the ideas that matter — <strong className="text-slate-900 font-bold">no PhD required</strong>.
               </p>
               
               <div className="flex flex-col sm:flex-row lg:flex-row items-center lg:items-start justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
@@ -71,7 +97,7 @@ export default async function Home() {
                   href="/auth/signup"
                   className="px-10 py-4 bg-teal-500 text-white text-lg font-black rounded-xl hover:bg-teal-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
                 >
-                  Join ARGUED Free
+                  Join the Community
                 </Link>
                 <Link
                   href="/debates"
@@ -86,7 +112,7 @@ export default async function Home() {
                   <svg className="w-5 h-5 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                   </svg>
-                  <span>No credit card needed</span>
+                  <span>No credentials needed</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <svg className="w-5 h-5 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
@@ -97,57 +123,63 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Right Column: Visual Element */}
+            {/* Right Column: Discussion Preview Cards */}
             <div className="hidden lg:block relative">
-              <div className="relative w-full aspect-square">
-                {/* Animated Geometric Shapes */}
-                
-                {/* Large Circle - Teal */}
-                <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full opacity-20 animate-pulse"></div>
-                
-                {/* Medium Circle - Slate */}
-                <div className="absolute bottom-10 left-10 w-64 h-64 bg-gradient-to-br from-slate-600 to-slate-800 rounded-full opacity-15"></div>
-                
-                {/* Small Circle - Teal Accent */}
-                <div className="absolute top-1/3 left-1/4 w-40 h-40 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full opacity-25 animate-pulse" style={{ animationDelay: '1s' }}></div>
-                
-                {/* Thought Bubble Icons */}
-                <div className="absolute top-20 right-20 w-20 h-20 bg-white rounded-full shadow-2xl flex items-center justify-center border-4 border-teal-500">
-                  <span className="text-3xl">💭</span>
+              <div className="relative">
+                {/* Primary Card - Foreground */}
+                <div className="relative z-10">
+                  <DiscussionPreviewCard
+                    communityVibe="Welcoming & Thoughtful"
+                    avatars={[
+                      { initials: "96", role: "expert" },
+                      { initials: "ME", role: "member" },
+                      { initials: "EK", role: "member" }
+                    ]}
+                    exploringCount={7}
+                    title="Should AI systems be allowed to make medical decisions?"
+                    description="Thoughtful discussion exploring autonomy, trust, and the nature of expertise..."
+                    topicTag="AI Ethics"
+                    topicColor="teal"
+                    activityLevel="Active Now"
+                    contributionCount={12}
+                  />
                 </div>
                 
-                <div className="absolute bottom-32 right-32 w-16 h-16 bg-white rounded-full shadow-xl flex items-center justify-center border-4 border-slate-700 animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3s' }}>
-                  <span className="text-2xl">🤔</span>
+                {/* Secondary Card - Background (offset for depth) */}
+                <div className="absolute top-6 left-4 w-full opacity-80 -z-10">
+                  <DiscussionPreviewCard
+                    avatars={[
+                      { initials: "JD", role: "beginner" }
+                    ]}
+                    title="New to philosophy: How do I know if my moral beliefs are justified?"
+                    description="I've been thinking about this a lot lately..."
+                    topicTag="Ethics"
+                    topicColor="slate"
+                    activityLevel="Beginner Welcome"
+                    helpfulResponses={3}
+                  />
                 </div>
-                
-                <div className="absolute top-1/2 left-20 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center border-4 border-teal-400">
-                  <span className="text-xl">✨</span>
-                </div>
-                
-                {/* Abstract Lines/Connections */}
-                <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
-                  <line x1="30%" y1="20%" x2="70%" y2="60%" stroke="#14b8a6" strokeWidth="3" strokeDasharray="10,5" />
-                  <line x1="60%" y1="30%" x2="40%" y2="80%" stroke="#475569" strokeWidth="3" strokeDasharray="10,5" />
-                  <line x1="20%" y1="50%" x2="80%" y2="40%" stroke="#14b8a6" strokeWidth="3" strokeDasharray="10,5" />
-                </svg>
-                
-                {/* Floating Cards/Text Snippets */}
-                <div className="absolute top-10 left-0 bg-white rounded-xl shadow-2xl p-4 border-l-4 border-teal-500 max-w-[200px] transform -rotate-3">
-                  <p className="text-xs font-bold text-slate-700">"What is the nature of consciousness?"</p>
-                </div>
-                
-                <div className="absolute bottom-20 right-10 bg-white rounded-xl shadow-2xl p-4 border-l-4 border-slate-700 max-w-[180px] transform rotate-2">
-                  <p className="text-xs font-bold text-slate-700">"Can AI truly understand ethics?"</p>
-                </div>
+              </div>
+
+              {/* Floating Activity Indicator */}
+              <div className="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-xl p-4 border-l-4 border-teal-500">
+                <p className="text-xs font-bold text-slate-700">
+                  2,300+ discussions this month
+                </p>
+                <Link
+                  href="/debates"
+                  className="text-xs font-bold text-teal-600 hover:text-teal-700 inline-flex items-center mt-1"
+                >
+                  Join them →
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Rest of the page content remains exactly the same... */}
       {/* Stats Bar */}
-      <section className="py-16 bg-white border-y border-slate-200">
+      <section id="community" className="py-16 bg-white border-y border-slate-200">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="bg-gradient-to-br from-stone-50 to-white rounded-2xl p-8 border-2 border-slate-200 shadow-lg">
@@ -167,7 +199,7 @@ export default async function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="py-24 lg:py-32 bg-stone-50">
+      <section id="how-it-works" className="py-24 lg:py-32 bg-stone-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1">
@@ -233,7 +265,7 @@ export default async function Home() {
       </section>
 
       {/* Format Cards */}
-      <section className="py-24 lg:py-32 bg-white">
+      <section id="for-me" className="py-24 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-black text-slate-900 mb-4 tracking-tight">
@@ -473,7 +505,7 @@ export default async function Home() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#how-it-works" className="hover:text-teal-400 transition-colors">
+                  <Link href="#how-it-works" className="hover:text-teal-400 transition-colors">
                     How It Works
                   </Link>
                 </li>
@@ -494,7 +526,7 @@ export default async function Home() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#" className="hover:text-teal-400 transition-colors">
+                  <Link href="#" className="hover:text-teal-400 transition-colors">
                     About
                   </Link>
                 </li>
@@ -505,10 +537,10 @@ export default async function Home() {
           <div className="border-t border-slate-700 pt-8 flex flex-col md:flex-row items-center justify-between text-sm">
             <p className="text-slate-400 font-medium">© 2025 ARGUED. Made with care for curious minds.</p>
             <div className="flex items-center space-x-6 mt-4 md:mt-0 text-slate-400 font-medium">
-              <Link href="/#" className="hover:text-teal-400 transition-colors">
+              <Link href="#" className="hover:text-teal-400 transition-colors">
                 Privacy
               </Link>
-              <Link href="/#" className="hover:text-teal-400 transition-colors">
+              <Link href="#" className="hover:text-teal-400 transition-colors">
                 Terms
               </Link>
             </div>
