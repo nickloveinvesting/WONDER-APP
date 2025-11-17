@@ -14,48 +14,48 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Header/Navigation - Matches target design */}
+      {/* Header/Navigation - ULTRA COMPACT ~40px total */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-1.5">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center space-x-3">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-2">
+          <div className="flex items-center justify-between h-8">
+            {/* Logo - Smaller */}
+            <div className="flex items-center">
               <Logo variant="black" size="sm" clickable={true} />
             </div>
 
-            {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            {/* Desktop Navigation Links - Compact */}
+            <nav className="hidden lg:flex items-center space-x-6">
               <Link
                 href="#community"
-                className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
+                className="text-xs font-bold text-slate-700 hover:text-teal-600 transition-colors"
               >
                 Community
               </Link>
               <Link
                 href="#how-it-works"
-                className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
+                className="text-xs font-bold text-slate-700 hover:text-teal-600 transition-colors"
               >
                 How It Works
               </Link>
               <Link
                 href="#for-me"
-                className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
+                className="text-xs font-bold text-slate-700 hover:text-teal-600 transition-colors"
               >
                 Is This For Me?
               </Link>
             </nav>
 
-            {/* Auth Buttons */}
-            <div className="flex items-center space-x-4">
+            {/* Auth Buttons - Compact */}
+            <div className="flex items-center space-x-3">
               <Link
                 href="/auth/login"
-                className="px-5 py-1.5 text-slate-700 text-sm font-bold hover:text-teal-600 transition-colors"
+                className="px-4 py-1 text-slate-700 text-xs font-bold hover:text-teal-600 transition-colors"
               >
                 Sign In
               </Link>
               <Link
                 href="/auth/signup"
-                className="px-5 py-1.5 bg-teal-500 text-white text-sm font-bold rounded-lg hover:bg-teal-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="px-4 py-1.5 bg-teal-500 text-white text-xs font-bold rounded-lg hover:bg-teal-600 transition-all shadow-md hover:shadow-lg"
               >
                 Join Free
               </Link>
@@ -64,14 +64,14 @@ export default async function Home() {
         </div>
       </header>
 
-      {/* Hero Section - Reduced spacing to match target */}
+      {/* Hero Section - Reduced spacing */}
       <section className="relative py-8 lg:py-12 bg-gradient-to-b from-stone-50 via-white to-stone-50 overflow-hidden">
         {/* Background Decorative Blurs */}
         <div className="absolute top-20 right-20 w-96 h-96 bg-teal-100/30 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-slate-100/30 rounded-full blur-3xl"></div>
         
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Column: Content */}
             <div className="text-center lg:text-left">
               {/* Simplified Social Proof Badge */}
@@ -123,11 +123,35 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Right Column: Discussion Preview Cards */}
-            <div className="hidden lg:block relative">
-              <div className="relative">
+            {/* Right Column: Discussion Preview Cards - IMPROVED LAYOUT */}
+            <div className="hidden lg:flex relative justify-center items-start min-h-[500px]">
+              <div className="relative w-full max-w-lg">
+                {/* Background Card 2 - Furthest back */}
+                <div className="absolute top-16 left-8 right-0 opacity-60 blur-[2px] pointer-events-none z-0">
+                  <div className="bg-white rounded-xl p-6 shadow-lg border border-slate-200 transform rotate-1">
+                    <div className="h-6 bg-slate-200 rounded w-3/4 mb-3"></div>
+                    <div className="h-4 bg-slate-100 rounded w-full mb-2"></div>
+                    <div className="h-4 bg-slate-100 rounded w-5/6"></div>
+                  </div>
+                </div>
+
+                {/* Background Card 1 - Middle depth */}
+                <div className="absolute top-8 left-4 right-0 opacity-75 blur-[1px] pointer-events-none z-10">
+                  <DiscussionPreviewCard
+                    avatars={[
+                      { initials: "JD", role: "beginner" }
+                    ]}
+                    title="New to philosophy: How do I know if my moral beliefs are justified?"
+                    description="I've been thinking about this a lot lately..."
+                    topicTag="Ethics"
+                    topicColor="slate"
+                    activityLevel="Beginner Welcome"
+                    helpfulResponses={3}
+                  />
+                </div>
+                
                 {/* Primary Card - Foreground */}
-                <div className="relative z-10">
+                <div className="relative z-20">
                   <DiscussionPreviewCard
                     communityVibe="Welcoming & Thoughtful"
                     avatars={[
@@ -144,34 +168,19 @@ export default async function Home() {
                     contributionCount={12}
                   />
                 </div>
-                
-                {/* Secondary Card - Background (offset for depth) */}
-                <div className="absolute top-6 left-4 w-full opacity-80 -z-10">
-                  <DiscussionPreviewCard
-                    avatars={[
-                      { initials: "JD", role: "beginner" }
-                    ]}
-                    title="New to philosophy: How do I know if my moral beliefs are justified?"
-                    description="I've been thinking about this a lot lately..."
-                    topicTag="Ethics"
-                    topicColor="slate"
-                    activityLevel="Beginner Welcome"
-                    helpfulResponses={3}
-                  />
-                </div>
-              </div>
 
-              {/* Floating Activity Indicator */}
-              <div className="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-xl p-4 border-l-4 border-teal-500">
-                <p className="text-xs font-bold text-slate-700">
-                  2,300+ discussions this month
-                </p>
-                <Link
-                  href="/debates"
-                  className="text-xs font-bold text-teal-600 hover:text-teal-700 inline-flex items-center mt-1"
-                >
-                  Join them →
-                </Link>
+                {/* Floating Activity Indicator - Positioned properly */}
+                <div className="absolute -bottom-2 -right-4 bg-white rounded-xl shadow-xl p-4 border-l-4 border-teal-500 z-30 max-w-[200px]">
+                  <p className="text-xs font-bold text-slate-700 mb-1">
+                    2,300+ discussions this month
+                  </p>
+                  <Link
+                    href="/debates"
+                    className="text-xs font-bold text-teal-600 hover:text-teal-700 inline-flex items-center"
+                  >
+                    Join them →
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
