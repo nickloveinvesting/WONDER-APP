@@ -45,7 +45,7 @@ export function DebateCard({
   };
 
   return (
-    <Card variant={featured ? 'highlight' : 'default'} hoverable onClick={onClick}>
+    <Card variant={featured ? 'highlight' : 'standard'} onClick={onClick} className="cursor-pointer hover:shadow-2xl">
       {/* Header */}
       <div className="flex justify-between items-start mb-4">
         <h3 className="text-xl font-bold text-argued-navy flex-1 font-sans">
