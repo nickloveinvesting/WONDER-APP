@@ -9,7 +9,7 @@ export default async function Home() {
   const { data: { user } } = await supabase.auth.getUser();
 
   if (user) {
-    redirect('/debates');
+    redirect('/(authenticated)/debates');
   }
 
   return (
@@ -100,7 +100,7 @@ export default async function Home() {
                   Join the Community
                 </Link>
                 <Link
-                  href="/debates"
+                  href="/(authenticated)/debates"
                   className="px-10 py-4 border-2 border-slate-300 text-slate-700 text-lg font-black rounded-xl hover:border-teal-500 hover:bg-teal-50 transition-all shadow-lg"
                 >
                   Explore Discussions
@@ -167,7 +167,7 @@ export default async function Home() {
                   2,300+ discussions this month
                 </p>
                 <Link
-                  href="/debates"
+                  href="/(authenticated)/debates"
                   className="text-xs font-bold text-teal-600 hover:text-teal-700 inline-flex items-center mt-1"
                 >
                   Join them →
@@ -303,16 +303,16 @@ export default async function Home() {
               </div>
             </div>
             
-            {/* Formal Duels */}
+            {/* Structured Debates */}
             <div className="group bg-gradient-to-br from-stone-50 to-white rounded-2xl p-8 border-2 border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-t-4 border-t-teal-500">
-              <div className="text-5xl mb-6">⚔️</div>
-              <h3 className="text-2xl font-black text-slate-900 mb-4">Formal Duels</h3>
+              <div className="text-5xl mb-6">🎯</div>
+              <h3 className="text-2xl font-black text-slate-900 mb-4">Structured Debates</h3>
               <p className="text-slate-600 leading-relaxed mb-6 font-medium">
-                Structured debates with AI-powered judging. Test your logic against others 
-                and earn reputation points.
+                Optional: Formal debates with AI synthesis. Explore opposing viewpoints
+                with rigor and depth.
               </p>
               <div className="text-sm text-slate-500 font-bold">
-                Competitive & rated
+                Advanced feature (optional)
               </div>
             </div>
           </div>
@@ -340,7 +340,7 @@ export default async function Home() {
           </div>
           
           <p className="text-xl text-slate-300 mb-8 font-medium">
-            Join ARGUED to get thought-provoking questions like this delivered daily
+            Join Ponder to get thought-provoking questions like this delivered daily
           </p>
           
           <Link

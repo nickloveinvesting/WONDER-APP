@@ -9,15 +9,15 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PhiloDuel - Where Philosophy Comes Alive",
-  description: "Engage in fair, AI-judged philosophical debates. Build reputation, find your community, and sharpen your mind.",
+  title: "Ponder - Ponder Together",
+  description: "A philosophical conversation platform where curious minds explore ideas together—from casual questions to deep debates.",
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: 'PhiloDuel - Where Philosophy Comes Alive',
-    description: 'Engage in fair, AI-judged philosophical debates. Build reputation, find your community, and sharpen your mind.',
+    title: 'Ponder - Ponder Together',
+    description: 'A philosophical conversation platform where curious minds explore ideas together—from casual questions to deep debates.',
     images: ['/logo-black.png'],
     type: 'website',
   },

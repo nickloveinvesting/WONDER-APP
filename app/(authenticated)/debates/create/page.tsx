@@ -38,9 +38,9 @@ export default function CreateDebatePage() {
 
       if (insertError) throw insertError;
 
-      router.push(`/debates/${data.id}`);
+      router.push(`/(authenticated)/debates/${data.id}`);
     } catch (err: any) {
-      setError(err.message || 'Failed to create debate');
+      setError(err.message || 'Failed to create conversation');
     } finally {
       setLoading(false);
     }
@@ -49,12 +49,12 @@ export default function CreateDebatePage() {
   return (
     <div className="container mx-auto px-4 py-8 lg:px-8 max-w-2xl">
       <div className="mb-4">
-        <Link href="/debates" className="text-gray-400 hover:text-white transition">
-          ← Back to Debates
+        <Link href="/(authenticated)/debates" className="text-gray-400 hover:text-white transition">
+          ← Back to Conversations
         </Link>
       </div>
       
-      <h1 className="text-3xl font-bold text-white mb-8">Create New Debate</h1>
+      <h1 className="text-3xl font-bold text-white mb-8">Start a Conversation</h1>
 
       <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20">
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -66,7 +66,7 @@ export default function CreateDebatePage() {
 
           <div>
             <label htmlFor="topic" className="block text-sm font-medium text-gray-200 mb-2">
-              Debate Topic *
+              Conversation Topic *
             </label>
             <input
               id="topic"
@@ -75,10 +75,10 @@ export default function CreateDebatePage() {
               onChange={(e) => setTopic(e.target.value)}
               required
               className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-accent-500 transition"
-              placeholder="e.g., Free will is an illusion"
+              placeholder="e.g., Is free will compatible with modern neuroscience?"
             />
             <p className="text-xs text-gray-400 mt-1">
-              Choose a clear, debatable philosophical topic
+              Choose a thought-provoking philosophical question or topic
             </p>
           </div>
 
@@ -92,18 +92,18 @@ export default function CreateDebatePage() {
               onChange={(e) => setDescription(e.target.value)}
               rows={4}
               className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-accent-500 transition resize-none"
-              placeholder="Provide context or clarification for the debate topic..."
+              placeholder="Provide context or clarification for the conversation topic..."
             />
           </div>
 
           <div className="bg-primary-500/10 border border-primary-500/30 rounded-lg p-4">
             <h3 className="text-white font-medium mb-2">How it works:</h3>
             <ol className="text-gray-300 text-sm space-y-1 list-decimal list-inside">
-              <li>You create the debate topic</li>
-              <li>Another philosopher joins to argue FOR or AGAINST</li>
-              <li>Both submit arguments (one round each)</li>
-              <li>Gemini AI judges based on logic, evidence, and rhetoric</li>
-              <li>Winner earns reputation points</li>
+              <li>You start the conversation with a question or topic</li>
+              <li>Multiple participants can join to share perspectives</li>
+              <li>Everyone contributes multiple rounds of thoughtful dialogue</li>
+              <li>Optionally request AI synthesis of key points and areas of agreement</li>
+              <li>Build influence through meaningful contributions and collaboration</li>
             </ol>
           </div>
 
@@ -113,10 +113,10 @@ export default function CreateDebatePage() {
               disabled={loading}
               className="flex-1 px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition disabled:opacity-50 disabled:cursor-not-allowed font-medium"
             >
-              {loading ? 'Creating...' : 'Create Debate'}
+              {loading ? 'Creating...' : 'Start Conversation'}
             </button>
             <Link
-              href="/debates"
+              href="/(authenticated)/debates"
               className="px-6 py-3 bg-white/10 text-white rounded-lg hover:bg-white/20 transition text-center"
             >
               Cancel

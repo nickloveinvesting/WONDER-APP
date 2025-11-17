@@ -46,15 +46,15 @@ export default async function DebatesPage() {
         <div className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <h1 className="text-4xl lg:text-5xl font-black text-slate-900 mb-2 tracking-tight">
-              Active Debates
+              Conversations
             </h1>
             <p className="text-xl text-slate-600 font-medium">
-              Join philosophical discourse and earn DeLO rating
+              Explore ideas together with curious minds
             </p>
           </div>
-          <Link href="/debates/create">
+          <Link href="/(authenticated)/debates/create">
             <Button variant="primary" size="lg">
-              + Create Debate
+              + Start Conversation
             </Button>
           </Link>
         </div>

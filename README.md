@@ -1,14 +1,14 @@
-# PhiloDuel - Where Philosophy Comes Alive
+# Ponder - Ponder Together
 
-A revolutionary philosophical social network where users engage in fair, AI-judged debates. Built with Next.js 15, Supabase, and Gemini AI.
+A philosophical conversation platform where curious minds explore ideas together—from casual questions to deep debates. Built with Next.js 15, Supabase, and Gemini AI.
 
 ## Features
 
-- **Fair AI Judgment**: Gemini 2.5 Flash analyzes arguments based on logic, evidence, and rhetoric
-- **Reputation System**: Win debates to earn points and climb the leaderboard
-- **Real-time Debates**: Structured debate format with automatic AI judging
-- **Fact Checking**: AI-powered fact checking for claims made in arguments
-- **Community**: Connect with fellow philosophers in meaningful discourse
+- **Philosophical Conversations**: Engage in multi-round discussions on ethics, AI, existence, and more
+- **AI Facilitation**: Gemini 2.5 Flash helps synthesize key points and areas of agreement
+- **Multiple Perspectives**: Share and explore diverse viewpoints collaboratively
+- **Fact Checking**: AI-powered fact checking for claims in conversations
+- **Community**: Connect with curious thinkers in meaningful dialogue
 
 ## Tech Stack
 
@@ -30,8 +30,8 @@ A revolutionary philosophical social network where users engage in fair, AI-judg
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/nickloveinvesting/Philosophy-app.git
-cd Philosophy-app
+git clone https://github.com/nickloveinvesting/ponder-app.git
+cd ponder-app
 ```
 
 2. Install dependencies:
@@ -63,22 +63,22 @@ npm run dev
 
 ## Database Schema
 
-- **profiles**: User profiles with reputation scores
-- **debates**: Debate topics and status
-- **arguments**: Individual arguments in debates
-- **judgments**: AI-generated judgments with scores and fact checks
+- **profiles**: User profiles with influence scores and interests
+- **conversations**: Conversation topics and status
+- **conversation_messages**: Individual perspectives in conversations
+- **message_feedback**: Community signals and AI synthesis
 
 ## How It Works
 
-1. User creates a debate topic
-2. Another philosopher joins to argue FOR or AGAINST
-3. Both submit their arguments (one round each)
-4. Gemini AI judges based on:
-   - Logic: Soundness of reasoning
-   - Evidence: Quality and relevance of support
-   - Rhetoric: Clarity and persuasiveness
-5. Winner earns reputation points
-6. AI provides detailed reasoning and fact checks
+1. User starts a conversation on any philosophical topic
+2. Multiple participants join to share perspectives
+3. All contribute multiple rounds of thoughtful dialogue
+4. Optionally request AI synthesis to:
+   - Summarize key points from all contributors
+   - Identify areas of agreement and productive disagreements
+   - Highlight unresolved questions
+5. Build influence through thoughtful participation and collaboration
+6. Explore ideas from casual questions to rigorous debates
 
 ## Deployment
 
@@ -98,9 +98,13 @@ vercel --prod
 
 ```
 app/
-├── api/judge/          # AI judgment API endpoint
+├── api/synthesize/     # AI synthesis API endpoint
 ├── auth/               # Authentication pages (login/signup)
-├── debates/            # Debate pages (list, create, detail)
+├── (authenticated)/
+│   ├── debates/        # Conversation pages (list, create, detail)
+│   ├── discuss/        # Perspective sharing
+│   ├── leaderboard/    # Contributors page
+│   └── profile/        # User profiles
 ├── globals.css         # Global styles
 ├── layout.tsx          # Root layout
 └── page.tsx            # Home page
@@ -116,9 +120,9 @@ supabase/
 
 ## Brand Colors
 
-- Primary: Indigo-600 (#3d5adb) - Wisdom, intellect
-- Accent: Coral-500 (#ff6b47) - Competition, energy
-- Background: Slate-900 gradient
+- Primary: Teal-500 (#14b8a6) - Thoughtful, collaborative
+- Accent: Slate-700 (#334155) - Intellectual depth
+- Background: Stone-50 to White gradient
 
 ## Contributing
 

@@ -26,7 +26,7 @@ export default function Logo({
   const logoImage = (
     <Image
       src={logoSrc}
-      alt="PhiloDuel - Where Philosophy Comes Alive"
+      alt="Ponder - Ponder Together"
       width={width}
       height={height}
       priority
