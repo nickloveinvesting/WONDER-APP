@@ -1,15 +1,13 @@
-/**
- * ARGUED UI Component Library
- * Export all components for easy importing
- */
-
 export { Button } from './Button';
-export { Card } from './Card';
+export type { ButtonProps, ButtonVariant, ButtonSize } from './Button';
+
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './Card';
+export type { CardProps, CardVariant } from './Card';
+
 export { Badge } from './Badge';
-export { DebateCard } from './DebateCard';
-export { LeaderboardRow } from './LeaderboardRow';
+export type { BadgeProps, BadgeVariant, BadgeColor, BadgeType, BadgeSize } from './Badge';
+
+export { SectionHeader } from './SectionHeader';
+export type { SectionHeaderProps, SectionHeaderSize } from './SectionHeader';
+
 export { Header } from './Header';
-export { Sidebar } from './Sidebar';
-export { Toast, ToastContainer } from './Toast';
-export { Input, Textarea } from './Input';
-export { StatCard } from './StatCard';

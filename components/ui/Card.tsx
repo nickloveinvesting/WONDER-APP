@@ -1,49 +1,135 @@
-/**
- * ARGUED Card Component
- * Used for debates, profiles, and content containers
- * Features navy/brown left border accent
- */
+import React from 'react';
+import { cn } from '@/lib/utils';
 
-import { ReactNode } from 'react';
+export type CardVariant = 'standard' | 'gradient' | 'lift' | 'accent' | 'navy' | 'highlight' | 'success' | 'error';
 
-interface CardProps {
-  children: ReactNode;
-  variant?: 'default' | 'highlight' | 'navy' | 'success' | 'error';
-  hoverable?: boolean;
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: CardVariant;
+  accentColor?: 'teal' | 'slate';
+  children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
 }
 
-export function Card({
-  children,
-  variant = 'default',
-  hoverable = false,
-  className = '',
-  onClick,
-}: CardProps) {
-  const baseClasses = 'bg-white rounded-lg p-6 border-l-4 shadow-md transition-all duration-200';
+const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ variant = 'standard', accentColor = 'teal', children, className, ...props }, ref) => {
+    const baseStyles = "rounded-xl transition-all duration-300";
 
-  const variantClasses = {
-    default: 'border-l-argued-navy',
-    highlight: 'border-l-argued-brown shadow-lg',
-    navy: 'border-l-argued-navy bg-argued-navy/5',
-    success: 'border-l-argued-success bg-argued-success/5',
-    error: 'border-l-argued-error bg-argued-error/5',
-  };
+    const variantStyles: Record<CardVariant, string> = {
+      standard: "bg-white p-6 shadow-xl hover:shadow-2xl border border-slate-200",
+      gradient: "bg-gradient-to-br from-stone-50 to-white p-8 border-2 border-slate-200 shadow-lg",
+      lift: "bg-white p-8 shadow-lg border-2 border-slate-200 hover:shadow-2xl hover:-translate-y-2",
+      accent: "bg-gradient-to-br from-stone-50 to-white p-8 border-2 border-slate-200 shadow-lg",
+      navy: "bg-slate-900 text-white p-6 shadow-xl hover:shadow-2xl border border-slate-700",
+      highlight: "bg-teal-50 p-6 shadow-lg hover:shadow-xl border-2 border-teal-200",
+      success: "bg-green-50 p-6 shadow-lg border-2 border-green-200",
+      error: "bg-red-50 p-6 shadow-lg border-2 border-red-200",
+    };
 
-  const hoverClasses = hoverable ? 'hover:shadow-xl hover:border-l-argued-brown cursor-pointer' : '';
+    const accentBorderStyles = {
+      teal: "border-t-4 border-t-teal-500",
+      slate: "border-t-4 border-t-slate-700",
+    };
 
-  return (
-    <div
-      className={`
-        ${baseClasses}
-        ${variantClasses[variant]}
-        ${hoverClasses}
-        ${className}
-      `}
-      onClick={onClick}
-    >
-      {children}
-    </div>
-  );
+    const combinedClassName = cn(
+      baseStyles,
+      variantStyles[variant],
+      variant === 'accent' && accentBorderStyles[accentColor],
+      className
+    );
+
+    return (
+      <div ref={ref} className={combinedClassName} {...props}>
+        {children}
+      </div>
+    );
+  }
+);
+
+Card.displayName = 'Card';
+
+export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  className?: string;
 }
+
+const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <div ref={ref} className={cn("mb-4", className)} {...props}>
+        {children}
+      </div>
+    );
+  }
+);
+
+CardHeader.displayName = 'CardHeader';
+
+export interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <h3 ref={ref} className={cn("text-xl font-black text-slate-900 mb-2", className)} {...props}>
+        {children}
+      </h3>
+    );
+  }
+);
+
+CardTitle.displayName = 'CardTitle';
+
+export interface CardDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const CardDescription = React.forwardRef<HTMLParagraphElement, CardDescriptionProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <p ref={ref} className={cn("text-sm text-slate-600 leading-relaxed", className)} {...props}>
+        {children}
+      </p>
+    );
+  }
+);
+
+CardDescription.displayName = 'CardDescription';
+
+export interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <div ref={ref} className={className} {...props}>
+        {children}
+      </div>
+    );
+  }
+);
+
+CardContent.displayName = 'CardContent';
+
+export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
+  ({ children, className, ...props }, ref) => {
+    return (
+      <div ref={ref} className={cn("mt-4 pt-4 border-t border-slate-200", className)} {...props}>
+        {children}
+      </div>
+    );
+  }
+);
+
+CardFooter.displayName = 'CardFooter';
+
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter };
