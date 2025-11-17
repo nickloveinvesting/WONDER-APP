@@ -13,9 +13,9 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Header/Navigation - ULTRA COMPACT */}
+      {/* Header/Navigation - ULTRA THIN ~50px */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-0.5">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-1.5">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <Logo variant="black" size="sm" clickable={true} />
@@ -23,13 +23,13 @@ export default async function Home() {
             <div className="flex items-center space-x-4">
               <Link
                 href="/auth/login"
-                className="px-6 py-2 text-slate-700 text-sm font-bold hover:text-teal-600 transition-colors"
+                className="px-5 py-1.5 text-slate-700 text-sm font-bold hover:text-teal-600 transition-colors"
               >
                 Sign In
               </Link>
               <Link
                 href="/auth/signup"
-                className="px-6 py-2 bg-teal-500 text-white text-sm font-bold rounded-lg hover:bg-teal-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="px-5 py-1.5 bg-teal-500 text-white text-sm font-bold rounded-lg hover:bg-teal-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 Join Free
               </Link>
@@ -145,6 +145,7 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Rest of the page content remains exactly the same... */}
       {/* Stats Bar */}
       <section className="py-16 bg-white border-y border-slate-200">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
