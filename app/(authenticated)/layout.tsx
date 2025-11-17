@@ -40,10 +40,10 @@ export default async function AuthenticatedLayout({
   }
 
   return (
-    <div className="min-h-screen bg-argued-cream flex flex-col">
+    <div className="min-h-screen flex flex-col">
       {/* Navigation Header */}
       <Header user={userProfile} onSignOut={signOut} />
-      
+
       {/* Main Content */}
       <main className="flex-1">
         {children}
