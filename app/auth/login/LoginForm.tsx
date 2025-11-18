@@ -42,7 +42,8 @@ export default function LoginForm() {
           <Link href="/" className="mb-4">
             <Logo variant="white" size="lg" clickable={false} />
           </Link>
-          <p className="text-slate-300 mt-2 text-lg font-medium">Welcome back to ARGUED</p>
+          <h2 className="text-2xl font-black text-white mb-2">Welcome back</h2>
+          <p className="text-slate-300 mt-1 text-lg font-medium">Continue exploring ideas with Ponder</p>
         </div>
 
         <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
@@ -64,7 +65,7 @@ export default function LoginForm() {
                 required
                 autoComplete="email"
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition font-medium"
-                placeholder="philosopher@argued.com"
+                placeholder="you@example.com"
               />
             </div>
 

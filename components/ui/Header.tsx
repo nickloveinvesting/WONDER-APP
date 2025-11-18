@@ -1,5 +1,5 @@
 /**
- * ARGUED Header Component
+ * Ponder Header Component
  * Top navigation with logo, nav links, and user menu
  * Matches the landing page design: compact, white/backdrop blur, teal accents
  */
@@ -18,7 +18,7 @@ interface HeaderProps {
   user?: {
     id: string;
     username: string;
-    reputationScore: number;
+    influenceScore: number;
   } | null;
   onSignOut?: () => void;
 }
@@ -43,10 +43,9 @@ export function Header({ user, onSignOut }: HeaderProps) {
 
   const navItems = user
     ? [
-        { href: '/debates', label: 'Debates' },
-        { href: '/discuss', label: 'Discuss' },
+        { href: '/debates', label: 'Posts' },
+        { href: '/journal', label: 'Journal' },
         { href: '/leaderboard', label: 'Leaderboard' },
-        { href: '/profile', label: 'Profile' },
       ]
     : [
         { href: '/', label: 'Home' },
@@ -97,7 +96,7 @@ export function Header({ user, onSignOut }: HeaderProps) {
                 >
                   <span className="font-bold">{user.username}</span>
                   <Badge type="rating" size="sm" color="teal">
-                    ★ {user.reputationScore}
+                    ✨ {user.influenceScore}
                   </Badge>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${
@@ -183,7 +182,7 @@ export function Header({ user, onSignOut }: HeaderProps) {
                 <div className="px-4 py-2 text-sm font-bold text-slate-700 flex items-center space-x-2">
                   <span>{user.username}</span>
                   <Badge type="rating" size="sm" color="teal">
-                    ★ {user.reputationScore}
+                    ✨ {user.influenceScore}
                   </Badge>
                 </div>
                 <button

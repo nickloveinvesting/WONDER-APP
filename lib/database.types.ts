@@ -196,6 +196,38 @@ export interface Database {
           created_at?: string
         }
       }
+      daily_prompts: {
+        Row: {
+          id: string
+          date: string
+          question: string
+          topic: string
+          category: 'ethics' | 'metaphysics' | 'epistemology' | 'political' | 'existential' | 'applied' | 'science' | 'mind' | null
+          context: string | null
+          created_at: string
+          debate_id: string | null
+        }
+        Insert: {
+          id?: string
+          date: string
+          question: string
+          topic: string
+          category?: 'ethics' | 'metaphysics' | 'epistemology' | 'political' | 'existential' | 'applied' | 'science' | 'mind' | null
+          context?: string | null
+          created_at?: string
+          debate_id?: string | null
+        }
+        Update: {
+          id?: string
+          date?: string
+          question?: string
+          topic?: string
+          category?: 'ethics' | 'metaphysics' | 'epistemology' | 'political' | 'existential' | 'applied' | 'science' | 'mind' | null
+          context?: string | null
+          created_at?: string
+          debate_id?: string | null
+        }
+      }
       judgments: {
         Row: {
           id: string

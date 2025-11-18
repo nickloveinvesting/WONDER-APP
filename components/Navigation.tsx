@@ -11,7 +11,7 @@ import Logo from './Logo';
 
 interface Profile {
   username: string;
-  reputation_score: number;
+  influence_score: number;
 }
 
 export default function Navigation() {
@@ -36,7 +36,7 @@ export default function Navigation() {
         if (currentUser) {
           const { data: profileData } = await supabase
             .from('profiles')
-            .select('username, reputation_score')
+            .select('username, influence_score')
             .eq('id', currentUser.id)
             .maybeSingle();
 
@@ -61,7 +61,7 @@ export default function Navigation() {
           // Fetch profile when user logs in
           const { data: profileData } = await supabase
             .from('profiles')
-            .select('username, reputation_score')
+            .select('username, influence_score')
             .eq('id', session.user.id)
             .maybeSingle();
 
@@ -134,7 +134,7 @@ export default function Navigation() {
 
   // Authenticated navigation items
   const authenticatedNavItems = [
-    { href: '/debates', label: 'Debates' },
+    { href: '/debates', label: 'Conversations' },
     { href: '/leaderboard', label: 'Leaderboard' },
     { href: '/profile', label: 'Profile' },
   ];
@@ -179,7 +179,7 @@ export default function Navigation() {
                   aria-expanded={userMenuOpen}
                 >
                   <span className="font-medium">{profile.username}</span>
-                  <span className="text-yellow-300">★ {profile.reputation_score}</span>
+                  <span className="text-yellow-300">✨ {profile.influence_score}</span>
                   <ChevronDown className={`w-4 h-4 transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} />
                 </button>
 
@@ -269,7 +269,7 @@ export default function Navigation() {
                   <>
                     <div className="px-4 py-2 text-white font-medium">
                       {profile.username}
-                      <span className="ml-2 text-yellow-300">★ {profile.reputation_score}</span>
+                      <span className="ml-2 text-yellow-300">✨ {profile.influence_score}</span>
                     </div>
                     <div className="mt-2 space-y-1">
                       <Link

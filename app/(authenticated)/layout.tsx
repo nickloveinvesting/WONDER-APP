@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { Header } from '@/components/ui/Header';
+import { QuadrantNav } from '@/components/QuadrantNav';
 import { signOut } from '@/lib/actions';
 
 export default async function AuthenticatedLayout({
@@ -24,7 +25,7 @@ export default async function AuthenticatedLayout({
   try {
     const { data: profile, error } = await supabase
       .from('profiles')
-      .select('username, reputation_score, delo_rating')
+      .select('username, influence_score')
       .eq('id', user.id)
       .single();
 
@@ -32,7 +33,7 @@ export default async function AuthenticatedLayout({
       userProfile = {
         id: user.id,
         username: profile.username || 'User',
-        reputationScore: profile.reputation_score || 0,
+        influenceScore: profile.influence_score || 0,
       };
     }
   } catch (error) {
@@ -44,10 +45,16 @@ export default async function AuthenticatedLayout({
       {/* Navigation Header */}
       <Header user={userProfile} onSignOut={signOut} />
 
-      {/* Main Content */}
-      <main className="flex-1">
-        {children}
-      </main>
+      {/* Main Layout with Quadrant Nav */}
+      <div className="flex-1 flex">
+        {/* Left-hand Quadrant Navigation */}
+        <QuadrantNav />
+
+        {/* Main Content */}
+        <main className="flex-1">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
