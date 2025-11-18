@@ -604,33 +604,5 @@ export type ID = string;
  */
 export type Timestamp = string;
 
-// ============================================================================
-// EXPORTS
-// ============================================================================
-
-// Re-export everything for convenience
-export type {
-  InquiryCategory,
-  InquiryCategoryWithStats,
-  Framework,
-  TopicFramework,
-  InquiryTopic,
-  InquiryTopicWithCategory,
-  InquiryTopicWithFrameworks,
-  InquiryTopicCard,
-  UserPosition,
-  UserPositionWithFramework,
-  PositionHistory,
-  PositionHistoryWithFramework,
-  PositionEvolutionData,
-  TopicComment,
-  TopicCommentWithDetails,
-  CommentVote,
-  TopicBookmark,
-  TopicBookmarkWithTopic,
-  ThoughtExperimentResponse,
-  ThoughtExperimentResponseWithFramework,
-  ThoughtExperimentAnalytics,
-  ExpertBadge,
-  ExpertBadgeWithCategory,
-};
+// All types are already exported where they are defined above
+// No need for re-export block
