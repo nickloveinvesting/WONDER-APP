@@ -8,6 +8,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, User, Settings, LogOut, MessageSquarePlus } from 'lucide-react';
 import Logo from '@/components/Logo';
 import { Button } from './Button';
@@ -27,6 +28,7 @@ export function Header({ user, onSignOut }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
+  const pathname = usePathname();
 
   // Close user menu when clicking outside
   useEffect(() => {
@@ -52,6 +54,11 @@ export function Header({ user, onSignOut }: HeaderProps) {
         { href: '/about', label: 'About' },
       ];
 
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 py-1.5">
@@ -67,9 +74,17 @@ export function Header({ user, onSignOut }: HeaderProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
+                prefetch={true}
+                className={`text-sm font-bold transition-all relative ${
+                  isActive(item.href)
+                    ? 'text-teal-600'
+                    : 'text-slate-700 hover:text-teal-600'
+                }`}
               >
                 {item.label}
+                {isActive(item.href) && (
+                  <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-teal-600 rounded-full"></span>
+                )}
               </Link>
             ))}
           </div>
@@ -169,7 +184,12 @@ export function Header({ user, onSignOut }: HeaderProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block px-4 py-2 text-sm font-bold text-slate-700 hover:text-teal-600 hover:bg-teal-50 rounded-lg transition"
+                  prefetch={true}
+                  className={`block px-4 py-2 text-sm font-bold rounded-lg transition ${
+                    isActive(item.href)
+                      ? 'text-teal-600 bg-teal-50'
+                      : 'text-slate-700 hover:text-teal-600 hover:bg-teal-50'
+                  }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
