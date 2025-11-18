@@ -8,11 +8,11 @@ import { PublishButton } from '@/components/PublishButton';
 
 export const dynamic = 'force-dynamic';
 
-type Props = {
+export default async function JournalEntryPage({
+  params,
+}: {
   params: Promise<{ id: string }>;
-};
-
-export default async function JournalEntryPage({ params }: Props) {
+}) {
   const supabase = await createClient();
   const { id } = await params;
 
