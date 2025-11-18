@@ -104,7 +104,7 @@ export default async function JournalEntryPage({
           {entry.tags && entry.tags.length > 0 && (
             <div className="flex gap-2 flex-wrap mb-6">
               {entry.tags.map((tag: string) => (
-                <Badge key={tag} variant="status" color="purple" size="sm">
+                <Badge key={tag} variant="status" color="slate" size="sm">
                   {tag}
                 </Badge>
               ))}
