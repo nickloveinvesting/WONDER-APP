@@ -8,6 +8,32 @@ import { BookOpen, Plus, FolderOpen } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
+type JournalFolder = {
+  id: string;
+  name: string;
+  icon: string;
+  color: string;
+  user_id: string;
+  created_at: string;
+};
+
+type JournalEntry = {
+  id: string;
+  title: string;
+  content: string;
+  user_id: string;
+  folder_id: string | null;
+  is_published: boolean;
+  tags?: string[];
+  created_at: string;
+  updated_at: string;
+  journal_folders?: {
+    name: string;
+    icon: string;
+    color: string;
+  } | null;
+};
+
 export default async function JournalPage() {
   const supabase = await createClient();
 
@@ -68,7 +94,7 @@ export default async function JournalPage() {
           <div className="mb-10">
             <h2 className="text-2xl font-black text-slate-900 mb-4">Folders</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {folders.map((folder: any) => (
+              {folders.map((folder: JournalFolder) => (
                 <Link key={folder.id} href={`/journal?folder=${folder.id}`}>
                   <Card variant="standard" className="hover:shadow-xl transition-all cursor-pointer text-center p-6">
                     <div className="text-4xl mb-2">{folder.icon}</div>
@@ -88,7 +114,7 @@ export default async function JournalPage() {
 
           {entries && entries.length > 0 ? (
             <div className="space-y-4">
-              {entries.map((entry: any) => (
+              {entries.map((entry: JournalEntry) => (
                 <Link key={entry.id} href={`/journal/${entry.id}`}>
                   <Card variant="standard" className="hover:shadow-xl transition-all cursor-pointer">
                     <div className="flex items-start justify-between gap-4">

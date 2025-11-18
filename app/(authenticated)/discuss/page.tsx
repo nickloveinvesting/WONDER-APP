@@ -12,12 +12,21 @@ interface PageProps {
   searchParams: Promise<{ category?: CategoryFilter }>;
 }
 
+type Discussion = {
+  id: string;
+  question: string;
+  description: string | null;
+  category: 'moral' | 'ai' | 'philosophical' | 'existential';
+  comment_count: number;
+  created_at: string;
+};
+
 export default async function DiscussPage({ searchParams }: PageProps) {
   const params = await searchParams;
   const supabase = await createClient();
   const category = params.category || 'all';
 
-  let discussions = [];
+  let discussions: Discussion[] = [];
 
   try {
     let query = supabase
@@ -75,7 +84,7 @@ export default async function DiscussPage({ searchParams }: PageProps) {
       {/* Discussions Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {discussions && discussions.length > 0 ? (
-          discussions.map((discussion: any) => (
+          discussions.map((discussion) => (
             <Link key={discussion.id} href={`/discuss/${discussion.id}`}>
               <DiscussionCard
                 id={discussion.id}

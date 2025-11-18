@@ -37,8 +37,8 @@ export default function CreateDebatePage() {
       if (result.data) {
         router.push(`/debates/${result.data.id}`);
       }
-    } catch (err: any) {
-      setError(err.message || 'Failed to create post');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to create post');
     } finally {
       setLoading(false);
     }

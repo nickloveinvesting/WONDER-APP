@@ -5,12 +5,30 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { VoteButtons } from '@/components/VoteButtons';
 import { Zap } from 'lucide-react';
+import { Database } from '@/lib/database.types';
+import { type VoteType } from '@/lib/actions/voting';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 type Props = {
   searchParams: Promise<{ quadrant?: string }>;
+};
+
+// Extended debate type with computed fields from the database
+type DebateWithCounts = Database['public']['Tables']['debates']['Row'] & {
+  snap_count?: number;
+  zap_count?: number;
+  argument_count?: number;
+  participant_count?: number;
+  quadrant?: string;
+};
+
+type DailyPrompt = Database['public']['Tables']['daily_prompts']['Row'];
+
+type PostVote = {
+  post_id: string;
+  vote_type: VoteType;
 };
 
 export default async function DebatesPage({ searchParams }: Props) {
@@ -22,9 +40,9 @@ export default async function DebatesPage({ searchParams }: Props) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  let debates = [];
-  let userVotes: Record<string, string> = {};
-  let todayPrompt = null;
+  let debates: DebateWithCounts[] = [];
+  let userVotes: Record<string, VoteType> = {};
+  let todayPrompt: DailyPrompt | null = null;
 
   try {
     let query = supabase
@@ -46,7 +64,7 @@ export default async function DebatesPage({ searchParams }: Props) {
 
       // Fetch user votes for these debates
       if (user && debates.length > 0) {
-        const debateIds = debates.map((d: any) => d.id);
+        const debateIds = debates.map((d) => d.id);
         const { data: votes } = await supabase
           .from('post_votes')
           .select('post_id, vote_type')
@@ -54,7 +72,7 @@ export default async function DebatesPage({ searchParams }: Props) {
           .in('post_id', debateIds);
 
         if (votes) {
-          userVotes = votes.reduce((acc: Record<string, string>, vote: any) => {
+          userVotes = votes.reduce((acc: Record<string, VoteType>, vote: PostVote) => {
             acc[vote.post_id] = vote.vote_type;
             return acc;
           }, {});
@@ -176,9 +194,9 @@ export default async function DebatesPage({ searchParams }: Props) {
           </div>
 
           {debates && debates.length > 0 ? (
-            debates.map((debate: any) => {
+            debates.map((debate) => {
               const totalVotes = (debate.snap_count || 0) + (debate.zap_count || 0);
-              const userVote = userVotes[debate.id] || null;
+              const userVote: VoteType | null = userVotes[debate.id] || null;
 
               return (
                 <Card key={debate.id} variant="standard" className="hover:shadow-2xl transition-all duration-300">
@@ -189,7 +207,7 @@ export default async function DebatesPage({ searchParams }: Props) {
                         postId={debate.id}
                         initialSnapCount={debate.snap_count || 0}
                         initialZapCount={debate.zap_count || 0}
-                        userVote={userVote as any}
+                        userVote={userVote}
                         orientation="vertical"
                         size="lg"
                       />

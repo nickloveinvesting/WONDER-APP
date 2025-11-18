@@ -37,8 +37,8 @@ export default function NewJournalEntryPage() {
       }
 
       router.push(`/journal/${result.entry.id}`);
-    } catch (err: any) {
-      setError(err.message || 'Failed to create entry');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to create entry');
     } finally {
       setLoading(false);
     }

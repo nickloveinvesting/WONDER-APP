@@ -62,8 +62,8 @@ export default function NewFolderForm() {
       }
 
       router.push('/journal');
-    } catch (err: any) {
-      setError(err.message || 'Failed to create folder');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to create folder');
     } finally {
       setSaving(false);
     }

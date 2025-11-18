@@ -26,7 +26,26 @@ interface Comment {
 }
 
 interface CommentVote {
+  comment_id: string;
   vote_type: 'upvote' | 'downvote';
+}
+
+interface CommentTreeNode {
+  id: string;
+  content: string;
+  author: string;
+  authorId: string;
+  createdAt: string;
+  upvotes: number;
+  downvotes: number;
+  hasUpvoted: boolean;
+  hasDownvoted: boolean;
+  onUpvote: () => Promise<void>;
+  onDownvote: () => Promise<void>;
+  onReply: () => void;
+  onEdit?: () => void;
+  onDelete?: () => Promise<void>;
+  replies: CommentTreeNode[];
 }
 
 interface CommentSectionProps {
@@ -60,7 +79,7 @@ export function CommentSection({
 
     if (votes) {
       const votesMap: Record<string, 'upvote' | 'downvote'> = {};
-      votes.forEach((vote: any) => {
+      votes.forEach((vote: CommentVote) => {
         votesMap[vote.comment_id] = vote.vote_type;
       });
       setUserVotes(votesMap);
@@ -140,7 +159,7 @@ export function CommentSection({
       // Update vote counts
       const comment = comments.find((c) => c.id === commentId);
       if (comment) {
-        const updates: any = {};
+        const updates: Partial<{ upvotes: number; downvotes: number }> = {};
 
         if (currentVote) {
           // Change vote type
@@ -199,7 +218,7 @@ export function CommentSection({
   };
 
   // Build comment tree
-  const buildCommentTree = (parentId: string | null = null): any[] => {
+  const buildCommentTree = (parentId: string | null = null): CommentTreeNode[] => {
     return comments
       .filter((comment) => comment.parent_comment_id === parentId)
       .map((comment) => ({

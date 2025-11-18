@@ -6,6 +6,21 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import DebateActions from './DebateActions';
+import { Database } from '@/lib/database.types';
+
+type Profile = {
+  username: string;
+  display_name: string | null;
+  influence_score: number;
+};
+
+type ParticipantWithProfile = Database['public']['Tables']['conversation_participants']['Row'] & {
+  profile: Profile;
+};
+
+type MessageWithAuthor = Database['public']['Tables']['arguments']['Row'] & {
+  author: Profile;
+};
 
 export default async function ConversationDetailPage({
   params,
@@ -120,7 +135,7 @@ export default async function ConversationDetailPage({
           <Card variant="standard" className="mb-8">
             <h2 className="text-2xl font-black text-slate-900 mb-4">Contributors</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {participants.map((participant: any) => (
+              {participants.map((participant: ParticipantWithProfile) => (
                 <div
                   key={participant.id}
                   className="flex items-center justify-between p-4 bg-slate-50 rounded-lg"
@@ -184,7 +199,7 @@ export default async function ConversationDetailPage({
         {messages && messages.length > 0 ? (
           <div className="space-y-6">
             <h2 className="text-3xl font-black text-slate-900">Conversation</h2>
-            {messages.map((message: any, index: number) => (
+            {messages.map((message: MessageWithAuthor, index: number) => (
               <Card key={message.id} variant="standard">
                 <div className="flex items-start gap-4">
                   {/* Avatar placeholder */}

@@ -44,8 +44,8 @@ export function PublishButton({ entryId }: PublishButtonProps) {
 
       // Redirect to the published post
       router.push(`/debates/${result.debateId}`);
-    } catch (err: any) {
-      setError(err.message || 'Failed to publish entry');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to publish entry');
     } finally {
       setLoading(false);
     }

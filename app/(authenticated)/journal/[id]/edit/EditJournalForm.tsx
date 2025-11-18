@@ -52,8 +52,8 @@ export default function EditJournalForm({ entry }: Props) {
       }
 
       router.push(`/journal/${entry.id}`);
-    } catch (err: any) {
-      setError(err.message || 'Failed to update entry');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to update entry');
     } finally {
       setSaving(false);
     }
@@ -73,8 +73,8 @@ export default function EditJournalForm({ entry }: Props) {
       }
 
       router.push('/journal');
-    } catch (err: any) {
-      setError(err.message || 'Failed to delete entry');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to delete entry');
       setDeleting(false);
     }
   };

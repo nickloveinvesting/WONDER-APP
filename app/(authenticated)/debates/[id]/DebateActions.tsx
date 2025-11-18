@@ -40,8 +40,8 @@ export default function DebateActions({
       if (updateError) throw updateError;
 
       router.refresh();
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
     }
@@ -79,8 +79,8 @@ export default function DebateActions({
       } else {
         router.refresh();
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
     }
@@ -123,8 +123,9 @@ export default function DebateActions({
       }
 
       router.refresh();
-    } catch (err: any) {
-      setError('Failed to get AI judgment: ' + err.message);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
+      setError('Failed to get AI judgment: ' + errorMessage);
     }
   };
 
