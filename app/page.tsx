@@ -9,7 +9,7 @@ export default async function Home() {
   const { data: { user } } = await supabase.auth.getUser();
 
   if (user) {
-    redirect('/(authenticated)/debates');
+    redirect('/debates');
   }
 
   return (
@@ -100,7 +100,7 @@ export default async function Home() {
                   Join the Community
                 </Link>
                 <Link
-                  href="/(authenticated)/debates"
+                  href="/debates"
                   className="px-10 py-4 border-2 border-slate-300 text-slate-700 text-lg font-black rounded-xl hover:border-teal-500 hover:bg-teal-50 transition-all shadow-lg"
                 >
                   Explore Discussions
@@ -167,7 +167,7 @@ export default async function Home() {
                   2,300+ discussions this month
                 </p>
                 <Link
-                  href="/(authenticated)/debates"
+                  href="/debates"
                   className="text-xs font-bold text-teal-600 hover:text-teal-700 inline-flex items-center mt-1"
                 >
                   Join them →
