@@ -102,6 +102,8 @@ export default function Navigation() {
   const shouldHideNavigation = pathname && (
     pathname === '/' ||  // Landing page has its own header
     pathname.startsWith('/debates') ||
+    pathname.startsWith('/journal') ||  // Hide on journal pages
+    pathname.startsWith('/discuss') ||  // Hide on discuss pages
     pathname.startsWith('/leaderboard') ||
     pathname.startsWith('/profile') ||
     pathname.startsWith('/settings')
