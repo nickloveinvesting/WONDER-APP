@@ -61,7 +61,7 @@ export default async function ConversationDetailPage({
       <div className="max-w-5xl mx-auto px-6 lg:px-8 py-12">
         {/* Back button */}
         <div className="mb-6">
-          <Link href="/(authenticated)/debates">
+          <Link href="/debates">
             <Button variant="secondary" size="sm">
               ← Back to Conversations
             </Button>
