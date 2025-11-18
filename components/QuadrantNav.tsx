@@ -53,30 +53,24 @@ export function QuadrantNav() {
   }
 
   return (
-    <aside className="hidden lg:block w-64 border-r border-slate-200 bg-white sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto">
-      <div className="p-6">
-        {/* Header */}
-        <div className="mb-6">
-          <h2 className="text-lg font-black text-slate-900 mb-1">Quadrants</h2>
-          <p className="text-sm text-slate-600 font-medium">Explore by topic</p>
-        </div>
+    <>
+      {/* Mobile: Horizontal scrollable chips */}
+      <div className="lg:hidden sticky top-14 z-40 bg-white border-b border-slate-200 overflow-x-auto">
+        <div className="flex gap-2 px-4 py-3 min-w-max">
+          {/* All Posts Chip */}
+          <Link
+            href="/debates"
+            prefetch={true}
+            className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all ${
+              !currentQuadrant
+                ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-white shadow-md'
+                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+            }`}
+          >
+            All Posts
+          </Link>
 
-        {/* All Posts Link */}
-        <Link
-          href="/debates"
-          className={`flex items-center gap-3 px-4 py-3 rounded-xl mb-2 transition-all ${
-            !currentQuadrant
-              ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-white shadow-lg'
-              : 'hover:bg-slate-50 text-slate-700'
-          }`}
-        >
-          <div className="flex-1">
-            <div className="font-bold text-sm">All Posts</div>
-          </div>
-        </Link>
-
-        {/* Quadrant Links */}
-        <div className="space-y-2">
+          {/* Quadrant Chips */}
           {QUADRANTS.map((quadrant) => {
             const Icon = quadrant.icon;
             const isActive = currentQuadrant === quadrant.id;
@@ -85,38 +79,89 @@ export function QuadrantNav() {
               <Link
                 key={quadrant.id}
                 href={`/debates?quadrant=${quadrant.id}`}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                prefetch={true}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all ${
                   isActive
-                    ? `bg-gradient-to-r ${quadrant.color} text-white shadow-lg`
-                    : 'hover:bg-slate-50 text-slate-700'
+                    ? `bg-gradient-to-r ${quadrant.color} text-white shadow-md`
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
-                <Icon size={20} className={isActive ? 'text-white' : 'text-slate-400'} />
-                <div className="flex-1">
-                  <div className="font-bold text-sm">{quadrant.name}</div>
-                </div>
+                <Icon size={16} className={isActive ? 'text-white' : 'text-slate-400'} />
+                {quadrant.name}
               </Link>
             );
           })}
         </div>
+      </div>
 
-        {/* Quick Stats */}
-        <div className="mt-8 p-4 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl border border-slate-200">
-          <h3 className="text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">
-            Today's Activity
-          </h3>
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span className="text-slate-600 font-medium">Active Posts</span>
-              <span className="font-black text-slate-900">24</span>
+      {/* Desktop: Sidebar */}
+      <aside className="hidden lg:block w-64 border-r border-slate-200 bg-white sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="p-6">
+          {/* Header */}
+          <div className="mb-6">
+            <h2 className="text-lg font-black text-slate-900 mb-1">Quadrants</h2>
+            <p className="text-sm text-slate-600 font-medium">Explore by topic</p>
+          </div>
+
+          {/* All Posts Link */}
+          <Link
+            href="/debates"
+            prefetch={true}
+            className={`flex items-center gap-3 px-4 py-3 rounded-xl mb-2 transition-all ${
+              !currentQuadrant
+                ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-white shadow-lg'
+                : 'hover:bg-slate-50 text-slate-700'
+            }`}
+          >
+            <div className="flex-1">
+              <div className="font-bold text-sm">All Posts</div>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-slate-600 font-medium">New Comments</span>
-              <span className="font-black text-teal-600">187</span>
+          </Link>
+
+          {/* Quadrant Links */}
+          <div className="space-y-2">
+            {QUADRANTS.map((quadrant) => {
+              const Icon = quadrant.icon;
+              const isActive = currentQuadrant === quadrant.id;
+
+              return (
+                <Link
+                  key={quadrant.id}
+                  href={`/debates?quadrant=${quadrant.id}`}
+                  prefetch={true}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                    isActive
+                      ? `bg-gradient-to-r ${quadrant.color} text-white shadow-lg`
+                      : 'hover:bg-slate-50 text-slate-700'
+                  }`}
+                >
+                  <Icon size={20} className={isActive ? 'text-white' : 'text-slate-400'} />
+                  <div className="flex-1">
+                    <div className="font-bold text-sm">{quadrant.name}</div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Quick Stats */}
+          <div className="mt-8 p-4 bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl border border-slate-200">
+            <h3 className="text-xs font-bold text-slate-600 mb-2 uppercase tracking-wide">
+              Today's Activity
+            </h3>
+            <div className="space-y-2">
+              <div className="flex justify-between text-sm">
+                <span className="text-slate-600 font-medium">Active Posts</span>
+                <span className="font-black text-slate-900">24</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-slate-600 font-medium">New Comments</span>
+                <span className="font-black text-teal-600">187</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </aside>
+      </aside>
+    </>
   );
 }
