@@ -9,11 +9,12 @@ import { PublishButton } from '@/components/PublishButton';
 export const dynamic = 'force-dynamic';
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export default async function JournalEntryPage({ params }: Props) {
   const supabase = await createClient();
+  const { id } = await params;
 
   const {
     data: { user },
@@ -27,7 +28,7 @@ export default async function JournalEntryPage({ params }: Props) {
   const { data: entry, error } = await supabase
     .from('journal_entries')
     .select('*, journal_folders(name, icon, color)')
-    .eq('id', params.id)
+    .eq('id', id)
     .eq('user_id', user.id)
     .single();
 
