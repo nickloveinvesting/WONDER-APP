@@ -548,7 +548,7 @@ export interface CommentCardProps {
   comment: TopicCommentWithDetails;
   onReply?: (commentId: string) => void;
   onVote?: (commentId: string, voteType: VoteType) => void;
-  onRateSteel man?: (commentId: string, rating: number) => void;
+  onRateSteelman?: (commentId: string, rating: number) => void;
   depth?: number; // Nesting level (0, 1, 2 max)
 }
 
