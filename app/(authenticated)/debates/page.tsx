@@ -181,22 +181,24 @@ export default async function DebatesPage({ searchParams }: Props) {
               const userVote = userVotes[debate.id] || null;
 
               return (
-                <Card key={debate.id} variant="standard" className="hover:shadow-xl transition-all duration-300">
-                  <div className="flex gap-4">
+                <Card key={debate.id} variant="standard" className="hover:shadow-2xl transition-all duration-300">
+                  <div className="flex gap-6">
                     {/* Vote Column (Reddit-style) */}
-                    <VoteButtons
-                      postId={debate.id}
-                      initialSnapCount={debate.snap_count || 0}
-                      initialZapCount={debate.zap_count || 0}
-                      userVote={userVote as any}
-                      orientation="vertical"
-                      size="md"
-                    />
+                    <div className="flex-shrink-0">
+                      <VoteButtons
+                        postId={debate.id}
+                        initialSnapCount={debate.snap_count || 0}
+                        initialZapCount={debate.zap_count || 0}
+                        userVote={userVote as any}
+                        orientation="vertical"
+                        size="lg"
+                      />
+                    </div>
 
                     {/* Content */}
-                    <Link href={`/debates/${debate.id}`} className="flex-1 min-w-0">
-                      <div className="cursor-pointer">
-                        <div className="flex items-center gap-3 mb-2">
+                    <Link href={`/debates/${debate.id}`} className="flex-1 min-w-0 group">
+                      <div className="cursor-pointer py-2">
+                        <div className="flex items-center gap-3 mb-3">
                           {debate.quadrant && (
                             <Badge variant="status" color="slate" size="sm">
                               {getQuadrantName(debate.quadrant)}
@@ -204,25 +206,25 @@ export default async function DebatesPage({ searchParams }: Props) {
                           )}
                           {getStatusBadge(debate.status)}
                         </div>
-                        <h3 className="text-xl font-black text-slate-900 hover:text-teal-600 transition-colors mb-2">
+                        <h3 className="text-2xl font-black text-slate-900 group-hover:text-teal-600 transition-colors mb-3 leading-tight">
                           {debate.topic}
                         </h3>
                         {debate.description && (
-                          <p className="text-slate-600 leading-relaxed font-medium mb-3 line-clamp-2">
+                          <p className="text-lg text-slate-600 leading-relaxed font-medium mb-4 line-clamp-3">
                             {debate.description}
                           </p>
                         )}
-                        <div className="flex gap-6 text-sm text-slate-500 font-bold">
+                        <div className="flex flex-wrap gap-6 text-sm text-slate-500 font-bold">
                           <span className="flex items-center gap-2">
-                            💬 {debate.argument_count || 0} comments
+                            💬 <span className="text-slate-700">{debate.argument_count || 0}</span> comments
                           </span>
                           <span className="flex items-center gap-2">
-                            👤 {debate.participant_count || 2} participants
+                            👤 <span className="text-slate-700">{debate.participant_count || 2}</span> participants
                           </span>
                           {totalVotes > 0 && (
                             <span className="flex items-center gap-2">
                               <Zap size={14} className="text-teal-600" />
-                              {totalVotes} {totalVotes === 1 ? 'vote' : 'votes'}
+                              <span className="text-teal-700 font-black">{totalVotes}</span> {totalVotes === 1 ? 'vote' : 'votes'}
                             </span>
                           )}
                         </div>
