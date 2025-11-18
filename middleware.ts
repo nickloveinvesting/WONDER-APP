@@ -26,9 +26,12 @@ export async function middleware(request: NextRequest) {
   )
 
   try {
-    // Refresh the session - this is critical for keeping auth state in sync
+    // Explicitly refresh the session to keep auth state in sync
+    await supabase.auth.getSession()
+
+    // Get user to ensure session is valid
     const { data: { user } } = await supabase.auth.getUser()
-    
+
     // The user state is now available and cookies are set in response
     // This ensures the session persists across page loads
   } catch (error) {

@@ -3,29 +3,84 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
+import { VoteButtons } from '@/components/VoteButtons';
+import { Zap } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export default async function DebatesPage() {
+type Props = {
+  searchParams: { quadrant?: string };
+};
+
+export default async function DebatesPage({ searchParams }: Props) {
   const supabase = await createClient();
+  const quadrantFilter = searchParams.quadrant;
+
+  // Get current user
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   let debates = [];
+  let userVotes: Record<string, string> = {};
+  let todayPrompt = null;
 
   try {
-    const { data: debatesData, error: debatesError } = await supabase
+    let query = supabase
       .from('debates')
       .select('*')
-      .order('created_at', { ascending: false })
-      .limit(20);
+      .order('created_at', { ascending: false });
+
+    // Filter by quadrant if specified
+    if (quadrantFilter) {
+      query = query.eq('quadrant', quadrantFilter);
+    }
+
+    const { data: debatesData, error: debatesError } = await query.limit(20);
 
     if (debatesError) {
       console.error('[DebatesPage] Debates fetch error:', debatesError.message);
     } else {
       debates = debatesData || [];
+
+      // Fetch user votes for these debates
+      if (user && debates.length > 0) {
+        const debateIds = debates.map((d: any) => d.id);
+        const { data: votes } = await supabase
+          .from('post_votes')
+          .select('post_id, vote_type')
+          .eq('user_id', user.id)
+          .in('post_id', debateIds);
+
+        if (votes) {
+          userVotes = votes.reduce((acc: Record<string, string>, vote: any) => {
+            acc[vote.post_id] = vote.vote_type;
+            return acc;
+          }, {});
+        }
+      }
     }
   } catch (debatesError) {
     console.error('[DebatesPage] Unexpected error fetching debates:', debatesError);
+  }
+
+  // Fetch today's prompt (CRITICAL for activation)
+  try {
+    const today = new Date().toISOString().split('T')[0];
+    const { data: promptData, error: promptError } = await supabase
+      .from('daily_prompts')
+      .select('*')
+      .eq('date', today)
+      .single();
+
+    if (promptError && promptError.code !== 'PGRST116') {
+      console.error('[DebatesPage] Prompt fetch error:', promptError.message);
+    } else {
+      todayPrompt = promptData;
+    }
+  } catch (promptError) {
+    console.error('[DebatesPage] Unexpected error fetching prompt:', promptError);
   }
 
   const getStatusBadge = (status: string) => {
@@ -39,6 +94,16 @@ export default async function DebatesPage() {
     }
   };
 
+  const getQuadrantName = (quadrant: string) => {
+    const names: Record<string, string> = {
+      'ai_technology': 'AI & Technology',
+      'philosophy': 'Philosophy',
+      'morality_ethics': 'Morality & Ethics',
+      'economics_society': 'Economics & Society',
+    };
+    return names[quadrant] || 'All Quadrants';
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-stone-50 via-white to-stone-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
@@ -46,66 +111,140 @@ export default async function DebatesPage() {
         <div className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <h1 className="text-4xl lg:text-5xl font-black text-slate-900 mb-2 tracking-tight">
-              Conversations
+              {quadrantFilter ? getQuadrantName(quadrantFilter) : 'All Posts'}
             </h1>
             <p className="text-xl text-slate-600 font-medium">
-              Explore ideas together with curious minds
+              {quadrantFilter
+                ? `Explore ${getQuadrantName(quadrantFilter).toLowerCase()} discussions`
+                : 'Explore ideas together with curious minds'}
             </p>
           </div>
-          <Link href="/(authenticated)/debates/create">
+          <Link href="/debates/create">
             <Button variant="primary" size="lg">
-              + Start Conversation
+              + New Post
             </Button>
           </Link>
         </div>
 
-        {/* Debates List */}
-        <div className="space-y-6">
-          {debates && debates.length > 0 ? (
-            debates.map((debate: any) => (
-              <Link key={debate.id} href={`/debates/${debate.id}`}>
-                <Card variant="standard" className="hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-                  <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+        {/* TODAY'S QUESTION - CRITICAL FOR ACTIVATION */}
+        {todayPrompt && (
+          <div className="mb-10">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-2xl">✨</span>
+              <h2 className="text-xl font-black text-teal-600 uppercase tracking-wide">
+                Today's Question
+              </h2>
+            </div>
+            <Link href={todayPrompt.debate_id ? `/debates/${todayPrompt.debate_id}` : '/debates/create'}>
+              <Card variant="gradient" className="hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border-2 border-teal-400">
+                <div className="space-y-4">
+                  <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-3">
-                        <h3 className="text-2xl font-black text-slate-900 hover:text-teal-600 transition-colors">
-                          {debate.topic}
-                        </h3>
-                        {getStatusBadge(debate.status)}
-                      </div>
-                      {debate.description && (
-                        <p className="text-slate-600 leading-relaxed font-medium mb-4">
-                          {debate.description}
+                      <Badge variant="status" color="teal" size="sm" className="mb-3">
+                        {todayPrompt.category?.toUpperCase() || todayPrompt.topic}
+                      </Badge>
+                      <h3 className="text-3xl font-black text-slate-900 mb-3 leading-tight">
+                        {todayPrompt.question}
+                      </h3>
+                      {todayPrompt.context && (
+                        <p className="text-lg text-slate-600 font-medium leading-relaxed">
+                          {todayPrompt.context}
                         </p>
                       )}
-                      <div className="flex gap-6 text-sm text-slate-500 font-bold">
-                        <span className="flex items-center gap-2">
-                          <span className="text-lg">👤</span>
-                          {debate.participant_count || 2} participants
-                        </span>
-                        <span className="flex items-center gap-2">
-                          <span className="text-lg">💬</span>
-                          {debate.argument_count || 0} arguments
-                        </span>
-                      </div>
                     </div>
                   </div>
+                  <div className="flex items-center gap-4 pt-4 border-t border-slate-200">
+                    <Button variant="primary" size="md">
+                      Join the Conversation →
+                    </Button>
+                    <span className="text-sm text-slate-500 font-medium">
+                      Fresh today • Open to everyone
+                    </span>
+                  </div>
+                </div>
+              </Card>
+            </Link>
+          </div>
+        )}
+
+        {/* Debates List */}
+        <div className="space-y-6">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-black text-slate-900">
+              All Conversations
+            </h2>
+          </div>
+
+          {debates && debates.length > 0 ? (
+            debates.map((debate: any) => {
+              const totalVotes = (debate.snap_count || 0) + (debate.zap_count || 0);
+              const userVote = userVotes[debate.id] || null;
+
+              return (
+                <Card key={debate.id} variant="standard" className="hover:shadow-xl transition-all duration-300">
+                  <div className="flex gap-4">
+                    {/* Vote Column (Reddit-style) */}
+                    <VoteButtons
+                      postId={debate.id}
+                      initialSnapCount={debate.snap_count || 0}
+                      initialZapCount={debate.zap_count || 0}
+                      userVote={userVote as any}
+                      orientation="vertical"
+                      size="md"
+                    />
+
+                    {/* Content */}
+                    <Link href={`/debates/${debate.id}`} className="flex-1 min-w-0">
+                      <div className="cursor-pointer">
+                        <div className="flex items-center gap-3 mb-2">
+                          {debate.quadrant && (
+                            <Badge variant="status" color="slate" size="sm">
+                              {getQuadrantName(debate.quadrant)}
+                            </Badge>
+                          )}
+                          {getStatusBadge(debate.status)}
+                        </div>
+                        <h3 className="text-xl font-black text-slate-900 hover:text-teal-600 transition-colors mb-2">
+                          {debate.topic}
+                        </h3>
+                        {debate.description && (
+                          <p className="text-slate-600 leading-relaxed font-medium mb-3 line-clamp-2">
+                            {debate.description}
+                          </p>
+                        )}
+                        <div className="flex gap-6 text-sm text-slate-500 font-bold">
+                          <span className="flex items-center gap-2">
+                            💬 {debate.argument_count || 0} comments
+                          </span>
+                          <span className="flex items-center gap-2">
+                            👤 {debate.participant_count || 2} participants
+                          </span>
+                          {totalVotes > 0 && (
+                            <span className="flex items-center gap-2">
+                              <Zap size={14} className="text-teal-600" />
+                              {totalVotes} {totalVotes === 1 ? 'vote' : 'votes'}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
                 </Card>
-              </Link>
-            ))
+              );
+            })
           ) : (
             <Card variant="gradient" className="text-center py-16">
               <div className="max-w-md mx-auto">
                 <div className="text-6xl mb-6">🤔</div>
                 <h3 className="text-2xl font-black text-slate-900 mb-3">
-                  No debates yet
+                  No conversations yet
                 </h3>
                 <p className="text-lg text-slate-600 font-medium mb-6">
-                  Be the first to start a philosophical debate!
+                  Every great conversation starts with a simple question. No expertise required—just curiosity!
                 </p>
                 <Link href="/debates/create">
                   <Button variant="primary" size="lg">
-                    Create First Debate
+                    Start Your First Conversation
                   </Button>
                 </Link>
               </div>
