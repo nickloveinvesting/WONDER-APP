@@ -16,15 +16,16 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="w-full px-8 py-3 bg-teal-500 text-white text-base font-black rounded-xl hover:bg-teal-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+      className="w-full px-8 py-3 bg-teal-600 text-white text-base font-black rounded-xl hover:bg-teal-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
     >
-      {pending ? 'Logging in...' : 'Log In'}
+      {pending ? 'Signing in...' : 'Sign In'}
     </button>
   );
 }
 
 /**
  * Login Form Component - Client Component for interactivity
+ * Updated with ARGUED branding (cream background, navy/teal colors)
  * 
  * Uses Server Actions for authentication:
  * - useFormState for error handling
@@ -36,27 +37,31 @@ export default function LoginForm() {
   const [state, formAction] = useFormState(signIn, null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50 via-white to-stone-50 flex items-center justify-center px-4 py-12">
       <div className="max-w-md w-full">
+        {/* Header */}
         <div className="flex flex-col items-center mb-8">
-          <Link href="/" className="mb-4">
-            <Logo variant="white" size="lg" clickable={false} />
+          <Link href="/" className="mb-6">
+            <Logo variant="black" size="lg" clickable={false} />
           </Link>
-          <h2 className="text-2xl font-black text-white mb-2">Welcome back</h2>
-          <p className="text-slate-300 mt-1 text-lg font-medium">Continue exploring ideas with Ponder</p>
+          <h1 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Welcome Back</h1>
+          <p className="text-slate-600 text-base font-medium">Sign in to continue arguing and building your DeLO rating</p>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
+        {/* Form Card */}
+        <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-lg">
           <form action={formAction} className="space-y-6">
+            {/* Error Message */}
             {state?.error && (
-              <div className="bg-red-500/20 border border-red-400 text-red-200 px-4 py-3 rounded-lg font-medium">
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-semibold text-sm">
                 {state.error}
               </div>
             )}
 
+            {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-bold text-slate-200 mb-2">
-                Email
+              <label htmlFor="email" className="block text-sm font-bold text-slate-900 mb-2">
+                Email Address
               </label>
               <input
                 id="email"
@@ -64,13 +69,14 @@ export default function LoginForm() {
                 type="email"
                 required
                 autoComplete="email"
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition font-medium"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-500 focus:outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-600/20 transition font-medium"
                 placeholder="you@example.com"
               />
             </div>
 
+            {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-bold text-slate-200 mb-2">
+              <label htmlFor="password" className="block text-sm font-bold text-slate-900 mb-2">
                 Password
               </label>
               <input
@@ -79,22 +85,31 @@ export default function LoginForm() {
                 type="password"
                 required
                 autoComplete="current-password"
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition font-medium"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-500 focus:outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-600/20 transition font-medium"
                 placeholder="••••••••"
               />
             </div>
 
+            {/* Submit Button */}
             <SubmitButton />
           </form>
 
+          {/* Sign Up Link */}
           <div className="mt-6 text-center">
-            <p className="text-slate-300 font-medium">
+            <p className="text-slate-600 font-medium">
               Don't have an account?{' '}
-              <Link href="/auth/signup" className="text-teal-400 hover:text-teal-300 transition font-bold">
-                Sign up
+              <Link href="/auth/signup" className="text-teal-600 hover:text-teal-700 transition font-bold">
+                Create one free
               </Link>
             </p>
           </div>
+        </div>
+
+        {/* Footer Link */}
+        <div className="mt-6 text-center">
+          <Link href="/" className="text-slate-600 hover:text-slate-900 transition font-medium text-sm">
+            Back to home
+          </Link>
         </div>
       </div>
     </div>
