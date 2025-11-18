@@ -64,28 +64,32 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-stone-50 via-white to-stone-50 flex items-center justify-center px-4 py-8">
       <div className="max-w-md w-full">
+        {/* Header */}
         <div className="flex flex-col items-center mb-8">
-          <Link href="/" className="mb-4">
-            <Logo variant="white" size="lg" clickable={false} />
+          <Link href="/" className="mb-6">
+            <Logo variant="black" size="lg" clickable={false} />
           </Link>
-          <h2 className="text-2xl font-black text-white mb-2">Welcome to Ponder</h2>
-          <p className="text-slate-300 mt-1 text-lg font-medium text-center">
-            You don't need credentials—just curiosity.<br/>Join 500+ thinkers exploring ideas together.
+          <h1 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Join ARGUED</h1>
+          <p className="text-slate-600 text-base font-medium text-center">
+            Start building your DeLO rating by making your strongest arguments
           </p>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-2xl">
+        {/* Form Card */}
+        <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-lg">
           <form onSubmit={handleSignup} className="space-y-5">
+            {/* Error Message */}
             {error && (
-              <div className="bg-red-500/20 border border-red-400 text-red-200 px-4 py-3 rounded-lg font-medium">
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-semibold text-sm">
                 {error}
               </div>
             )}
 
+            {/* Username Field */}
             <div>
-              <label htmlFor="username" className="block text-sm font-bold text-slate-200 mb-2">
+              <label htmlFor="username" className="block text-sm font-bold text-slate-900 mb-2">
                 Username
               </label>
               <input
@@ -96,14 +100,15 @@ export default function SignupPage() {
                 required
                 minLength={3}
                 maxLength={30}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition font-medium"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-500 focus:outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-600/20 transition font-medium"
                 placeholder="socrates"
               />
-              <p className="text-xs text-slate-400 mt-1 font-medium">3-30 characters</p>
+              <p className="text-xs text-slate-600 mt-1 font-medium">3-30 characters</p>
             </div>
 
+            {/* Display Name Field */}
             <div>
-              <label htmlFor="displayName" className="block text-sm font-bold text-slate-200 mb-2">
+              <label htmlFor="displayName" className="block text-sm font-bold text-slate-900 mb-2">
                 Display Name (Optional)
               </label>
               <input
@@ -111,14 +116,15 @@ export default function SignupPage() {
                 type="text"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition font-medium"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-500 focus:outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-600/20 transition font-medium"
                 placeholder="The Philosopher"
               />
             </div>
 
+            {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-bold text-slate-200 mb-2">
-                Email
+              <label htmlFor="email" className="block text-sm font-bold text-slate-900 mb-2">
+                Email Address
               </label>
               <input
                 id="email"
@@ -126,13 +132,14 @@ export default function SignupPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition font-medium"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-500 focus:outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-600/20 transition font-medium"
                 placeholder="you@example.com"
               />
             </div>
 
+            {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-bold text-slate-200 mb-2">
+              <label htmlFor="password" className="block text-sm font-bold text-slate-900 mb-2">
                 Password
               </label>
               <input
@@ -142,29 +149,38 @@ export default function SignupPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={6}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-400/20 transition font-medium"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-500 focus:outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-600/20 transition font-medium"
                 placeholder="••••••••"
               />
-              <p className="text-xs text-slate-400 mt-1 font-medium">At least 6 characters</p>
+              <p className="text-xs text-slate-600 mt-1 font-medium">At least 6 characters</p>
             </div>
 
+            {/* Submit Button */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full px-8 py-3 bg-teal-500 text-white text-base font-black rounded-xl hover:bg-teal-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+              className="w-full px-8 py-3 bg-teal-600 text-white text-base font-black rounded-xl hover:bg-teal-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
             >
-              {loading ? 'Creating account...' : 'Sign Up'}
+              {loading ? 'Creating account...' : 'Create Account'}
             </button>
           </form>
 
+          {/* Login Link */}
           <div className="mt-6 text-center">
-            <p className="text-slate-300 font-medium">
+            <p className="text-slate-600 font-medium">
               Already have an account?{' '}
-              <Link href="/auth/login" className="text-teal-400 hover:text-teal-300 transition font-bold">
-                Log in
+              <Link href="/auth/login" className="text-teal-600 hover:text-teal-700 transition font-bold">
+                Sign in
               </Link>
             </p>
           </div>
+        </div>
+
+        {/* Footer Link */}
+        <div className="mt-6 text-center">
+          <Link href="/" className="text-slate-600 hover:text-slate-900 transition font-medium text-sm">
+            Back to home
+          </Link>
         </div>
       </div>
     </div>
