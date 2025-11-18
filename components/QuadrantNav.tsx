@@ -40,22 +40,20 @@ const QUADRANTS: Quadrant[] = [
 
 /**
  * Left-hand quadrant navigation
- * Displays the 4 main content quadrants for filtering posts
+ * Desktop: Always visible sidebar with quadrants and activity stats
+ * Mobile: Horizontal chips on debates page only
  */
 export function QuadrantNav() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentQuadrant = searchParams.get('quadrant');
-
-  // Only show on debates page
-  if (!pathname.startsWith('/debates')) {
-    return null;
-  }
+  const isDebatesPage = pathname.startsWith('/debates');
 
   return (
     <>
-      {/* Mobile: Horizontal scrollable chips */}
-      <div className="lg:hidden sticky top-14 z-40 bg-white border-b border-slate-200 overflow-x-auto">
+      {/* Mobile: Horizontal scrollable chips - Only on debates page */}
+      {isDebatesPage && (
+        <div className="lg:hidden sticky top-14 z-40 bg-white border-b border-slate-200 overflow-x-auto">
         <div className="flex gap-2 px-4 py-3 min-w-max">
           {/* All Posts Chip */}
           <Link
@@ -92,9 +90,10 @@ export function QuadrantNav() {
             );
           })}
         </div>
-      </div>
+        </div>
+      )}
 
-      {/* Desktop: Sidebar */}
+      {/* Desktop: Sidebar - Always visible */}
       <aside className="hidden lg:block w-64 border-r border-slate-200 bg-white sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto">
         <div className="p-6">
           {/* Header */}
