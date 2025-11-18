@@ -32,12 +32,12 @@ export default async function DiscussPage({ searchParams }: PageProps) {
     const { data: discussionsData, error: discussionsError } = await query;
 
     if (discussionsError) {
-      console.error('[DiscussPage] Discussions fetch error:', discussionsError.message);
+      // Discussions fetch error - fail silently
     } else {
       discussions = discussionsData || [];
     }
   } catch (error) {
-    console.error('[DiscussPage] Unexpected error fetching discussions:', error);
+    // Unexpected error fetching discussions - fail silently
   }
 
   const categories: { value: CategoryFilter; label: string }[] = [

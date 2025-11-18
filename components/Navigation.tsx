@@ -43,7 +43,7 @@ export default function Navigation() {
           setProfile(profileData);
         }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        // Error fetching user data - fail silently
       } finally {
         setLoading(false);
       }
@@ -126,7 +126,7 @@ export default function Navigation() {
     try {
       await signOut();
     } catch (error) {
-      console.error('Sign out error:', error);
+      // Sign out error - fail silently
     }
   };
 
@@ -146,7 +146,7 @@ export default function Navigation() {
   const navItems = user ? authenticatedNavItems : publicNavItems;
 
   return (
-    <nav className="sticky top-0 z-50 bg-indigo-600 border-b border-indigo-700 shadow-lg">
+    <nav className="sticky top-0 z-50 bg-teal-600 border-b border-teal-700 shadow-lg">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -160,8 +160,8 @@ export default function Navigation() {
                 href={item.href}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition ${
                   isActive(item.href)
-                    ? 'bg-indigo-700 text-white'
-                    : 'text-indigo-100 hover:bg-indigo-500 hover:text-white'
+                    ? 'bg-teal-700 text-white'
+                    : 'text-white hover:bg-teal-500 hover:text-white'
                 }`}
               >
                 {item.label}
@@ -172,13 +172,13 @@ export default function Navigation() {
           {/* Desktop Auth Buttons / User Menu */}
           <div className="hidden md:flex items-center space-x-4">
             {loading ? (
-              <div className="w-24 h-8 bg-indigo-500 animate-pulse rounded" />
+              <div className="w-24 h-8 bg-teal-500 animate-pulse rounded" />
             ) : user && profile ? (
               // Authenticated User Menu
               <div className="relative user-menu-container">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center space-x-2 px-4 py-2 rounded-md text-white hover:bg-indigo-500 transition"
+                  className="flex items-center space-x-2 px-4 py-2 rounded-md text-white hover:bg-teal-500 transition"
                   aria-label="User menu"
                   aria-expanded={userMenuOpen}
                 >
@@ -220,13 +220,13 @@ export default function Navigation() {
               <>
                 <Link
                   href="/auth/login"
-                  className="px-4 py-2 text-white hover:text-indigo-100 transition font-medium"
+                  className="px-4 py-2 text-white hover:text-teal-100 transition font-medium"
                 >
                   Log In
                 </Link>
                 <Link
                   href="/auth/signup"
-                  className="px-6 py-2 bg-white text-indigo-600 rounded-md hover:bg-indigo-50 transition font-medium shadow-sm"
+                  className="px-6 py-2 bg-white text-teal-600 rounded-md hover:bg-teal-50 transition font-medium shadow-sm"
                 >
                   Sign Up
                 </Link>
@@ -237,7 +237,7 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-md text-white hover:bg-indigo-500 transition"
+            className="md:hidden p-2 rounded-md text-white hover:bg-teal-500 transition"
             aria-label="Toggle mobile menu"
             aria-expanded={mobileMenuOpen}
           >
@@ -247,7 +247,7 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-indigo-700">
+          <div className="md:hidden py-4 border-t border-teal-700">
             {/* Mobile Navigation Links */}
             <div className="space-y-1 mb-4">
               {navItems.map((item) => (
@@ -256,8 +256,8 @@ export default function Navigation() {
                   href={item.href}
                   className={`block px-4 py-2 rounded-md text-sm font-medium transition ${
                     isActive(item.href)
-                      ? 'bg-indigo-700 text-white'
-                      : 'text-indigo-100 hover:bg-indigo-500 hover:text-white'
+                      ? 'bg-teal-700 text-white'
+                      : 'text-white hover:bg-teal-500 hover:text-white'
                   }`}
                 >
                   {item.label}
@@ -267,7 +267,7 @@ export default function Navigation() {
 
             {/* Mobile Auth Section */}
             {!loading && (
-              <div className="pt-4 border-t border-indigo-700">
+              <div className="pt-4 border-t border-teal-700">
                 {user && profile ? (
                   // Authenticated Mobile Menu
                   <>
@@ -278,21 +278,21 @@ export default function Navigation() {
                     <div className="mt-2 space-y-1">
                       <Link
                         href="/profile"
-                        className="flex items-center px-4 py-2 text-indigo-100 hover:bg-indigo-500 rounded-md transition"
+                        className="flex items-center px-4 py-2 text-white hover:bg-teal-500 rounded-md transition"
                       >
                         <User className="w-4 h-4 mr-2" />
                         My Profile
                       </Link>
                       <Link
                         href="/settings"
-                        className="flex items-center px-4 py-2 text-indigo-100 hover:bg-indigo-500 rounded-md transition"
+                        className="flex items-center px-4 py-2 text-white hover:bg-teal-500 rounded-md transition"
                       >
                         <Settings className="w-4 h-4 mr-2" />
                         Settings
                       </Link>
                       <button
                         onClick={handleSignOut}
-                        className="flex items-center w-full px-4 py-2 text-red-300 hover:bg-indigo-500 rounded-md transition"
+                        className="flex items-center w-full px-4 py-2 text-red-300 hover:bg-teal-500 rounded-md transition"
                       >
                         <LogOut className="w-4 h-4 mr-2" />
                         Logout
@@ -304,13 +304,13 @@ export default function Navigation() {
                   <div className="space-y-2">
                     <Link
                       href="/auth/login"
-                      className="block px-4 py-2 text-center text-white hover:bg-indigo-500 rounded-md transition font-medium"
+                      className="block px-4 py-2 text-center text-white hover:bg-teal-500 rounded-md transition font-medium"
                     >
                       Log In
                     </Link>
                     <Link
                       href="/auth/signup"
-                      className="block px-4 py-2 text-center bg-white text-indigo-600 rounded-md hover:bg-indigo-50 transition font-medium"
+                      className="block px-4 py-2 text-center bg-white text-teal-600 rounded-md hover:bg-teal-50 transition font-medium"
                     >
                       Sign Up
                     </Link>

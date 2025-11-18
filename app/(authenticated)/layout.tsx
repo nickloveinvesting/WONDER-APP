@@ -50,7 +50,7 @@ export default async function AuthenticatedLayout({
       };
     }
   } catch (error) {
-    console.error('[AuthenticatedLayout] Failed to fetch profile:', error);
+    // Failed to fetch profile - fail silently
   }
 
   return (

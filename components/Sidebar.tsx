@@ -22,7 +22,7 @@ export default function Sidebar() {
       {/* Mobile hamburger button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-primary-600 text-white"
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-teal-600 text-white hover:bg-teal-700 transition-colors"
         aria-label="Toggle menu"
       >
         {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -39,7 +39,7 @@ export default function Sidebar() {
       {/* Sidebar */}
       <aside
         className={`
-          fixed top-0 left-0 h-full bg-slate-800 border-r border-slate-700 
+          fixed top-0 left-0 h-full bg-slate-900 border-r border-slate-700
           transition-transform duration-300 z-40
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
           lg:translate-x-0 lg:static lg:block w-64
@@ -48,7 +48,7 @@ export default function Sidebar() {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="p-6 border-b border-slate-700">
-            <h2 className="text-2xl font-bold text-white">PhiloDuel</h2>
+            <h2 className="text-2xl font-black text-white tracking-tight">Ponder</h2>
           </div>
 
           {/* Navigation */}
@@ -65,7 +65,7 @@ export default function Sidebar() {
                     transition-colors duration-200
                     ${
                       isActive(item.href)
-                        ? 'bg-primary-600 text-white'
+                        ? 'bg-teal-600 text-white'
                         : 'text-slate-300 hover:bg-slate-700 hover:text-white'
                     }
                   `}

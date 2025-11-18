@@ -40,7 +40,7 @@ export default async function DebatesPage({ searchParams }: Props) {
     const { data: debatesData, error: debatesError } = await query.limit(20);
 
     if (debatesError) {
-      console.error('[DebatesPage] Debates fetch error:', debatesError.message);
+      // Debates fetch error - fail silently
     } else {
       debates = debatesData || [];
 
@@ -62,7 +62,7 @@ export default async function DebatesPage({ searchParams }: Props) {
       }
     }
   } catch (debatesError) {
-    console.error('[DebatesPage] Unexpected error fetching debates:', debatesError);
+    // Unexpected error fetching debates - fail silently
   }
 
   // Fetch today's prompt (CRITICAL for activation)
@@ -75,12 +75,12 @@ export default async function DebatesPage({ searchParams }: Props) {
       .single();
 
     if (promptError && promptError.code !== 'PGRST116') {
-      console.error('[DebatesPage] Prompt fetch error:', promptError.message);
+      // Prompt fetch error - fail silently
     } else {
       todayPrompt = promptData;
     }
   } catch (promptError) {
-    console.error('[DebatesPage] Unexpected error fetching prompt:', promptError);
+    // Unexpected error fetching prompt - fail silently
   }
 
   const getStatusBadge = (status: string) => {

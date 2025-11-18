@@ -1,46 +1,69 @@
 import Link from 'next/link';
+import Logo from '@/components/Logo';
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-primary-900 to-slate-900">
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl font-bold text-white mb-6">About PhiloDuel</h1>
-
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20 space-y-6">
-            <section>
-              <h2 className="text-2xl font-bold text-white mb-4">Our Mission</h2>
-              <p className="text-gray-300 leading-relaxed">
-                PhiloDuel is a platform dedicated to fostering intellectual discourse through
-                fair, AI-judged philosophical debates. We believe in the power of reasoned
-                argument and the pursuit of truth through dialogue.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-bold text-white mb-4">How It Works</h2>
-              <p className="text-gray-300 leading-relaxed">
-                Our platform uses advanced AI technology to objectively evaluate philosophical
-                arguments based on logic, evidence, and rhetorical effectiveness. This ensures
-                fair judgment and helps participants improve their reasoning skills.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-bold text-white mb-4">Join the Community</h2>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                Whether you're a seasoned philosopher or just curious about big ideas,
-                PhiloDuel welcomes you to engage in meaningful debates and connect with
-                fellow thinkers.
-              </p>
-              <Link
-                href="/auth/signup"
-                className="inline-block px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition font-medium"
-              >
-                Get Started
-              </Link>
-            </section>
+    <div className="min-h-screen bg-gradient-to-b from-stone-50 via-white to-stone-50">
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-1.5">
+          <div className="flex items-center justify-between">
+            <Logo variant="black" size="sm" clickable={true} />
+            <Link
+              href="/"
+              className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
+            >
+              Back to Home
+            </Link>
           </div>
+        </div>
+      </header>
+
+      {/* Content */}
+      <div className="max-w-4xl mx-auto px-6 py-16">
+        <h1 className="text-5xl font-black text-slate-900 mb-6 tracking-tight">About Ponder</h1>
+        <p className="text-slate-600 text-xl mb-12 font-medium leading-relaxed">
+          Where curious minds explore ideas together—from casual questions to deep debates.
+        </p>
+
+        <div className="space-y-8">
+          <section className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
+            <h2 className="text-2xl font-black text-slate-900 mb-4">Our Mission</h2>
+            <p className="text-slate-600 leading-relaxed">
+              Ponder is a platform dedicated to fostering thoughtful philosophical discourse.
+              We believe in the power of genuine dialogue and the pursuit of understanding
+              through respectful, curious conversation. No PhD required—just bring your curiosity.
+            </p>
+          </section>
+
+          <section className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
+            <h2 className="text-2xl font-black text-slate-900 mb-4">How It Works</h2>
+            <p className="text-slate-600 leading-relaxed mb-4">
+              Our platform uses advanced AI technology (Google Gemini) to provide structured
+              debate analysis and insights. The AI evaluates philosophical arguments based on
+              logic, evidence, and rhetorical effectiveness—helping participants improve their
+              reasoning skills while maintaining fair, balanced discussions.
+            </p>
+            <p className="text-slate-600 leading-relaxed">
+              But at its core, Ponder is about human connection. The AI is just a tool to enhance
+              thoughtful conversation, not replace it.
+            </p>
+          </section>
+
+          <section className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
+            <h2 className="text-2xl font-black text-slate-900 mb-4">Join the Community</h2>
+            <p className="text-slate-600 leading-relaxed mb-6">
+              Whether you're a seasoned philosopher or just curious about big ideas,
+              Ponder welcomes you to engage in meaningful discussions and connect with
+              fellow thinkers from around the world.
+            </p>
+            <Link
+              href="/auth/signup"
+              className="inline-block px-8 py-3 bg-teal-500 text-white rounded-xl hover:bg-teal-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-black"
+            >
+              Get Started
+            </Link>
+          </section>
         </div>
       </div>
     </div>

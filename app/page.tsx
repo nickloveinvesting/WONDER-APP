@@ -516,8 +516,8 @@ export default async function Home() {
               <h4 className="text-white font-black mb-4 text-sm">Community</h4>
               <ul className="space-y-2 text-slate-400 text-sm font-medium">
                 <li>
-                  <Link href="/debates" className="hover:text-teal-400 transition-colors">
-                    Guidelines
+                  <Link href="/about" className="hover:text-teal-400 transition-colors">
+                    About
                   </Link>
                 </li>
                 <li>
@@ -526,8 +526,8 @@ export default async function Home() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="hover:text-teal-400 transition-colors">
-                    About
+                  <Link href="/debates" className="hover:text-teal-400 transition-colors">
+                    Community Guidelines
                   </Link>
                 </li>
               </ul>
@@ -537,10 +537,10 @@ export default async function Home() {
           <div className="border-t border-slate-700 pt-8 flex flex-col md:flex-row items-center justify-between text-sm">
             <p className="text-slate-400 font-medium">© 2025 Ponder. Made with care for curious minds.</p>
             <div className="flex items-center space-x-6 mt-4 md:mt-0 text-slate-400 font-medium">
-              <Link href="#" className="hover:text-teal-400 transition-colors">
+              <Link href="/privacy" className="hover:text-teal-400 transition-colors">
                 Privacy
               </Link>
-              <Link href="#" className="hover:text-teal-400 transition-colors">
+              <Link href="/terms" className="hover:text-teal-400 transition-colors">
                 Terms
               </Link>
             </div>

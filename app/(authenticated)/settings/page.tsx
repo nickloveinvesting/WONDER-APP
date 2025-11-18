@@ -17,91 +17,91 @@ export default async function SettingsPage() {
     <div className="container mx-auto px-4 py-8 lg:px-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-argued-navy mb-2">Settings</h1>
-        <p className="text-argued-navy font-medium">Manage your account preferences</p>
+        <h1 className="text-4xl font-black text-slate-900 mb-2 tracking-tight">Settings</h1>
+        <p className="text-slate-600 font-medium">Manage your account preferences</p>
       </div>
 
       {/* Settings Sections */}
       <div className="space-y-6">
         {/* Account Settings */}
-        <div className="bg-white rounded-xl p-6 border border-argued-cream shadow-sm">
-          <h2 className="text-xl font-bold text-argued-navy mb-4">Account Settings</h2>
+        <div className="bg-white rounded-xl p-6 border-2 border-slate-200 shadow-lg">
+          <h2 className="text-xl font-black text-slate-900 mb-4">Account Settings</h2>
           <div className="space-y-4">
             <div>
-              <label className="block text-argued-navy text-sm font-bold mb-2">Email</label>
+              <label className="block text-slate-900 text-sm font-bold mb-2">Email</label>
               <input
                 type="email"
                 value={user.email || ''}
                 disabled
-                className="w-full px-4 py-2 bg-argued-cream/50 border border-argued-cream rounded-lg text-argued-navy disabled:opacity-60 font-medium"
+                className="w-full px-4 py-2 bg-slate-100 border border-slate-300 rounded-lg text-slate-700 disabled:opacity-60 font-medium"
               />
             </div>
           </div>
         </div>
 
         {/* Notification Settings */}
-        <div className="bg-white rounded-xl p-6 border border-argued-cream shadow-sm">
-          <h2 className="text-xl font-bold text-argued-navy mb-4">Notifications</h2>
+        <div className="bg-white rounded-xl p-6 border-2 border-slate-200 shadow-lg">
+          <h2 className="text-xl font-black text-slate-900 mb-4">Notifications</h2>
           <div className="space-y-3">
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
                 defaultChecked
-                className="w-4 h-4 rounded border-argued-cream"
+                className="w-4 h-4 rounded border-slate-300 text-teal-500 focus:ring-teal-500"
               />
-              <span className="text-argued-navy font-medium">Debate Responses</span>
+              <span className="text-slate-700 font-medium">New Responses</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
                 defaultChecked
-                className="w-4 h-4 rounded border-argued-cream"
+                className="w-4 h-4 rounded border-slate-300 text-teal-500 focus:ring-teal-500"
               />
-              <span className="text-argued-navy font-medium">Rating Changes</span>
+              <span className="text-slate-700 font-medium">Influence Score Updates</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
                 defaultChecked
-                className="w-4 h-4 rounded border-argued-cream"
+                className="w-4 h-4 rounded border-slate-300 text-teal-500 focus:ring-teal-500"
               />
-              <span className="text-argued-navy font-medium">Achievements Unlocked</span>
+              <span className="text-slate-700 font-medium">Daily Discussion Prompts</span>
             </label>
           </div>
         </div>
 
         {/* Privacy Settings */}
-        <div className="bg-white rounded-xl p-6 border border-argued-cream shadow-sm">
-          <h2 className="text-xl font-bold text-argued-navy mb-4">Privacy</h2>
+        <div className="bg-white rounded-xl p-6 border-2 border-slate-200 shadow-lg">
+          <h2 className="text-xl font-black text-slate-900 mb-4">Privacy</h2>
           <div className="space-y-3">
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
                 defaultChecked
-                className="w-4 h-4 rounded border-argued-cream"
+                className="w-4 h-4 rounded border-slate-300 text-teal-500 focus:ring-teal-500"
               />
-              <span className="text-argued-navy font-medium">Show Profile on Leaderboard</span>
+              <span className="text-slate-700 font-medium">Show Profile on Leaderboard</span>
             </label>
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
                 defaultChecked
-                className="w-4 h-4 rounded border-argued-cream"
+                className="w-4 h-4 rounded border-slate-300 text-teal-500 focus:ring-teal-500"
               />
-              <span className="text-argued-navy font-medium">Allow Comments on My Arguments</span>
+              <span className="text-slate-700 font-medium">Allow Comments on My Posts</span>
             </label>
           </div>
         </div>
 
         {/* Danger Zone */}
-        <div className="bg-argued-error/10 rounded-xl p-6 border border-argued-error/20 shadow-sm">
-          <h2 className="text-xl font-bold text-argued-error mb-4">Danger Zone</h2>
+        <div className="bg-red-50 rounded-xl p-6 border-2 border-red-200 shadow-lg">
+          <h2 className="text-xl font-black text-red-700 mb-4">Danger Zone</h2>
           <div className="space-y-3">
-            <p className="text-argued-navy text-sm font-medium">Sign out of your account and return to the home page.</p>
+            <p className="text-slate-700 text-sm font-medium">Sign out of your account and return to the home page.</p>
             <form action={signOut}>
               <button
                 type="submit"
-                className="px-6 py-3 text-lg font-bold rounded-lg transition-all duration-200 bg-argued-error text-white hover:bg-argued-error/90 shadow-sm hover:shadow-md"
+                className="px-6 py-3 text-lg font-bold rounded-lg transition-all duration-200 bg-red-600 text-white hover:bg-red-700 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 Sign Out
               </button>

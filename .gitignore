@@ -42,3 +42,7 @@ next-env.d.ts
 # ide
 .idea
 .vscode
+
+# mcp config (contains API tokens)
+.mcp.json
+.playwright-mcp/
