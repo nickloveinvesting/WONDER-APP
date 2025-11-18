@@ -96,14 +96,16 @@ export default function Navigation() {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [userMenuOpen]);
 
-  // IMPROVED: Hide navigation on homepage AND authenticated routes
-  // - Homepage has its own built-in header (white sticky header)
+  // IMPROVED: Hide navigation on homepage, auth pages, and authenticated routes
+  // - Homepage has its own built-in header
+  // - Auth pages (login/signup) have their own branded pages
   // - Authenticated layout has its own Header component
   const shouldHideNavigation = pathname && (
-    pathname === '/' ||  // Landing page has its own header
+    pathname === '/' ||  // Landing page
+    pathname.startsWith('/auth') ||  // Hide on ALL auth pages (login, signup, etc)
     pathname.startsWith('/debates') ||
-    pathname.startsWith('/journal') ||  // Hide on journal pages
-    pathname.startsWith('/discuss') ||  // Hide on discuss pages
+    pathname.startsWith('/journal') ||
+    pathname.startsWith('/discuss') ||
     pathname.startsWith('/leaderboard') ||
     pathname.startsWith('/profile') ||
     pathname.startsWith('/settings')
