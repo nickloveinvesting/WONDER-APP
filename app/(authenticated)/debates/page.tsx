@@ -10,12 +10,12 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 type Props = {
-  searchParams: { quadrant?: string };
+  searchParams: Promise<{ quadrant?: string }>;
 };
 
 export default async function DebatesPage({ searchParams }: Props) {
   const supabase = await createClient();
-  const quadrantFilter = searchParams.quadrant;
+  const { quadrant: quadrantFilter } = await searchParams;
 
   // Get current user
   const {
