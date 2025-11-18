@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { ArrowLeft, Edit, Share2, ExternalLink } from 'lucide-react';
 import { PublishButton } from '@/components/PublishButton';
 
@@ -41,10 +42,12 @@ export default async function JournalEntryPage({
       <div className="max-w-4xl mx-auto px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="mb-8">
-          <Link href="/journal" className="text-slate-600 hover:text-teal-600 transition font-bold inline-flex items-center gap-2 mb-6">
-            <ArrowLeft size={18} />
-            Back to Journal
-          </Link>
+          <Breadcrumbs
+            items={[
+              { label: 'Journal', href: '/journal' },
+              { label: entry.title.length > 40 ? entry.title.substring(0, 40) + '...' : entry.title }
+            ]}
+          />
 
           <div className="flex items-start justify-between gap-4 mb-6">
             <div className="flex-1">

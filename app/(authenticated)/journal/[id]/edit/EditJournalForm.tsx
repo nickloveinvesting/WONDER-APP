@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { updateJournalEntry, deleteJournalEntry } from '@/lib/actions/journal';
 import { Trash2 } from 'lucide-react';
 
@@ -81,11 +82,13 @@ export default function EditJournalForm({ entry }: Props) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-stone-50 via-white to-stone-50">
       <div className="max-w-4xl mx-auto px-6 lg:px-8 py-12">
-        <div className="mb-6">
-          <Link href={`/journal/${entry.id}`} className="text-slate-600 hover:text-teal-600 transition font-bold">
-            ← Back to Entry
-          </Link>
-        </div>
+        <Breadcrumbs
+          items={[
+            { label: 'Journal', href: '/journal' },
+            { label: entry.title.length > 30 ? entry.title.substring(0, 30) + '...' : entry.title, href: `/journal/${entry.id}` },
+            { label: 'Edit' }
+          ]}
+        />
 
         <div className="flex items-start justify-between mb-8">
           <div>

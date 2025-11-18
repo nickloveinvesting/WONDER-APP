@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import DebateActions from './DebateActions';
 
 export default async function ConversationDetailPage({
@@ -59,14 +60,13 @@ export default async function ConversationDetailPage({
   return (
     <div className="min-h-screen bg-gradient-to-b from-stone-50 via-white to-stone-50">
       <div className="max-w-5xl mx-auto px-6 lg:px-8 py-12">
-        {/* Back button */}
-        <div className="mb-6">
-          <Link href="/debates">
-            <Button variant="secondary" size="sm">
-              ← Back to Conversations
-            </Button>
-          </Link>
-        </div>
+        {/* Breadcrumbs */}
+        <Breadcrumbs
+          items={[
+            { label: 'Posts', href: '/debates' },
+            { label: conversation.topic.length > 50 ? conversation.topic.substring(0, 50) + '...' : conversation.topic }
+          ]}
+        />
 
         {/* Conversation Header */}
         <Card variant="gradient" className="mb-8">
