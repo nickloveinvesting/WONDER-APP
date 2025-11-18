@@ -77,8 +77,8 @@ export default async function ConversationDetailPage({
                   {conversation.topic}
                 </h1>
                 <Badge
-                  variant="status"
-                  color={conversation.status === 'open' ? 'green' : 'teal'}
+                  type={conversation.status === 'open' ? 'success' : 'status'}
+                  color="teal"
                   size="md"
                 >
                   {conversation.status.replace('_', ' ').toUpperCase()}
