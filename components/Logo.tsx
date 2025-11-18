@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 interface LogoProps {
   variant?: 'white' | 'black'
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
   clickable?: boolean
 }
 
@@ -15,6 +15,7 @@ export default function Logo({
   clickable = true
 }: LogoProps) {
   const sizes = {
+    xs: { width: 50, height: 16 },  // 50% smaller than sm
     sm: { width: 100, height: 32 },
     md: { width: 140, height: 45 },
     lg: { width: 180, height: 58 }

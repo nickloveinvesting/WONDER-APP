@@ -58,7 +58,7 @@ export function Header({ user, onSignOut }: HeaderProps) {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <Logo variant="black" size="sm" clickable={true} />
+            <Logo variant="black" size="xs" clickable={true} />
           </div>
 
           {/* Desktop Navigation */}
