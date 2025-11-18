@@ -18,16 +18,17 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', href, children, className, asChild, fullWidth, ...props }, ref) => {
     const baseStyles = cn(
-      "font-black transition-all inline-flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed",
+      "font-black transition-all duration-200 inline-flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed gap-2",
+      "focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2",
       fullWidth && "w-full"
     );
 
     const variantStyles = {
-      primary: "bg-teal-500 text-white hover:bg-teal-600 shadow-xl hover:shadow-2xl transform hover:-translate-y-1",
-      secondary: "border-2 border-slate-300 text-slate-700 hover:border-teal-500 hover:bg-teal-50 shadow-lg",
-      outline: "border-2 border-slate-300 text-slate-700 hover:border-teal-500 hover:bg-teal-50 shadow-lg", // alias for secondary
-      compact: "bg-teal-500 text-white hover:bg-teal-600 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5",
-      ghost: "text-slate-700 hover:text-teal-600 transition-colors",
+      primary: "bg-teal-500 text-white hover:bg-teal-600 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 active:translate-y-0 active:shadow-lg",
+      secondary: "border-2 border-slate-300 text-slate-700 hover:border-teal-500 hover:bg-teal-50 shadow-lg hover:shadow-xl active:shadow-md",
+      outline: "border-2 border-slate-300 text-slate-700 hover:border-teal-500 hover:bg-teal-50 shadow-lg hover:shadow-xl active:shadow-md",
+      compact: "bg-teal-500 text-white hover:bg-teal-600 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0 active:shadow-md",
+      ghost: "text-slate-700 hover:text-teal-600 hover:bg-slate-50 rounded-lg",
     };
 
     const sizeStyles: Record<ButtonSize, Record<ButtonVariant, string>> = {

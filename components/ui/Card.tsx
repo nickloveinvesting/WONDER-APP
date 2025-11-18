@@ -12,17 +12,17 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ variant = 'standard', accentColor = 'teal', children, className, ...props }, ref) => {
-    const baseStyles = "rounded-xl transition-all duration-300";
+    const baseStyles = "rounded-xl transition-all duration-300 ease-out focus-within:ring-2 focus-within:ring-teal-500 focus-within:ring-offset-2";
 
     const variantStyles: Record<CardVariant, string> = {
-      standard: "bg-white p-6 shadow-xl hover:shadow-2xl border border-slate-200",
-      gradient: "bg-gradient-to-br from-stone-50 to-white p-8 border-2 border-slate-200 shadow-lg",
-      lift: "bg-white p-8 shadow-lg border-2 border-slate-200 hover:shadow-2xl hover:-translate-y-2",
-      accent: "bg-gradient-to-br from-stone-50 to-white p-8 border-2 border-slate-200 shadow-lg",
-      navy: "bg-slate-900 text-white p-6 shadow-xl hover:shadow-2xl border border-slate-700",
-      highlight: "bg-teal-50 p-6 shadow-lg hover:shadow-xl border-2 border-teal-200",
-      success: "bg-green-50 p-6 shadow-lg border-2 border-green-200",
-      error: "bg-red-50 p-6 shadow-lg border-2 border-red-200",
+      standard: "bg-white p-6 shadow-xl hover:shadow-2xl border border-slate-200 hover:border-teal-200",
+      gradient: "bg-gradient-to-br from-stone-50 to-white p-8 border-2 border-slate-200 shadow-lg hover:shadow-xl",
+      lift: "bg-white p-8 shadow-lg border-2 border-slate-200 hover:shadow-2xl hover:-translate-y-2 hover:border-teal-200 cursor-pointer",
+      accent: "bg-gradient-to-br from-stone-50 to-white p-8 border-2 border-slate-200 shadow-lg hover:shadow-xl",
+      navy: "bg-slate-900 text-white p-6 shadow-xl hover:shadow-2xl border border-slate-700 hover:border-slate-600",
+      highlight: "bg-teal-50 p-6 shadow-lg hover:shadow-xl border-2 border-teal-200 hover:border-teal-300",
+      success: "bg-green-50 p-6 shadow-lg border-2 border-green-200 hover:border-green-300",
+      error: "bg-red-50 p-6 shadow-lg border-2 border-red-200 hover:border-red-300",
     };
 
     const accentBorderStyles = {
