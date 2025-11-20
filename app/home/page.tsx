@@ -1,15 +1,2 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-
-export default function HomePage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    // Redirect to authenticated home
-    router.push('/');
-  }, [router]);
-
-  return null;
-}
+// This file is deprecated. Use route.ts instead for /home redirects.
+// Kept for backward compatibility only.
