@@ -1,7 +1,7 @@
 /**
  * INQUIRE FEATURE TYPE DEFINITIONS
  *
- * TypeScript interfaces for the Inquire feature - ARGUED's premium philosophy platform
+ * TypeScript interfaces for the Inquire feature - WONDER's premium philosophy platform
  * These types match the database schema defined in 20250117_create_inquire_tables.sql
  *
  * @version 1.0

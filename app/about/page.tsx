@@ -8,7 +8,7 @@ export default function AboutPage() {
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-6 py-16">
-        <h1 className="text-5xl font-black text-slate-900 mb-6 tracking-tight">About ARGUED</h1>
+        <h1 className="text-5xl font-black text-slate-900 mb-6 tracking-tight">About WONDER</h1>
         <p className="text-slate-600 text-xl mb-12 font-medium leading-relaxed">
           Where curious minds explore ideas together—from casual questions to deep debates.
         </p>
@@ -17,7 +17,7 @@ export default function AboutPage() {
           <section className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
             <h2 className="text-2xl font-black text-slate-900 mb-4">Our Mission</h2>
             <p className="text-slate-600 leading-relaxed">
-              ARGUED is a platform dedicated to fostering thoughtful philosophical discourse.
+              WONDER is a platform dedicated to fostering thoughtful philosophical discourse.
               We believe in the power of genuine dialogue and the pursuit of understanding
               through respectful, curious conversation. No PhD required—just bring your curiosity.
             </p>
@@ -32,7 +32,7 @@ export default function AboutPage() {
               reasoning skills while maintaining fair, balanced discussions.
             </p>
             <p className="text-slate-600 leading-relaxed">
-              But at its core, ARGUED is about human connection. The AI is just a tool to enhance
+              But at its core, WONDER is about human connection. The AI is just a tool to enhance
               thoughtful conversation, not replace it.
             </p>
           </section>
@@ -41,7 +41,7 @@ export default function AboutPage() {
             <h2 className="text-2xl font-black text-slate-900 mb-4">Join the Community</h2>
             <p className="text-slate-600 leading-relaxed mb-6">
               Whether you're a seasoned philosopher or just curious about big ideas,
-              ARGUED welcomes you to engage in meaningful discussions and connect with
+              WONDER welcomes you to engage in meaningful discussions and connect with
               fellow thinkers from around the world.
             </p>
             <Link

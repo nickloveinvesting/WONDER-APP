@@ -71,7 +71,7 @@ export default function SignupPage() {
           <Link href="/" className="mb-6">
             <Logo variant="black" size="lg" clickable={false} />
           </Link>
-          <h1 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Join ARGUED</h1>
+          <h1 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Join WONDER</h1>
           <p className="text-slate-600 text-base font-medium text-center">
             Start exploring ideas with curious minds—no credentials needed
           </p>

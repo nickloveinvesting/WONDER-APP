@@ -1,5 +1,5 @@
 /**
- * ARGUED Debates List Page Template
+ * WONDER Debates List Page Template
  * Browse all debates with filtering and search
  */
 
@@ -146,7 +146,7 @@ export function DebatesListTemplate({
               <DebateCard
                 key={debate.id}
                 {...debate}
-                onClick={() => console.log(`Navigate to /debates/${debate.id}`)}
+                onClick={() => {}}
               />
             ))}
           </div>

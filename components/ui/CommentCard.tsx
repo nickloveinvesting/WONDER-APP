@@ -1,5 +1,5 @@
 /**
- * ARGUED Comment Card Component
+ * WONDER Comment Card Component
  * Displays individual comment with voting, replies, and actions
  * Used in discussion threads
  */

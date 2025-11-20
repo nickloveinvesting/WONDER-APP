@@ -134,7 +134,7 @@ export default function CreateDebatePage() {
           <div className="bg-gradient-to-br from-teal-50 to-cyan-50 border-2 border-teal-200 rounded-xl p-6">
             <h3 className="text-slate-900 font-black mb-3 flex items-center gap-2">
               <span className="text-xl">💡</span>
-              How ARGUED Works
+              How WONDER Works
             </h3>
             <ul className="text-slate-700 text-sm space-y-2 font-medium">
               <li className="flex gap-2">

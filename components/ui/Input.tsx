@@ -1,6 +1,6 @@
 /**
- * ARGUED Input Component
- * Form inputs with ARGUED styling
+ * WONDER Input Component
+ * Form inputs with WONDER styling
  * Cream background with navy border
  */
 

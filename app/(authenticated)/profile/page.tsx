@@ -34,7 +34,7 @@ export default async function ProfilePage() {
             Your Profile
           </h1>
           <p className="text-xl text-slate-600 font-medium">
-            Track your contributions and growth in the ARGUED community
+            Track your contributions and growth in the WONDER community
           </p>
         </div>
 

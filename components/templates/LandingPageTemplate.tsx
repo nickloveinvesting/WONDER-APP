@@ -1,7 +1,7 @@
 /**
- * ARGUED Landing Page Template
+ * WONDER Landing Page Template
  * Hero section, value proposition, how it works, CTA
- * Uses ARGUED branding with cream background
+ * Uses WONDER branding with cream background
  */
 
 import Link from 'next/link';
@@ -17,7 +17,7 @@ export function LandingPageTemplate() {
           <div className="flex justify-center mb-8">
             <Image
               src="/logo-black.png"
-              alt="ARGUED"
+              alt="WONDER"
               width={200}
               height={64}
               priority
@@ -50,7 +50,7 @@ export function LandingPageTemplate() {
       <section className="py-16 px-4 bg-white">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-argued-navy text-center mb-12 font-sans">
-            Why ARGUED?
+            Why WONDER?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Feature 1 */}
@@ -213,7 +213,7 @@ export function LandingPageTemplate() {
             <div>
               <Image
                 src="/logo-white.png"
-                alt="ARGUED"
+                alt="WONDER"
                 width={140}
                 height={45}
                 className="h-8 w-auto mb-4"
@@ -246,7 +246,7 @@ export function LandingPageTemplate() {
             </div>
           </div>
           <div className="border-t border-argued-brown/30 pt-6 text-center text-argued-cream text-sm">
-            © 2025 ARGUED. Where argumentation is a skill.
+            © 2025 WONDER. Where argumentation is a skill.
           </div>
         </div>
       </footer>

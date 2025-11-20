@@ -46,8 +46,6 @@ export async function signIn(
       return { error: 'Authentication failed - no user data returned' };
     }
 
-    console.log(`[signIn] User authenticated: ${data.user.id}`);
-
     // Revalidate the debates page to ensure fresh data
     revalidatePath('/debates');
     

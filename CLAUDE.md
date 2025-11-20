@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Ponder is a philosophical conversation platform where curious minds explore ideas together—from casual questions to deep debates. Built with Next.js 15 (App Router), Supabase, and Google Gemini AI.
+WONDER is a philosophical conversation platform where curious minds explore ideas together—from casual questions to deep debates. Built with Next.js 15 (App Router), Supabase, and Google Gemini AI.
 
 ## Development Commands
 
@@ -38,7 +38,7 @@ GITHUB_REPO=nickloveinvesting/Philosophy-app
 **GitHub Token Setup** (for feedback feature):
 1. Go to https://github.com/settings/tokens
 2. Click "Generate new token (classic)"
-3. Give it a descriptive name (e.g., "Ponder Feedback Integration")
+3. Give it a descriptive name (e.g., "WONDER Feedback Integration")
 4. Select the `repo` scope (required for creating issues)
 5. Generate the token and copy it to your `.env.local` file
 
@@ -217,6 +217,6 @@ const supabase = createClient();
 
 ## Project Naming
 
-- Brand name: "Ponder"
-- Tagline: "Ponder Together"
+- Brand name: "WONDER"
+- Tagline: "WONDER Together"
 - Vision: Conversation-first philosophical platform (see `research/FINAL_SYNTHESIS/` for details)

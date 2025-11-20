@@ -25,8 +25,8 @@ function SubmitButton() {
 
 /**
  * Login Form Component - Client Component for interactivity
- * Updated with ARGUED branding (cream background, navy/teal colors)
- * 
+ * Updated with WONDER branding (cream background, navy/teal colors)
+ *
  * Uses Server Actions for authentication:
  * - useFormState for error handling
  * - useFormStatus for loading states
@@ -45,7 +45,7 @@ export default function LoginForm() {
             <Logo variant="black" size="lg" clickable={false} />
           </Link>
           <h1 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Welcome Back</h1>
-          <p className="text-slate-600 text-base font-medium">Sign in to continue arguing and building your DeLO rating</p>
+          <p className="text-slate-600 text-base font-medium">Sign in to continue exploring ideas together</p>
         </div>
 
         {/* Form Card */}

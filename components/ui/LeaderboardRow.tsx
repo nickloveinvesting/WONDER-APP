@@ -1,5 +1,5 @@
 /**
- * ARGUED Leaderboard Row Component
+ * WONDER Leaderboard Row Component
  * Displays user ranking, DeLO rating, and stats
  */
 

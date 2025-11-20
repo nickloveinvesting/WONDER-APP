@@ -1,5 +1,5 @@
 /**
- * ARGUED Debate Card Component
+ * WONDER Debate Card Component
  * Displays debate topic, participants, and quick actions
  * Used in debates listing page
  */

@@ -1,5 +1,5 @@
 /**
- * ARGUED Sidebar Navigation Component
+ * WONDER Sidebar Navigation Component
  * Navy background with brown active states
  * Collapsible on mobile with hamburger menu
  */
@@ -63,7 +63,7 @@ export function Sidebar({ username, deloRating }: SidebarProps) {
           <div className="p-6 border-b border-argued-brown/30">
             <Image
               src="/logo-white.png"
-              alt="ARGUED"
+              alt="WONDER"
               width={140}
               height={45}
               className="h-8 w-auto"
@@ -108,7 +108,7 @@ export function Sidebar({ username, deloRating }: SidebarProps) {
 
           {/* Footer */}
           <div className="p-4 border-t border-argued-brown/30 text-white/60 text-xs">
-            © 2025 ARGUED
+            © 2025 WONDER
           </div>
         </div>
       </aside>
