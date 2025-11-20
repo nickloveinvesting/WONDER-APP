@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-});
+// Use system fonts as fallback for Google Fonts
+// This prevents build failures in offline environments
 
 export const metadata: Metadata = {
   title: "ARGUED - Think Deeply Together",
@@ -30,9 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${plusJakartaSans.variable} antialiased`}
-      >
+      <body className="antialiased">
         <Navigation />
         {children}
       </body>
