@@ -28,7 +28,7 @@ export async function middleware(request: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser()
 
   // Protected routes - require authentication
-  const protectedPaths = ['/debates', '/profile', '/journal', '/leaderboard', '/settings', '/home']
+  const protectedPaths = ['/debates', '/profile', '/journal', '/leaderboard', '/settings']
   const isProtectedPath = protectedPaths.some(path => request.nextUrl.pathname.startsWith(path))
 
   // Auth routes (login/signup)
@@ -45,7 +45,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/home', request.url))
   }
 
-  // Home page "/" is always accessible - no redirect
+  // Home page "/" and "/home" are always accessible - no redirect
   return response
 }
 
