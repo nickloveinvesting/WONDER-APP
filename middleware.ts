@@ -31,21 +31,15 @@ export async function middleware(request: NextRequest) {
   const protectedPaths = ['/debates', '/profile', '/journal', '/leaderboard', '/settings']
   const isProtectedPath = protectedPaths.some(path => request.nextUrl.pathname.startsWith(path))
 
-  // Auth routes (login/signup)
-  const isAuthPath = request.nextUrl.pathname.startsWith('/auth')
-
   // If accessing protected route without auth, redirect to login
   if (isProtectedPath && !user) {
     const redirectUrl = new URL('/auth/login', request.url)
     return NextResponse.redirect(redirectUrl)
   }
 
-  // If accessing auth pages while logged in, redirect to home
-  if (isAuthPath && user) {
-    return NextResponse.redirect(new URL('/home', request.url))
-  }
-
-  // Home page "/" and "/home" are always accessible - no redirect
+  // All other routes are allowed
+  // Auth pages, landing page, and /home are all publicly accessible
+  // Individual routes will handle their own auth checks if needed
   return response
 }
 
