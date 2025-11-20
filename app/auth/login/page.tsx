@@ -7,7 +7,7 @@ import LoginForm from './LoginForm';
  * 
  * This page:
  * 1. Checks if user is already logged in (server-side)
- * 2. If logged in, redirects to /home (dashboard)
+ * 2. If logged in and valid, redirects to /home (dashboard)
  * 3. If not logged in, renders the LoginForm client component
  * 
  * This eliminates the client-side useEffect redirect pattern
@@ -18,12 +18,27 @@ export default async function LoginPage() {
   const supabase = await createClient();
   const { data: { user }, error } = await supabase.auth.getUser();
 
-  // If already logged in, redirect to dashboard
-  // This is server-side, so no flicker or race condition
+  // Only redirect if we have a valid user AND no error
+  // This prevents phantom sessions from causing redirects
   if (user && !error) {
-    redirect('/home');
+    // Double-check by trying to fetch user profile
+    // If profile doesn't exist, the session is phantom
+    try {
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('id')
+        .eq('id', user.id)
+        .single();
+      
+      // Only redirect if profile exists (real user)
+      if (profile && !profileError) {
+        redirect('/home');
+      }
+    } catch (e) {
+      // Profile lookup failed, continue to show login form
+    }
   }
 
-  // User not logged in, render the login form
+  // User not logged in or session is phantom, render the login form
   return <LoginForm />;
 }
