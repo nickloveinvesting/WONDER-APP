@@ -27,23 +27,25 @@ export async function middleware(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Protected routes
-  const protectedPaths = ['/debates', '/profile', '/journal', '/leaderboard', '/settings']
+  // Protected routes - require authentication
+  const protectedPaths = ['/debates', '/profile', '/journal', '/leaderboard', '/settings', '/home']
   const isProtectedPath = protectedPaths.some(path => request.nextUrl.pathname.startsWith(path))
 
   // Auth routes (login/signup)
   const isAuthPath = request.nextUrl.pathname.startsWith('/auth')
 
+  // If accessing protected route without auth, redirect to login
   if (isProtectedPath && !user) {
     const redirectUrl = new URL('/auth/login', request.url)
-    // redirectUrl.searchParams.set('next', request.nextUrl.pathname) // Optional: Redirect back after login
     return NextResponse.redirect(redirectUrl)
   }
 
+  // If accessing auth pages while logged in, redirect to home
   if (isAuthPath && user) {
-    return NextResponse.redirect(new URL('/debates', request.url))
+    return NextResponse.redirect(new URL('/home', request.url))
   }
 
+  // Home page "/" is always accessible - no redirect
   return response
 }
 
