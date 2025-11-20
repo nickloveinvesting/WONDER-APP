@@ -9,14 +9,15 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "ARGUED - Think Deeply Together",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
+  title: "WONDER - Explore Ideas Together",
   description: "A philosophical conversation platform where curious minds explore ideas together—from casual questions to deep debates.",
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: 'ARGUED - Think Deeply Together',
+    title: 'WONDER - Explore Ideas Together',
     description: 'A philosophical conversation platform where curious minds explore ideas together—from casual questions to deep debates.',
     images: ['/logo-black.png'],
     type: 'website',

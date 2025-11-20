@@ -1,5 +1,5 @@
 /**
- * ARGUED Single Debate Page Template
+ * WONDER Single Debate Page Template
  * Detailed debate view with arguments and AI judgment
  */
 

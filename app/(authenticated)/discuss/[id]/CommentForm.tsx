@@ -1,5 +1,5 @@
 /**
- * ARGUED Comment Form Component
+ * WONDER Comment Form Component
  * Form for adding or editing comments in discussions
  */
 

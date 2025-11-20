@@ -48,7 +48,7 @@ export default function Sidebar() {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="p-6 border-b border-slate-700">
-            <h2 className="text-2xl font-black text-white tracking-tight">ARGUED</h2>
+            <h2 className="text-2xl font-black text-white tracking-tight">WONDER</h2>
           </div>
 
           {/* Navigation */}

@@ -1,5 +1,5 @@
 /**
- * ARGUED Header Component
+ * WONDER Header Component
  * Top navigation with logo, nav links, and user menu
  * Matches the landing page design: compact, white/backdrop blur, teal accents
  */

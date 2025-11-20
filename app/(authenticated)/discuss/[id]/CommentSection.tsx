@@ -1,5 +1,5 @@
 /**
- * ARGUED Comment Section Component
+ * WONDER Comment Section Component
  * Manages comment display, sorting, voting, and interactions
  */
 

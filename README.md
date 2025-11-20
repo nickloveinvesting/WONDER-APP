@@ -1,4 +1,4 @@
-# Ponder - Ponder Together
+# WONDER - WONDER Together
 
 A philosophical conversation platform where curious minds explore ideas together—from casual questions to deep debates. Built with Next.js 15, Supabase, and Gemini AI.
 
@@ -30,8 +30,8 @@ A philosophical conversation platform where curious minds explore ideas together
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/nickloveinvesting/ponder-app.git
-cd ponder-app
+git clone https://github.com/nickloveinvesting/wonder-app.git
+cd wonder-app
 ```
 
 2. Install dependencies:

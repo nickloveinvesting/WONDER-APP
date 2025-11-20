@@ -1,5 +1,5 @@
 /**
- * ARGUED Page Templates
+ * WONDER Page Templates
  * Export all page template components
  */
 

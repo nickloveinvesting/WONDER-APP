@@ -1,5 +1,5 @@
 /**
- * ARGUED Stat Card Component
+ * WONDER Stat Card Component
  * Used for displaying statistics (debates, win rate, etc.)
  */
 

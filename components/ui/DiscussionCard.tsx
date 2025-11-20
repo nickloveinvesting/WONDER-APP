@@ -1,5 +1,5 @@
 /**
- * ARGUED Discussion Card Component
+ * WONDER Discussion Card Component
  * Displays discussion question preview with category and comment count
  * Used in discuss listing page
  */

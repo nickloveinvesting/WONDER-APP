@@ -1,5 +1,5 @@
 /**
- * ARGUED Dashboard Template
+ * WONDER Dashboard Template
  * Post-login landing page with stats, recent activity, featured debates
  */
 
@@ -116,7 +116,7 @@ export function DashboardTemplate({
                 {...featuredDebate}
                 status="open"
                 featured={true}
-                onClick={() => console.log('Navigate to debate')}
+                onClick={() => {}}
               />
             </div>
 

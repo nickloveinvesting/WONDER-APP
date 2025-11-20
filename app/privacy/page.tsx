@@ -17,7 +17,7 @@ export default function PrivacyPage() {
           <section className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
             <h2 className="text-2xl font-black text-slate-900 mb-4">Information We Collect</h2>
             <p className="text-slate-600 leading-relaxed mb-4">
-              When you create an account on ARGUED, we collect:
+              When you create an account on WONDER, we collect:
             </p>
             <ul className="list-disc list-inside text-slate-600 space-y-2 ml-4">
               <li>Email address (for authentication)</li>

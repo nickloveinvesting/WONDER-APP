@@ -260,7 +260,7 @@ export default async function LeaderboardPage() {
         {/* Footer Info */}
         <Card variant="gradient" className="mt-6">
           <p className="text-slate-700 font-medium text-sm leading-relaxed">
-            <strong className="text-slate-900">Influence Score:</strong> Your influence grows as you contribute thoughtfully to conversations. Quality insights, helpful perspectives, and meaningful engagement all increase your influence in the ARGUED community.
+            <strong className="text-slate-900">Influence Score:</strong> Your influence grows as you contribute thoughtfully to conversations. Quality insights, helpful perspectives, and meaningful engagement all increase your influence in the WONDER community.
           </p>
         </Card>
       </div>
