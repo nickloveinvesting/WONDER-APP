@@ -6,7 +6,9 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { BookOpen, Plus, FolderOpen } from 'lucide-react';
 
-export const dynamic = 'force-dynamic';
+// Cache journal page for 60 seconds (user-specific content)
+// Data changes when user creates/edits entries, so 60s is a good balance
+export const revalidate = 60;
 
 type JournalFolder = {
   id: string;
