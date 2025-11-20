@@ -1,7 +1,26 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
+// Compile protected paths regex once (outside function for performance)
+// Matches: /home, /debates, /profile, /journal, /leaderboard, /settings, and their sub-routes
+const PROTECTED_PATHS_REGEX = /^\/(home|debates|profile|journal|leaderboard|settings|discuss)(?:\/|$)/
+
 export async function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname
+
+  // Quick check: use regex for O(1) path matching instead of O(n) array iteration
+  const isProtectedPath = PROTECTED_PATHS_REGEX.test(pathname)
+
+  // Skip auth check for public routes - reduces unnecessary auth calls
+  if (!isProtectedPath) {
+    return NextResponse.next({
+      request: {
+        headers: request.headers,
+      },
+    })
+  }
+
+  // Only create Supabase client and check auth for protected routes
   let response = NextResponse.next({
     request: {
       headers: request.headers,
@@ -27,20 +46,12 @@ export async function middleware(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Protected routes - require authentication
-  const protectedPaths = ['/home', '/debates', '/profile', '/journal', '/leaderboard', '/settings']
-  const isProtectedPath = protectedPaths.some(path => request.nextUrl.pathname.startsWith(path))
-
-  // Auth routes (login/signup)
-  const isAuthPath = request.nextUrl.pathname.startsWith('/auth')
-
   // If accessing protected route without auth, redirect to login
-  if (isProtectedPath && !user) {
+  if (!user) {
     const redirectUrl = new URL('/auth/login', request.url)
     return NextResponse.redirect(redirectUrl)
   }
 
-  // All other routes are accessible
   return response
 }
 
@@ -53,7 +64,9 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      * - public (public assets)
+     *
+     * Optimized to reduce middleware executions on static/non-auth routes
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|public).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|public|robots.txt|sitemap.xml).*)',
   ],
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { memo, useState, useTransition } from 'react';
 import { Zap } from 'lucide-react';
 import { voteOnPost, type VoteType } from '@/lib/actions/voting';
 
@@ -15,9 +15,10 @@ type VoteButtonsProps = {
 
 /**
  * Snap/Zap voting buttons for posts
+ * Memoized to prevent re-renders when parent updates but props unchanged
  * Handles optimistic updates and server actions
  */
-export function VoteButtons({
+function VoteButtonsComponent({
   postId,
   initialSnapCount,
   initialZapCount,
@@ -183,3 +184,7 @@ export function VoteButtons({
     </div>
   );
 }
+
+// Memoize the component - prevents unnecessary re-renders when parent updates
+// Significantly improves performance on pages with many voting buttons (debates list)
+export const VoteButtons = memo(VoteButtonsComponent);
