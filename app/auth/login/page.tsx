@@ -7,7 +7,7 @@ import LoginForm from './LoginForm';
  * 
  * This page:
  * 1. Checks if user is already logged in (server-side)
- * 2. If logged in, redirects to /debates (no flicker)
+ * 2. If logged in, redirects to /home (dashboard)
  * 3. If not logged in, renders the LoginForm client component
  * 
  * This eliminates the client-side useEffect redirect pattern
@@ -16,13 +16,12 @@ import LoginForm from './LoginForm';
 export default async function LoginPage() {
   // Server-side auth check
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const { data: { user }, error } = await supabase.auth.getUser();
 
-  // If already logged in, redirect to debates
+  // If already logged in, redirect to dashboard
   // This is server-side, so no flicker or race condition
-  if (user) {
-    console.log(`[LoginPage] User already logged in: ${user.id}, redirecting to /debates`);
-    redirect('/debates');
+  if (user && !error) {
+    redirect('/home');
   }
 
   // User not logged in, render the login form
