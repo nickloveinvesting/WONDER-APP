@@ -1,16 +1,10 @@
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/server';
-import { redirect } from 'next/navigation';
 import Logo from '@/components/Logo';
 import DiscussionPreviewCard from '@/components/DiscussionPreviewCard';
 
 export default async function Home() {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-
-  if (user) {
-    redirect('/debates');
-  }
+  // Landing page is always shown - no auth redirect
+  // Authenticated users can navigate to /home for their dashboard
 
   return (
     <div className="min-h-screen">
@@ -26,10 +20,10 @@ export default async function Home() {
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center space-x-8">
               <Link
-                href="#community"
+                href="/"
                 className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
               >
-                Community
+                Home
               </Link>
               <Link
                 href="#how-it-works"
@@ -41,7 +35,7 @@ export default async function Home() {
                 href="#for-me"
                 className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
               >
-                Is This For Me?
+                About
               </Link>
             </nav>
 
@@ -179,7 +173,7 @@ export default async function Home() {
       </section>
 
       {/* Stats Bar */}
-      <section id="community" className="py-16 bg-white border-y border-slate-200">
+      <section className="py-16 bg-white border-y border-slate-200">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="bg-gradient-to-br from-stone-50 to-white rounded-2xl p-8 border-2 border-slate-200 shadow-lg">
