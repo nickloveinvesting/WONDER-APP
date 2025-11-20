@@ -1,63 +1,20 @@
+import { redirect } from 'next/navigation';
+import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
 import Logo from '@/components/Logo';
 import DiscussionPreviewCard from '@/components/DiscussionPreviewCard';
 
 export default async function Home() {
-  // Landing page is always shown - no auth redirect
-  // Authenticated users can navigate to /home for their dashboard
+  // Check if user is authenticated - redirect to home if they are
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (user) {
+    redirect('/home');
+  }
 
   return (
     <div className="min-h-screen">
-      {/* Header/Navigation - Matches target design */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-1.5">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="flex items-center space-x-3">
-              <Logo variant="black" size="sm" clickable={true} />
-            </div>
-
-            {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center space-x-8">
-              <Link
-                href="/"
-                className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                href="#how-it-works"
-                className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
-              >
-                How It Works
-              </Link>
-              <Link
-                href="#for-me"
-                className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
-              >
-                About
-              </Link>
-            </nav>
-
-            {/* Auth Buttons */}
-            <div className="flex items-center space-x-4">
-              <Link
-                href="/auth/login"
-                className="px-5 py-1.5 text-slate-700 text-sm font-bold hover:text-teal-600 transition-colors"
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/auth/signup"
-                className="px-5 py-1.5 bg-teal-500 text-white text-sm font-bold rounded-lg hover:bg-teal-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-              >
-                Join Free
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section - Reduced spacing to match target */}
       <section className="relative py-8 lg:py-12 bg-gradient-to-b from-stone-50 via-white to-stone-50 overflow-hidden">
         {/* Background Decorative Blurs */}
@@ -94,7 +51,7 @@ export default async function Home() {
                   Join the Community
                 </Link>
                 <Link
-                  href="/debates"
+                  href="/home"
                   className="px-10 py-4 border-2 border-slate-300 text-slate-700 text-lg font-black rounded-xl hover:border-teal-500 hover:bg-teal-50 transition-all shadow-lg"
                 >
                   Explore Discussions
@@ -161,7 +118,7 @@ export default async function Home() {
                   2,300+ discussions this month
                 </p>
                 <Link
-                  href="/debates"
+                  href="/home"
                   className="text-xs font-bold text-teal-600 hover:text-teal-700 inline-flex items-center mt-1"
                 >
                   Join them →
@@ -208,7 +165,7 @@ export default async function Home() {
 
             <div className="order-1 lg:order-2">
               <h2 className="text-4xl lg:text-5xl font-black text-slate-900 mb-6 tracking-tight">
-                How ARGUED works
+                How WONDER works
               </h2>
               <p className="text-xl text-slate-600 mb-10 leading-relaxed font-medium">
                 Philosophy shouldn't feel intimidating. We've built a space where thinking deeply
@@ -334,7 +291,7 @@ export default async function Home() {
           </div>
 
           <p className="text-xl text-slate-300 mb-8 font-medium">
-            Join ARGUED to get thought-provoking questions like this delivered daily
+            Join WONDER to get thought-provoking questions like this delivered daily
           </p>
 
           <Link
@@ -362,7 +319,7 @@ export default async function Home() {
             {/* Testimonial 1 */}
             <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
               <div className="text-slate-700 leading-relaxed mb-6 text-lg font-medium">
-                "I didn't think I was 'smart enough' for philosophy. ARGUED changed that.
+                "I didn't think I was 'smart enough' for philosophy. WONDER changed that.
                 People here actually want to help you think better."
               </div>
               <div className="flex items-center space-x-3">
@@ -430,10 +387,10 @@ export default async function Home() {
               href="/auth/signup"
               className="px-14 py-5 bg-teal-500 text-white text-xl font-black rounded-xl hover:bg-teal-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
             >
-              Join ARGUED Free
+              Join WONDER Free
             </Link>
             <Link
-              href="/debates"
+              href="/home"
               className="px-14 py-5 border-2 border-slate-400 text-white text-xl font-black rounded-xl hover:bg-white/10 transition-all shadow-lg"
             >
               Explore Discussions
@@ -489,12 +446,12 @@ export default async function Home() {
               <h4 className="text-white font-black mb-4 text-sm">Explore</h4>
               <ul className="space-y-2 text-slate-400 text-sm font-medium">
                 <li>
-                  <Link href="/debates" className="hover:text-teal-400 transition-colors">
+                  <Link href="/home" className="hover:text-teal-400 transition-colors">
                     Active Discussions
                   </Link>
                 </li>
                 <li>
-                  <Link href="/debates" className="hover:text-teal-400 transition-colors">
+                  <Link href="/home" className="hover:text-teal-400 transition-colors">
                     Topic Communities
                   </Link>
                 </li>
@@ -520,7 +477,7 @@ export default async function Home() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/debates" className="hover:text-teal-400 transition-colors">
+                  <Link href="/home" className="hover:text-teal-400 transition-colors">
                     Community Guidelines
                   </Link>
                 </li>
@@ -529,7 +486,7 @@ export default async function Home() {
           </div>
 
           <div className="border-t border-slate-700 pt-8 flex flex-col md:flex-row items-center justify-between text-sm">
-            <p className="text-slate-400 font-medium">© 2025 ARGUED. Made with care for curious minds.</p>
+            <p className="text-slate-400 font-medium">© 2025 WONDER. Made with care for curious minds.</p>
             <div className="flex items-center space-x-6 mt-4 md:mt-0 text-slate-400 font-medium">
               <Link href="/privacy" className="hover:text-teal-400 transition-colors">
                 Privacy
