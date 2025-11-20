@@ -1,5 +1,5 @@
 /**
- * Ponder Header Component
+ * ARGUED Header Component
  * Top navigation with logo, nav links, and user menu
  * Matches the landing page design: compact, white/backdrop blur, teal accents
  */
@@ -45,14 +45,14 @@ export function Header({ user, onSignOut }: HeaderProps) {
 
   const navItems = user
     ? [
-        { href: '/debates', label: 'Posts' },
-        { href: '/journal', label: 'Journal' },
-        { href: '/leaderboard', label: 'Leaderboard' },
-      ]
+      { href: '/debates', label: 'Posts' },
+      { href: '/journal', label: 'Journal' },
+      { href: '/leaderboard', label: 'Leaderboard' },
+    ]
     : [
-        { href: '/', label: 'Home' },
-        { href: '/about', label: 'About' },
-      ];
+      { href: '/', label: 'Home' },
+      { href: '/about', label: 'About' },
+    ];
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -75,11 +75,10 @@ export function Header({ user, onSignOut }: HeaderProps) {
                 key={item.href}
                 href={item.href}
                 prefetch={true}
-                className={`text-sm font-bold transition-all relative ${
-                  isActive(item.href)
+                className={`text-sm font-bold transition-all relative ${isActive(item.href)
                     ? 'text-teal-600'
                     : 'text-slate-700 hover:text-teal-600'
-                }`}
+                  }`}
               >
                 {item.label}
                 {isActive(item.href) && (
@@ -105,53 +104,52 @@ export function Header({ user, onSignOut }: HeaderProps) {
 
                 {/* User Menu */}
                 <div className="relative user-menu-container">
-                <button
-                  onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center space-x-2 px-4 py-1.5 rounded-lg text-slate-700 font-bold hover:text-teal-600 hover:bg-teal-50 transition-all text-sm"
-                >
-                  <span className="font-bold">{user.username}</span>
-                  <Badge type="rating" size="sm" color="teal">
-                    ✨ {user.influenceScore}
-                  </Badge>
-                  <ChevronDown
-                    className={`w-4 h-4 transition-transform ${
-                      userMenuOpen ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
+                  <button
+                    onClick={() => setUserMenuOpen(!userMenuOpen)}
+                    className="flex items-center space-x-2 px-4 py-1.5 rounded-lg text-slate-700 font-bold hover:text-teal-600 hover:bg-teal-50 transition-all text-sm"
+                  >
+                    <span className="font-bold">{user.username}</span>
+                    <Badge type="rating" size="sm" color="teal">
+                      ✨ {user.influenceScore}
+                    </Badge>
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform ${userMenuOpen ? 'rotate-180' : ''
+                        }`}
+                    />
+                  </button>
 
-                {/* Dropdown Menu */}
-                {userMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-1 border border-slate-200">
-                    <Link
-                      href="/profile"
-                      className="flex items-center px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
-                      onClick={() => setUserMenuOpen(false)}
-                    >
-                      <User className="w-4 h-4 mr-2" />
-                      My Profile
-                    </Link>
-                    <Link
-                      href="/settings"
-                      className="flex items-center px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
-                      onClick={() => setUserMenuOpen(false)}
-                    >
-                      <Settings className="w-4 h-4 mr-2" />
-                      Settings
-                    </Link>
-                    <hr className="my-1 border-slate-200" />
-                    <button
-                      onClick={() => {
-                        onSignOut?.();
-                        setUserMenuOpen(false);
-                      }}
-                      className="flex items-center w-full px-4 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 transition"
-                    >
-                      <LogOut className="w-4 h-4 mr-2" />
-                      Logout
-                    </button>
-                  </div>
-                )}
+                  {/* Dropdown Menu */}
+                  {userMenuOpen && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-1 border border-slate-200">
+                      <Link
+                        href="/profile"
+                        className="flex items-center px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        <User className="w-4 h-4 mr-2" />
+                        My Profile
+                      </Link>
+                      <Link
+                        href="/settings"
+                        className="flex items-center px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition"
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        <Settings className="w-4 h-4 mr-2" />
+                        Settings
+                      </Link>
+                      <hr className="my-1 border-slate-200" />
+                      <button
+                        onClick={() => {
+                          onSignOut?.();
+                          setUserMenuOpen(false);
+                        }}
+                        className="flex items-center w-full px-4 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 transition"
+                      >
+                        <LogOut className="w-4 h-4 mr-2" />
+                        Logout
+                      </button>
+                    </div>
+                  )}
                 </div>
               </>
             ) : (
@@ -185,11 +183,10 @@ export function Header({ user, onSignOut }: HeaderProps) {
                   key={item.href}
                   href={item.href}
                   prefetch={true}
-                  className={`block px-4 py-2 text-sm font-bold rounded-lg transition ${
-                    isActive(item.href)
+                  className={`block px-4 py-2 text-sm font-bold rounded-lg transition ${isActive(item.href)
                       ? 'text-teal-600 bg-teal-50'
                       : 'text-slate-700 hover:text-teal-600 hover:bg-teal-50'
-                  }`}
+                    }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}

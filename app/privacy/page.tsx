@@ -4,20 +4,7 @@ import Logo from '@/components/Logo';
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-stone-50 via-white to-stone-50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-1.5">
-          <div className="flex items-center justify-between">
-            <Logo variant="black" size="sm" clickable={true} />
-            <Link
-              href="/"
-              className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
-            >
-              Back to Home
-            </Link>
-          </div>
-        </div>
-      </header>
+
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-6 py-16">
@@ -30,7 +17,7 @@ export default function PrivacyPage() {
           <section className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
             <h2 className="text-2xl font-black text-slate-900 mb-4">Information We Collect</h2>
             <p className="text-slate-600 leading-relaxed mb-4">
-              When you create an account on Ponder, we collect:
+              When you create an account on ARGUED, we collect:
             </p>
             <ul className="list-disc list-inside text-slate-600 space-y-2 ml-4">
               <li>Email address (for authentication)</li>

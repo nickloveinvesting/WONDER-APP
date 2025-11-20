@@ -69,7 +69,7 @@ export default async function Home() {
         {/* Background Decorative Blurs */}
         <div className="absolute top-20 right-20 w-96 h-96 bg-teal-100/30 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-slate-100/30 rounded-full blur-3xl"></div>
-        
+
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             {/* Left Column: Content */}
@@ -80,18 +80,18 @@ export default async function Home() {
                   500+ curious minds • Free to join
                 </span>
               </div>
-              
+
               <h1 className="text-5xl lg:text-6xl xl:text-7xl font-black text-slate-900 mb-6 leading-tight tracking-tight">
-                Your philosophical<br/>community.<br/>
-                <span className="text-teal-600">Curious minds</span><br/>
+                Your philosophical<br />community.<br />
+                <span className="text-teal-600">Curious minds</span><br />
                 <span className="text-teal-600">welcome.</span>
               </h1>
-              
+
               <p className="text-xl lg:text-2xl text-slate-600 leading-relaxed mb-10 font-medium">
                 Finally, a place where your big questions belong. You don't need to be an expert to contribute—just
                 curious. Think deeply with others who care about ethics, consciousness, AI, and the ideas that matter.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row lg:flex-row items-center lg:items-start justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
                 <Link
                   href="/auth/signup"
@@ -106,17 +106,17 @@ export default async function Home() {
                   Explore Discussions
                 </Link>
               </div>
-              
+
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-slate-500 font-bold">
                 <div className="flex items-center space-x-2">
                   <svg className="w-5 h-5 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   <span>No credentials needed</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <svg className="w-5 h-5 text-teal-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   <span>Always free</span>
                 </div>
@@ -144,7 +144,7 @@ export default async function Home() {
                     contributionCount={12}
                   />
                 </div>
-                
+
                 {/* Secondary Card - Background (offset for depth) */}
                 <div className="absolute top-6 left-4 w-full opacity-80 -z-10">
                   <DiscussionPreviewCard
@@ -211,16 +211,16 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-            
+
             <div className="order-1 lg:order-2">
               <h2 className="text-4xl lg:text-5xl font-black text-slate-900 mb-6 tracking-tight">
-                How Ponder works
+                How ARGUED works
               </h2>
               <p className="text-xl text-slate-600 mb-10 leading-relaxed font-medium">
-                Philosophy shouldn't feel intimidating. We've built a space where thinking deeply 
+                Philosophy shouldn't feel intimidating. We've built a space where thinking deeply
                 is natural and accessible.
               </p>
-              
+
               <div className="space-y-8">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-teal-500 text-white rounded-xl flex items-center justify-center text-xl font-black shadow-lg">
@@ -229,12 +229,12 @@ export default async function Home() {
                   <div>
                     <h3 className="text-xl font-black text-slate-900 mb-2">Choose your topic</h3>
                     <p className="text-slate-600 leading-relaxed font-medium">
-                      Browse discussions on ethics, AI, consciousness, or start your own. 
+                      Browse discussions on ethics, AI, consciousness, or start your own.
                       Every topic welcomes beginners.
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-slate-700 text-white rounded-xl flex items-center justify-center text-xl font-black shadow-lg">
                     2
@@ -246,7 +246,7 @@ export default async function Home() {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-teal-500 text-white rounded-xl flex items-center justify-center text-xl font-black shadow-lg">
                     3
@@ -275,34 +275,34 @@ export default async function Home() {
               Pick the format that matches your mood and energy
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Quick Takes */}
             <div className="group bg-gradient-to-br from-stone-50 to-white rounded-2xl p-8 border-2 border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-t-4 border-t-teal-500">
               <div className="text-5xl mb-6">⚡</div>
               <h3 className="text-2xl font-black text-slate-900 mb-4">Quick Takes</h3>
               <p className="text-slate-600 leading-relaxed mb-6 font-medium">
-                Short, focused questions perfect for lunch breaks. Think shower thoughts, 
+                Short, focused questions perfect for lunch breaks. Think shower thoughts,
                 but with actual philosophers responding.
               </p>
               <div className="text-sm text-slate-500 font-bold">
                 ~5 minute discussions
               </div>
             </div>
-            
+
             {/* Deep Dives */}
             <div className="group bg-gradient-to-br from-stone-50 to-white rounded-2xl p-8 border-2 border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-t-4 border-t-slate-700">
               <div className="text-5xl mb-6">🔍</div>
               <h3 className="text-2xl font-black text-slate-900 mb-4">Deep Dives</h3>
               <p className="text-slate-600 leading-relaxed mb-6 font-medium">
-                Extended explorations where complexity is welcomed. Bring your nuanced takes 
+                Extended explorations where complexity is welcomed. Bring your nuanced takes
                 and evolving thoughts.
               </p>
               <div className="text-sm text-slate-500 font-bold">
                 ~20+ minute discussions
               </div>
             </div>
-            
+
             {/* Structured Conversations */}
             <div className="group bg-gradient-to-br from-stone-50 to-white rounded-2xl p-8 border-2 border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-t-4 border-t-teal-500">
               <div className="text-5xl mb-6">🎯</div>
@@ -322,27 +322,27 @@ export default async function Home() {
       {/* Daily Challenge */}
       <section className="py-24 lg:py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
-        
+
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative">
           <div className="inline-block px-4 py-2 bg-teal-500/20 border border-teal-400/30 rounded-full mb-6">
             <span className="text-teal-300 text-sm font-bold">Daily Challenge</span>
           </div>
-          
+
           <h2 className="text-4xl lg:text-5xl font-black text-white mb-6 leading-tight tracking-tight">
             Today's philosophical question
           </h2>
-          
+
           <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-10 border border-white/20 mb-10">
             <p className="text-2xl text-white leading-relaxed font-medium italic">
-              "If you could know the exact date of your death, would you want to know? 
+              "If you could know the exact date of your death, would you want to know?
               And would that knowledge change how you live?"
             </p>
           </div>
-          
+
           <p className="text-xl text-slate-300 mb-8 font-medium">
-            Join Ponder to get thought-provoking questions like this delivered daily
+            Join ARGUED to get thought-provoking questions like this delivered daily
           </p>
-          
+
           <Link
             href="/auth/signup"
             className="inline-block px-10 py-4 bg-teal-500 text-white text-lg font-black rounded-xl hover:bg-teal-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
@@ -363,12 +363,12 @@ export default async function Home() {
               Real people finding their philosophical home
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Testimonial 1 */}
             <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
               <div className="text-slate-700 leading-relaxed mb-6 text-lg font-medium">
-                "I didn't think I was 'smart enough' for philosophy. Ponder changed that.
+                "I didn't think I was 'smart enough' for philosophy. ARGUED changed that.
                 People here actually want to help you think better."
               </div>
               <div className="flex items-center space-x-3">
@@ -381,11 +381,11 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-            
+
             {/* Testimonial 2 */}
             <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
               <div className="text-slate-700 leading-relaxed mb-6 text-lg font-medium">
-                "Finally found people who actually think about these things. It's like discovering 
+                "Finally found people who actually think about these things. It's like discovering
                 a secret community hiding in plain sight."
               </div>
               <div className="flex items-center space-x-3">
@@ -398,11 +398,11 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-            
+
             {/* Testimonial 3 */}
             <div className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
               <div className="text-slate-700 leading-relaxed mb-6 text-lg font-medium">
-                "The AI ethics discussions here are the most practical and rigorous I've found online. 
+                "The AI ethics discussions here are the most practical and rigorous I've found online.
                 Better than academic papers because people actually engage."
               </div>
               <div className="flex items-center space-x-3">
@@ -422,13 +422,13 @@ export default async function Home() {
       {/* Final CTA */}
       <section className="py-24 lg:py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-teal-500/10 rounded-full blur-3xl"></div>
-        
+
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative">
           <h2 className="text-4xl lg:text-6xl font-black text-white leading-tight mb-8 tracking-tight">
-            Your philosophical community<br/>is waiting
+            Your philosophical community<br />is waiting
           </h2>
           <p className="text-xl lg:text-2xl text-slate-300 leading-relaxed mb-12 font-medium">
-            Join 500+ curious minds exploring ethics, consciousness, AI, and the questions that matter. 
+            Join 500+ curious minds exploring ethics, consciousness, AI, and the questions that matter.
             <strong className="text-white font-bold"> Free to join, welcoming to beginners, valuable for everyone.</strong>
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-10">
@@ -436,7 +436,7 @@ export default async function Home() {
               href="/auth/signup"
               className="px-14 py-5 bg-teal-500 text-white text-xl font-black rounded-xl hover:bg-teal-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
             >
-              Join Ponder Free
+              Join ARGUED Free
             </Link>
             <Link
               href="/debates"
@@ -449,7 +449,7 @@ export default async function Home() {
             <div className="flex items-center space-x-2">
               <div className="w-5 h-5 bg-teal-500/20 rounded-full flex items-center justify-center">
                 <svg className="w-3 h-3 text-teal-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               </div>
               <span>No credit card</span>
@@ -457,7 +457,7 @@ export default async function Home() {
             <div className="flex items-center space-x-2">
               <div className="w-5 h-5 bg-teal-500/20 rounded-full flex items-center justify-center">
                 <svg className="w-3 h-3 text-teal-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               </div>
               <span>No credentials needed</span>
@@ -465,7 +465,7 @@ export default async function Home() {
             <div className="flex items-center space-x-2">
               <div className="w-5 h-5 bg-teal-500/20 rounded-full flex items-center justify-center">
                 <svg className="w-3 h-3 text-teal-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               </div>
               <span>Always free</span>
@@ -483,14 +483,14 @@ export default async function Home() {
                 <Logo variant="white" size="sm" clickable={false} />
               </div>
               <p className="text-slate-400 text-sm leading-relaxed mb-4 max-w-sm font-medium">
-                Your welcoming community for serious philosophical inquiry. 
+                Your welcoming community for serious philosophical inquiry.
                 Where curious minds think deeply together.
               </p>
               <p className="text-slate-500 text-xs font-bold">
                 No PhD required. Just bring your curiosity.
               </p>
             </div>
-            
+
             <div>
               <h4 className="text-white font-black mb-4 text-sm">Explore</h4>
               <ul className="space-y-2 text-slate-400 text-sm font-medium">
@@ -511,7 +511,7 @@ export default async function Home() {
                 </li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="text-white font-black mb-4 text-sm">Community</h4>
               <ul className="space-y-2 text-slate-400 text-sm font-medium">
@@ -533,9 +533,9 @@ export default async function Home() {
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-slate-700 pt-8 flex flex-col md:flex-row items-center justify-between text-sm">
-            <p className="text-slate-400 font-medium">© 2025 Ponder. Made with care for curious minds.</p>
+            <p className="text-slate-400 font-medium">© 2025 ARGUED. Made with care for curious minds.</p>
             <div className="flex items-center space-x-6 mt-4 md:mt-0 text-slate-400 font-medium">
               <Link href="/privacy" className="hover:text-teal-400 transition-colors">
                 Privacy

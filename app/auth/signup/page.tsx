@@ -48,7 +48,7 @@ export default function SignupPage() {
         } else if (data.session) {
           // Wait for session to fully sync
           await new Promise(resolve => setTimeout(resolve, 500));
-          
+
           // Force a hard navigation to ensure clean state
           window.location.href = '/debates';
         } else {
@@ -71,7 +71,7 @@ export default function SignupPage() {
           <Link href="/" className="mb-6">
             <Logo variant="black" size="lg" clickable={false} />
           </Link>
-          <h1 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Join Ponder</h1>
+          <h1 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Join ARGUED</h1>
           <p className="text-slate-600 text-base font-medium text-center">
             Start exploring ideas with curious minds—no credentials needed
           </p>

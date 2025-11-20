@@ -27,7 +27,7 @@ export default function Logo({
   const logoImage = (
     <Image
       src={logoSrc}
-      alt="Ponder - Ponder Together"
+      alt="ARGUED - Think Deeply Together"
       width={width}
       height={height}
       priority

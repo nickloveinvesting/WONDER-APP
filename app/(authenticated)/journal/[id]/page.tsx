@@ -132,7 +132,7 @@ export default async function JournalEntryPage({
               Ready to Share?
             </h3>
             <p className="text-slate-700 text-sm font-medium leading-relaxed mb-4">
-              When you're ready to share this entry with the Ponder community, click "Publish to
+              When you're ready to share this entry with the ARGUED community, click "Publish to
               Community" above. You'll be able to choose which quadrant to post in, and your entry
               will become a public discussion thread.
             </p>

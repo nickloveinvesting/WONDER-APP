@@ -80,11 +80,10 @@ export default function CreateDebatePage() {
                     key={q.id}
                     type="button"
                     onClick={() => setQuadrant(q.id)}
-                    className={`flex items-center gap-3 px-4 py-4 rounded-xl border-2 transition-all ${
-                      quadrant === q.id
+                    className={`flex items-center gap-3 px-4 py-4 rounded-xl border-2 transition-all ${quadrant === q.id
                         ? `bg-gradient-to-r ${q.color} text-white border-transparent shadow-lg`
                         : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:shadow-md'
-                    }`}
+                      }`}
                   >
                     <Icon size={24} className={quadrant === q.id ? 'text-white' : 'text-slate-400'} />
                     <span className="font-bold text-sm">{q.name}</span>
@@ -135,7 +134,7 @@ export default function CreateDebatePage() {
           <div className="bg-gradient-to-br from-teal-50 to-cyan-50 border-2 border-teal-200 rounded-xl p-6">
             <h3 className="text-slate-900 font-black mb-3 flex items-center gap-2">
               <span className="text-xl">💡</span>
-              How Ponder Works
+              How ARGUED Works
             </h3>
             <ul className="text-slate-700 text-sm space-y-2 font-medium">
               <li className="flex gap-2">

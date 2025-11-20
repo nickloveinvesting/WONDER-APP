@@ -25,18 +25,23 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  try {
-    // Explicitly refresh the session to keep auth state in sync
-    await supabase.auth.getSession()
+  const { data: { user } } = await supabase.auth.getUser()
 
-    // Get user to ensure session is valid
-    const { data: { user } } = await supabase.auth.getUser()
+  // Protected routes
+  const protectedPaths = ['/debates', '/profile', '/journal', '/leaderboard', '/settings']
+  const isProtectedPath = protectedPaths.some(path => request.nextUrl.pathname.startsWith(path))
 
-    // The user state is now available and cookies are set in response
-    // This ensures the session persists across page loads
-  } catch (error) {
-    console.error('Middleware auth error:', error)
-    // Continue even if there's an error - allows public pages to load
+  // Auth routes (login/signup)
+  const isAuthPath = request.nextUrl.pathname.startsWith('/auth')
+
+  if (isProtectedPath && !user) {
+    const redirectUrl = new URL('/auth/login', request.url)
+    // redirectUrl.searchParams.set('next', request.nextUrl.pathname) // Optional: Redirect back after login
+    return NextResponse.redirect(redirectUrl)
+  }
+
+  if (isAuthPath && user) {
+    return NextResponse.redirect(new URL('/debates', request.url))
   }
 
   return response

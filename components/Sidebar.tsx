@@ -48,7 +48,7 @@ export default function Sidebar() {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="p-6 border-b border-slate-700">
-            <h2 className="text-2xl font-black text-white tracking-tight">Ponder</h2>
+            <h2 className="text-2xl font-black text-white tracking-tight">ARGUED</h2>
           </div>
 
           {/* Navigation */}
@@ -63,10 +63,9 @@ export default function Sidebar() {
                   className={`
                     flex items-center gap-3 px-4 py-3 rounded-lg
                     transition-colors duration-200
-                    ${
-                      isActive(item.href)
-                        ? 'bg-teal-600 text-white'
-                        : 'text-slate-300 hover:bg-slate-700 hover:text-white'
+                    ${isActive(item.href)
+                      ? 'bg-teal-600 text-white'
+                      : 'text-slate-300 hover:bg-slate-700 hover:text-white'
                     }
                   `}
                 >

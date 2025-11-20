@@ -4,20 +4,7 @@ import Logo from '@/components/Logo';
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-stone-50 via-white to-stone-50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-1.5">
-          <div className="flex items-center justify-between">
-            <Logo variant="black" size="sm" clickable={true} />
-            <Link
-              href="/"
-              className="text-sm font-bold text-slate-700 hover:text-teal-600 transition-colors"
-            >
-              Back to Home
-            </Link>
-          </div>
-        </div>
-      </header>
+
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-6 py-16">
@@ -30,7 +17,7 @@ export default function TermsPage() {
           <section className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
             <h2 className="text-2xl font-black text-slate-900 mb-4">Acceptance of Terms</h2>
             <p className="text-slate-600 leading-relaxed">
-              By accessing and using Ponder, you accept and agree to be bound by these Terms of Service.
+              By accessing and using ARGUED, you accept and agree to be bound by these Terms of Service.
               If you do not agree to these terms, please do not use our service.
             </p>
           </section>
@@ -38,7 +25,7 @@ export default function TermsPage() {
           <section className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
             <h2 className="text-2xl font-black text-slate-900 mb-4">Community Guidelines</h2>
             <p className="text-slate-600 leading-relaxed mb-4">
-              Ponder is a community for thoughtful philosophical discussion. We expect all users to:
+              ARGUED is a community for thoughtful philosophical discussion. We expect all users to:
             </p>
             <ul className="list-disc list-inside text-slate-600 space-y-2 ml-4">
               <li>Engage respectfully with other community members</li>
@@ -53,7 +40,7 @@ export default function TermsPage() {
           <section className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
             <h2 className="text-2xl font-black text-slate-900 mb-4">Content Ownership</h2>
             <p className="text-slate-600 leading-relaxed">
-              You retain ownership of the content you post on Ponder. By posting, you grant us
+              You retain ownership of the content you post on ARGUED. By posting, you grant us
               a non-exclusive license to display, distribute, and store your content as part
               of our service. You are responsible for the content you post and must have the
               right to share it.
@@ -63,7 +50,7 @@ export default function TermsPage() {
           <section className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
             <h2 className="text-2xl font-black text-slate-900 mb-4">AI-Powered Features</h2>
             <p className="text-slate-600 leading-relaxed">
-              Ponder uses AI (Google Gemini) to provide structured debate analysis and insights.
+              ARGUED uses AI (Google Gemini) to provide structured debate analysis and insights.
               While we strive for accuracy, AI-generated content should be considered as one
               perspective among many, not absolute truth.
             </p>
@@ -81,16 +68,16 @@ export default function TermsPage() {
           <section className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
             <h2 className="text-2xl font-black text-slate-900 mb-4">Disclaimer</h2>
             <p className="text-slate-600 leading-relaxed">
-              Ponder is provided "as is" without warranties of any kind. We are not responsible
+              ARGUED is provided "as is" without warranties of any kind. We are not responsible
               for the accuracy, reliability, or quality of user-generated content. The views
-              expressed by users are their own and do not represent the views of Ponder.
+              expressed by users are their own and do not represent the views of ARGUED.
             </p>
           </section>
 
           <section className="bg-white rounded-xl p-8 shadow-lg border-2 border-slate-200">
             <h2 className="text-2xl font-black text-slate-900 mb-4">Changes to Terms</h2>
             <p className="text-slate-600 leading-relaxed">
-              We may update these terms from time to time. Continued use of Ponder after changes
+              We may update these terms from time to time. Continued use of ARGUED after changes
               constitutes acceptance of the updated terms.
             </p>
           </section>
