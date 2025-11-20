@@ -47,6 +47,7 @@ export function Header({ user, onSignOut }: HeaderProps) {
     ? [
       { href: '/home', label: 'Home' },
       { href: '/debates', label: 'Posts' },
+      { href: '/discuss', label: 'Discuss' },
       { href: '/journal', label: 'Journal' },
       { href: '/leaderboard', label: 'Leaderboard' },
     ]

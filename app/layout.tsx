@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+// import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-});
+// Temporarily disabled due to network restrictions in build environment
+// const plusJakartaSans = Plus_Jakarta_Sans({
+//   subsets: ["latin"],
+//   variable: "--font-jakarta",
+// });
 
 export const metadata: Metadata = {
   title: "ARGUED - Think Deeply Together",
@@ -31,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${plusJakartaSans.variable} antialiased`}
+        className="antialiased font-sans"
       >
         <Navigation />
         {children}
