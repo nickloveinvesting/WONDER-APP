@@ -1,7 +1,8 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
-import { Award, Trophy, TrendingUp } from 'lucide-react';
+import { Trophy, TrendingUp, Flame } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
+import { StreakDisplay } from '@/components/StreakDisplay';
 
 export const dynamic = 'force-dynamic';
 
@@ -39,7 +40,7 @@ export default async function ProfilePage() {
         </div>
 
         {/* Profile Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <Card variant="gradient">
             <div className="text-slate-600 text-sm font-bold mb-2">Username</div>
             <p className="text-2xl font-black text-slate-900">{profile.username}</p>
@@ -60,6 +61,19 @@ export default async function ProfilePage() {
             </div>
             <p className="text-2xl font-black text-green-600">{profile.debates_participated || 0}</p>
           </Card>
+
+          <Card variant="gradient">
+            <div className="flex items-center gap-2 mb-2">
+              <Flame size={16} className="text-orange-500" />
+              <span className="text-slate-600 text-sm font-bold">Daily Streak</span>
+            </div>
+            <StreakDisplay
+              currentStreak={profile.daily_streak || 0}
+              longestStreak={profile.longest_streak || 0}
+              isProtected={profile.streak_protected || false}
+              variant="detailed"
+            />
+          </Card>
         </div>
 
         {/* Profile Details */}
@@ -74,6 +88,14 @@ export default async function ProfilePage() {
               <div className="flex justify-between items-center pb-4 border-b border-slate-200">
                 <span className="text-slate-700 font-bold">Influence Score</span>
                 <span className="font-black text-teal-600">{profile.influence_score || 0}</span>
+              </div>
+              <div className="flex justify-between items-center pb-4 border-b border-slate-200">
+                <span className="text-slate-700 font-bold">Current Streak</span>
+                <span className="font-black text-orange-500">{profile.daily_streak || 0} days</span>
+              </div>
+              <div className="flex justify-between items-center pb-4 border-b border-slate-200">
+                <span className="text-slate-700 font-bold">Longest Streak</span>
+                <span className="font-black text-slate-900">{profile.longest_streak || 0} days</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-slate-700 font-bold">Member Since</span>

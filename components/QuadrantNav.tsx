@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { Cpu, Lightbulb, Heart, TrendingUp } from 'lucide-react';
+import { Cpu, Lightbulb, Heart, TrendingUp, Archive, Shield } from 'lucide-react';
 
 type Quadrant = {
   id: string;
@@ -157,6 +157,39 @@ export function QuadrantNav() {
                 <span className="text-slate-600 font-medium">New Comments</span>
                 <span className="font-black text-teal-600">187</span>
               </div>
+            </div>
+          </div>
+
+          {/* Resources Section */}
+          <div className="mt-6">
+            <h3 className="text-xs font-bold text-slate-500 mb-3 uppercase tracking-wide px-2">
+              Resources
+            </h3>
+            <div className="space-y-1">
+              <Link
+                href="/vault"
+                prefetch={true}
+                className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all ${
+                  pathname === '/vault'
+                    ? 'bg-teal-50 text-teal-700'
+                    : 'hover:bg-slate-50 text-slate-600'
+                }`}
+              >
+                <Archive size={18} className={pathname === '/vault' ? 'text-teal-600' : 'text-slate-400'} />
+                <div className="font-bold text-sm">The Vault</div>
+              </Link>
+              <Link
+                href="/moderation-log"
+                prefetch={true}
+                className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all ${
+                  pathname === '/moderation-log'
+                    ? 'bg-teal-50 text-teal-700'
+                    : 'hover:bg-slate-50 text-slate-600'
+                }`}
+              >
+                <Shield size={18} className={pathname === '/moderation-log' ? 'text-teal-600' : 'text-slate-400'} />
+                <div className="font-bold text-sm">Moderation Log</div>
+              </Link>
             </div>
           </div>
         </div>

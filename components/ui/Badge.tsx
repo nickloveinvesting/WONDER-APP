@@ -2,7 +2,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 export type BadgeVariant = 'social' | 'topic' | 'status' | 'stat';
-export type BadgeColor = 'teal' | 'slate' | 'neutral';
+export type BadgeColor = 'teal' | 'slate' | 'neutral' | 'red' | 'amber' | 'green';
 export type BadgeType = 'rating' | 'social' | 'topic' | 'status' | 'stat' | 'success' | 'error' | 'achievement' | 'default' | 'for' | 'against';
 export type BadgeSize = 'sm' | 'md' | 'lg';
 
@@ -88,6 +88,45 @@ const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
         error: "bg-red-50 text-red-600",
         achievement: "bg-yellow-500/20 text-yellow-700",
         default: "bg-slate-100 text-slate-700 border-slate-300",
+        for: "bg-green-100 text-green-700 border-green-300",
+        against: "bg-red-100 text-red-700 border-red-300",
+      },
+      red: {
+        social: "bg-red-50 border-red-200 text-red-700",
+        topic: "bg-red-100 text-red-700 border-red-300",
+        status: "bg-red-50 text-red-600",
+        stat: "bg-red-500/20 text-red-600",
+        rating: "bg-red-500/20 text-red-600",
+        success: "bg-green-50 text-green-600",
+        error: "bg-red-50 text-red-600",
+        achievement: "bg-yellow-500/20 text-yellow-700",
+        default: "bg-red-100 text-red-700 border-red-300",
+        for: "bg-green-100 text-green-700 border-green-300",
+        against: "bg-red-100 text-red-700 border-red-300",
+      },
+      amber: {
+        social: "bg-amber-50 border-amber-200 text-amber-700",
+        topic: "bg-amber-100 text-amber-700 border-amber-300",
+        status: "bg-amber-50 text-amber-600",
+        stat: "bg-amber-500/20 text-amber-600",
+        rating: "bg-amber-500/20 text-amber-600",
+        success: "bg-green-50 text-green-600",
+        error: "bg-red-50 text-red-600",
+        achievement: "bg-yellow-500/20 text-yellow-700",
+        default: "bg-amber-100 text-amber-700 border-amber-300",
+        for: "bg-green-100 text-green-700 border-green-300",
+        against: "bg-red-100 text-red-700 border-red-300",
+      },
+      green: {
+        social: "bg-green-50 border-green-200 text-green-700",
+        topic: "bg-green-100 text-green-700 border-green-300",
+        status: "bg-green-50 text-green-600",
+        stat: "bg-green-500/20 text-green-600",
+        rating: "bg-green-500/20 text-green-600",
+        success: "bg-green-50 text-green-600",
+        error: "bg-red-50 text-red-600",
+        achievement: "bg-yellow-500/20 text-yellow-700",
+        default: "bg-green-100 text-green-700 border-green-300",
         for: "bg-green-100 text-green-700 border-green-300",
         against: "bg-red-100 text-red-700 border-red-300",
       },

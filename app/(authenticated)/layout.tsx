@@ -12,7 +12,7 @@ const getCachedProfile = unstable_cache(
     const supabase = await createClient();
     const { data: profile } = await supabase
       .from('profiles')
-      .select('username, influence_score')
+      .select('username, influence_score, daily_streak, longest_streak, streak_protected')
       .eq('id', userId)
       .single();
 
@@ -48,6 +48,9 @@ export default async function AuthenticatedLayout({
         id: user.id,
         username: profile.username || 'User',
         influenceScore: profile.influence_score || 0,
+        dailyStreak: profile.daily_streak || 0,
+        longestStreak: profile.longest_streak || 0,
+        streakProtected: profile.streak_protected || false,
       };
     }
   } catch (error) {

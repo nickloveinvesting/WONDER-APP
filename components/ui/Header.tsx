@@ -14,12 +14,16 @@ import Logo from '@/components/Logo';
 import { Button } from './Button';
 import { Badge } from './Badge';
 import { FeedbackModal } from '@/components/FeedbackModal';
+import { StreakDisplay } from '@/components/StreakDisplay';
 
 interface HeaderProps {
   user?: {
     id: string;
     username: string;
     influenceScore: number;
+    dailyStreak?: number;
+    longestStreak?: number;
+    streakProtected?: boolean;
   } | null;
   onSignOut?: () => void;
 }
@@ -111,6 +115,13 @@ export function Header({ user, onSignOut }: HeaderProps) {
                     className="flex items-center space-x-2 px-4 py-1.5 rounded-lg text-slate-700 font-bold hover:text-teal-600 hover:bg-teal-50 transition-all text-sm"
                   >
                     <span className="font-bold">{user.username}</span>
+                    {(user.dailyStreak ?? 0) > 0 && (
+                      <StreakDisplay
+                        currentStreak={user.dailyStreak ?? 0}
+                        isProtected={user.streakProtected}
+                        size="sm"
+                      />
+                    )}
                     <Badge type="rating" size="sm" color="teal">
                       ✨ {user.influenceScore}
                     </Badge>
@@ -200,6 +211,13 @@ export function Header({ user, onSignOut }: HeaderProps) {
               <div className="mt-4 pt-4 border-t border-slate-200">
                 <div className="px-4 py-2 text-sm font-bold text-slate-700 flex items-center space-x-2">
                   <span>{user.username}</span>
+                  {(user.dailyStreak ?? 0) > 0 && (
+                    <StreakDisplay
+                      currentStreak={user.dailyStreak ?? 0}
+                      isProtected={user.streakProtected}
+                      size="sm"
+                    />
+                  )}
                   <Badge type="rating" size="sm" color="teal">
                     ✨ {user.influenceScore}
                   </Badge>
