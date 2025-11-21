@@ -63,8 +63,14 @@ export interface SendEmailResult {
   emailLogId?: string;
 }
 
-// Initialize Resend client
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy initialize Resend client to avoid build-time errors
+let resendClient: Resend | null = null;
+function getResendClient(): Resend {
+  if (!resendClient) {
+    resendClient = new Resend(process.env.RESEND_API_KEY);
+  }
+  return resendClient;
+}
 
 // App configuration
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://wonder.app";
@@ -402,7 +408,7 @@ export async function sendWelcomeEmail(
 
   // Send email via Resend
   try {
-    const response = await resend.emails.send({
+    const response = await getResendClient().emails.send({
       from: FROM_EMAIL,
       to: to.email,
       subject,

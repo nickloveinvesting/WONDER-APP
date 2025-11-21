@@ -9,17 +9,21 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronDown, User, Settings, LogOut, MessageSquarePlus } from 'lucide-react';
+import { Menu, X, ChevronDown, User, Settings, LogOut, MessageSquarePlus, Shield } from 'lucide-react';
 import Logo from '@/components/Logo';
 import { Button } from './Button';
 import { Badge } from './Badge';
 import { FeedbackModal } from '@/components/FeedbackModal';
 import { StreakDisplay } from '@/components/StreakDisplay';
 
+// Admin email for showing admin link
+const ADMIN_EMAIL = 'nickloveacquisition@gmail.com';
+
 interface HeaderProps {
   user?: {
     id: string;
     username: string;
+    email?: string;
     influenceScore: number;
     dailyStreak?: number;
     longestStreak?: number;
@@ -150,6 +154,18 @@ export function Header({ user, onSignOut }: HeaderProps) {
                         <Settings className="w-4 h-4 mr-2" />
                         Settings
                       </Link>
+                      {user?.email === ADMIN_EMAIL && (
+                        <>
+                          <Link
+                            href="/admin"
+                            className="flex items-center px-4 py-2 text-sm font-semibold text-teal-600 hover:bg-teal-50 transition"
+                            onClick={() => setUserMenuOpen(false)}
+                          >
+                            <Shield className="w-4 h-4 mr-2" />
+                            Admin Dashboard
+                          </Link>
+                        </>
+                      )}
                       <hr className="my-1 border-slate-200" />
                       <button
                         onClick={() => {

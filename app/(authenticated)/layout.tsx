@@ -47,6 +47,7 @@ export default async function AuthenticatedLayout({
       userProfile = {
         id: user.id,
         username: profile.username || 'User',
+        email: user.email,
         influenceScore: profile.influence_score || 0,
         dailyStreak: profile.daily_streak || 0,
         longestStreak: profile.longest_streak || 0,
