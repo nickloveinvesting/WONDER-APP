@@ -1,2 +1,9 @@
-// This file is deprecated. Use route.ts instead for /home redirects.
-// Kept for backward compatibility only.
+import { redirect } from 'next/navigation';
+
+/**
+ * Deprecated: This file is kept for backward compatibility only.
+ * Use the (authenticated)/home route instead.
+ */
+export default function HomePage() {
+  redirect('/home');
+}
