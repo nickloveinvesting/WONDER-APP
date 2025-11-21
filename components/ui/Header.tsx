@@ -47,6 +47,7 @@ export function Header({ user, onSignOut }: HeaderProps) {
     ? [
       { href: '/home', label: 'Home' },
       { href: '/debates', label: 'Posts' },
+      { href: '/discuss', label: 'Discuss' },
       { href: '/journal', label: 'Journal' },
       { href: '/leaderboard', label: 'Leaderboard' },
     ]
@@ -92,7 +93,8 @@ export function Header({ user, onSignOut }: HeaderProps) {
           {/* Desktop Auth / User Menu */}
           <div className="hidden lg:flex items-center space-x-4">
             {user ? (
-              <>\n                {/* Feedback Button */}
+              <>
+                {/* Feedback Button */}
                 <button
                   onClick={() => setFeedbackModalOpen(true)}
                   className="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-bold text-slate-700 hover:text-teal-600 hover:bg-teal-50 transition-all"
