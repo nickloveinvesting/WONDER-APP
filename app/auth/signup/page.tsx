@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Logo from '@/components/Logo';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
+import { sendWelcomeEmailToUser } from '@/lib/actions/email';
 
 export default function SignupPage() {
   const [email, setEmail] = useState('');
@@ -48,6 +49,11 @@ export default function SignupPage() {
         } else if (data.session) {
           // Wait for session to fully sync
           await new Promise(resolve => setTimeout(resolve, 500));
+
+          // Send welcome email (fire and forget - don't block navigation)
+          sendWelcomeEmailToUser().catch(err => {
+            console.error('Failed to send welcome email:', err);
+          });
 
           // Force a hard navigation to ensure clean state
           window.location.href = '/debates';
