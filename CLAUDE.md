@@ -102,8 +102,42 @@ The in-app feedback system allows authenticated users to submit feature requests
 - Issues are created in the repository specified by `GITHUB_REPO` env variable
 
 ### Server Actions
-Server actions in `lib/actions.ts` use `'use server'` directive. Currently implements:
+Server actions in `lib/actions/` use `'use server'` directive. Key actions:
 - `signOut()`: Signs out user and redirects to home page
+- `sendWelcomeEmailToUser()`: Sends welcome email to authenticated user
+- `updateEmailPreferences()`: Updates user's email subscription preferences
+- `getEmailPreferences()`: Retrieves user's email preferences
+
+### Welcome Email System
+The platform includes a 3-email welcome series for new users:
+
+**Email Flow:**
+1. **Email 1** (Immediate): Welcome & Philosophy - sent on signup
+2. **Email 2** (Day 3): How WONDER Works - scheduled via database trigger
+3. **Email 3** (Day 7): Feedback Loop - scheduled via database trigger
+
+**Key Files:**
+- `email_templates/welcome_series/`: HTML email templates
+- `lib/email/index.ts`: Resend integration and email sending logic
+- `lib/actions/email.ts`: Server actions for email operations
+- `app/api/email/`: API routes for email operations
+- `supabase/migrations/20250121_email_preferences.sql`: Database schema
+
+**Email Database Tables:**
+- `email_preferences`: User email subscription preferences
+- `email_logs`: Audit log of all sent emails
+- `scheduled_emails`: Queue for scheduled email delivery
+
+**Environment Variables Required:**
+```env
+RESEND_API_KEY=re_your_api_key
+EMAIL_FROM=WONDER <noreply@yourdomain.com>
+EMAIL_REPLY_TO=nick@yourdomain.com
+EMAIL_API_KEY=your_secure_api_key
+CRON_SECRET=your_cron_secret
+```
+
+See `docs/WELCOME_EMAIL_SYSTEM.md` for complete documentation.
 
 ### Design System
 **IMPORTANT**: Follow the design system in `DESIGN_SYSTEM.md` for all UI work:
@@ -204,6 +238,7 @@ const supabase = createClient();
 - `PHASE_1_COMPLETE.md`: Phase 1 implementation notes
 - `BRANDING_COMPLETE.md`: Branding update documentation
 - `ARGUED_ENGAGEMENT_ANALYSIS.md`: Engagement feature analysis
+- `docs/WELCOME_EMAIL_SYSTEM.md`: Welcome email series documentation
 - `research/`: Research documents for various features
 
 ## Tech Stack
@@ -213,7 +248,8 @@ const supabase = createClient();
 - **Icons**: Lucide React
 - **Backend**: Supabase (PostgreSQL + Auth + Realtime)
 - **AI**: Google Gemini 2.0 Flash Exp
-- **Deployment**: Vercel
+- **Email**: Resend (transactional emails, welcome series)
+- **Deployment**: Vercel (with Cron jobs)
 
 ## Project Naming
 
