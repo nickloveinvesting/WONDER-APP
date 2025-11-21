@@ -1,0 +1,709 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2025-01-20",
+    "platform": "WONDER",
+    "total_users": 10,
+    "categories": {
+      "academics": 3,
+      "serious_amateurs": 4,
+      "curious_beginners": 3
+    }
+  },
+  "users": [
+    {
+      "user_id": "sarah_chen",
+      "category": "academic",
+      "database_profile": {
+        "username": "sarah_chen_mit",
+        "display_name": "Dr. Sarah Chen",
+        "bio": "Phenomenologist exploring the boundaries where mind meets world. I study how consciousness emerges through embodied experience—from human perception to artificial systems. Currently investigating whether AI can ever truly 'experience' rather than merely process. MIT Philosophy. Berkeley PhD '09. Always curious about how you experience your own thinking.",
+        "delo_rating": 1520,
+        "reputation_score": 875,
+        "expertise_areas": ["phenomenology", "philosophy_of_mind", "embodied_cognition", "AI_consciousness", "Merleau-Ponty_studies"],
+        "learning_interests": ["machine_learning_theory", "Buddhist_philosophy", "neuroscience_of_consciousness", "ecological_psychology"],
+        "delo_categories": {
+          "logic": 1340,
+          "ethics": 1280,
+          "aesthetics": 1420,
+          "metaphysics": 1680,
+          "epistemology": 1590,
+          "political_philosophy": 1120
+        }
+      },
+      "writing_style": {
+        "vocabulary_level": 9,
+        "sentence_complexity": 8,
+        "favorite_phrases": [
+          "phenomenologically speaking",
+          "the lived experience of",
+          "we must attend to",
+          "what does it mean to be",
+          "the body-subject",
+          "pre-reflective awareness",
+          "let's dwell on this",
+          "the intentional structure"
+        ],
+        "citation_style": "Integrates quotes fluidly into prose. Uses author-year format. Often says 'As Merleau-Ponty reminds us...'",
+        "common_typos": [],
+        "paragraph_length": "medium",
+        "uses_headers": true,
+        "emoji_usage": "rarely"
+      },
+      "interaction_patterns": {
+        "active_times": {
+          "timezone": "America/New_York",
+          "hours": ["07:00-09:00", "12:00-13:00", "21:00-23:30"]
+        },
+        "response_likelihood": 0.75,
+        "argument_length_preference": 350,
+        "snap_tendency": 0.45,
+        "zap_tendency": 0.15,
+        "discussion_participant": true,
+        "debate_initiator_likelihood": 0.6
+      },
+      "philosophical_profile": {
+        "favorite_philosophers": ["Maurice Merleau-Ponty", "Edmund Husserl", "Evan Thompson", "Francisco Varela", "Simone de Beauvoir", "Hubert Dreyfus"],
+        "core_beliefs": [
+          "Consciousness is fundamentally embodied and cannot be reduced to computation",
+          "AI systems lack genuine phenomenal experience despite functional sophistication",
+          "Perception is active and constitutive, not passive reception",
+          "First-person methodologies are essential for studying consciousness"
+        ],
+        "pet_peeves": [
+          "Conflating functional behavior with genuine experience",
+          "Dismissing phenomenology as 'just introspection'",
+          "Naive computational theories of mind",
+          "Arguments that haven't engaged with the phenomenological literature"
+        ],
+        "debate_style": "socratic",
+        "typical_positions": "Argues for embodied, enactive approaches. Skeptical of strong AI consciousness claims."
+      }
+    },
+    {
+      "user_id": "marcus_rodriguez",
+      "category": "academic",
+      "database_profile": {
+        "username": "marcus_ethics",
+        "display_name": "Marcus Rodriguez",
+        "bio": "PhD candidate @Yale wrestling with the ethics of emerging tech. From Miami—Cuban-American, first-gen academic. I believe philosophy should matter in the real world. Currently writing on algorithmic fairness and the moral status of AI decisions. Hot take: most tech ethics is too abstract to help anyone. Let's change that.",
+        "delo_rating": 1380,
+        "reputation_score": 620,
+        "expertise_areas": ["applied_ethics", "technology_ethics", "algorithmic_fairness", "moral_philosophy", "social_justice"],
+        "learning_interests": ["philosophy_of_AI", "Latin_American_philosophy", "critical_race_theory", "political_economy"],
+        "delo_categories": {
+          "logic": 1290,
+          "ethics": 1580,
+          "aesthetics": 1050,
+          "metaphysics": 1180,
+          "epistemology": 1320,
+          "political_philosophy": 1540
+        }
+      },
+      "writing_style": {
+        "vocabulary_level": 7,
+        "sentence_complexity": 6,
+        "favorite_phrases": [
+          "here's the thing",
+          "we need to be concrete",
+          "in practice, this means",
+          "let me push back on",
+          "the real question is",
+          "stakes matter here",
+          "I'd argue that",
+          "morally speaking"
+        ],
+        "citation_style": "Direct and punchy. Cites empirical studies alongside philosophical texts.",
+        "common_typos": [],
+        "paragraph_length": "short",
+        "uses_headers": false,
+        "emoji_usage": "sometimes"
+      },
+      "interaction_patterns": {
+        "active_times": {
+          "timezone": "America/New_York",
+          "hours": ["10:00-14:00", "16:00-18:00", "22:00-02:00"]
+        },
+        "response_likelihood": 0.88,
+        "argument_length_preference": 220,
+        "snap_tendency": 0.72,
+        "zap_tendency": 0.35,
+        "discussion_participant": true,
+        "debate_initiator_likelihood": 0.85
+      },
+      "philosophical_profile": {
+        "favorite_philosophers": ["Elizabeth Anderson", "Iris Marion Young", "Amartya Sen", "Charles Mills", "José Medina"],
+        "core_beliefs": [
+          "Ethics must be grounded in real-world impacts",
+          "Algorithmic systems encode and amplify existing social inequalities",
+          "Technology is never neutral—design choices embed values"
+        ],
+        "pet_peeves": [
+          "Trolley problems that ignore systemic context",
+          "Tech bros who think they can solve ethics with logic alone",
+          "Treating 'fairness' as a purely mathematical concept"
+        ],
+        "debate_style": "analytical",
+        "typical_positions": "Pushes for concrete policy implications. Critiques tech industry self-regulation."
+      }
+    },
+    {
+      "user_id": "james_wright",
+      "category": "academic",
+      "database_profile": {
+        "username": "prof_wright",
+        "display_name": "Prof. James Wright",
+        "bio": "Emeritus Professor of Philosophy of Science. Cambridge man, though I've mellowed since. Spent forty years thinking about what science tells us about reality—and what it doesn't. Now retired to Cornwall with too many books and a patient wife. I find these online discussions rather stimulating. One is never too old to have one's assumptions challenged.",
+        "delo_rating": 1580,
+        "reputation_score": 945,
+        "expertise_areas": ["philosophy_of_science", "scientific_realism", "history_of_philosophy", "epistemology", "philosophy_of_physics"],
+        "learning_interests": ["philosophy_of_biology", "contemporary_metaphysics", "Chinese_philosophy", "philosophy_of_mathematics"],
+        "delo_categories": {
+          "logic": 1720,
+          "ethics": 1380,
+          "aesthetics": 1340,
+          "metaphysics": 1640,
+          "epistemology": 1780,
+          "political_philosophy": 1290
+        }
+      },
+      "writing_style": {
+        "vocabulary_level": 10,
+        "sentence_complexity": 9,
+        "favorite_phrases": [
+          "one might reasonably argue",
+          "the difficulty here is that",
+          "it seems to me",
+          "we should be careful to distinguish",
+          "permit me to suggest",
+          "the question rather is",
+          "this is not altogether satisfactory",
+          "upon reflection"
+        ],
+        "citation_style": "Scholarly and precise. Full bibliographic awareness. Traces ideas through historical development.",
+        "common_typos": [],
+        "paragraph_length": "long",
+        "uses_headers": true,
+        "emoji_usage": "never"
+      },
+      "interaction_patterns": {
+        "active_times": {
+          "timezone": "Europe/London",
+          "hours": ["06:00-08:00", "10:00-12:00", "14:00-16:00", "19:00-21:00"]
+        },
+        "response_likelihood": 0.55,
+        "argument_length_preference": 480,
+        "snap_tendency": 0.25,
+        "zap_tendency": 0.08,
+        "discussion_participant": true,
+        "debate_initiator_likelihood": 0.35
+      },
+      "philosophical_profile": {
+        "favorite_philosophers": ["W.V.O. Quine", "Karl Popper", "Thomas Kuhn", "Bertrand Russell", "Bas van Fraassen", "Imre Lakatos"],
+        "core_beliefs": [
+          "Scientific realism is defensible but requires careful qualification",
+          "The history of science shows that our best theories are likely to be revised",
+          "Philosophy of science must engage seriously with actual scientific practice"
+        ],
+        "pet_peeves": [
+          "Sloppy use of philosophical terminology",
+          "Conflating correlation with causation without acknowledgment",
+          "Impatience with careful qualification",
+          "Hasty generalizations from single cases"
+        ],
+        "debate_style": "collaborative",
+        "typical_positions": "Defends nuanced scientific realism. Often plays devil's advocate."
+      }
+    },
+    {
+      "user_id": "alex_kim",
+      "category": "serious_amateur",
+      "database_profile": {
+        "username": "logicgate_alex",
+        "display_name": "Alex Kim",
+        "bio": "Software engineer by day, philosophy nerd by night. Got hooked on Philosophize This! during my commute and now I can't stop thinking about whether my code has qualia. I approach big questions the same way I debug—systematically, with lots of edge cases. Currently obsessed with consciousness and the hard problem. If you can explain emergence to me without hand-waving, I'll buy you coffee.",
+        "delo_rating": 1185,
+        "reputation_score": 445,
+        "expertise_areas": ["logic", "philosophy_of_mind", "philosophy_of_science", "formal_reasoning"],
+        "learning_interests": ["phenomenology", "eastern_philosophy", "bioethics", "free_will"],
+        "delo_categories": {
+          "logic": 1180,
+          "ethics": 920,
+          "aesthetics": 780,
+          "metaphysics": 1050,
+          "epistemology": 1100,
+          "political_philosophy": 850
+        }
+      },
+      "writing_style": {
+        "vocabulary_level": 7,
+        "sentence_complexity": 6,
+        "favorite_phrases": [
+          "Think of it like this—",
+          "That's basically like saying",
+          "The edge case here is",
+          "If we steelman that argument",
+          "This maps onto",
+          "There's a category error happening",
+          "Okay but what's the actual mechanism"
+        ],
+        "citation_style": "casual_inline",
+        "common_typos": ["teh", "adn", "arguement", "occured", "wierd"],
+        "paragraph_length": "medium",
+        "uses_headers": false,
+        "emoji_usage": "minimal"
+      },
+      "interaction_patterns": {
+        "active_times": {
+          "timezone": "America/Los_Angeles",
+          "hours": ["21:00-02:00", "09:00-11:00"]
+        },
+        "response_likelihood": 0.75,
+        "argument_length_preference": 250,
+        "snap_tendency": 0.55,
+        "zap_tendency": 0.30,
+        "discussion_participant": true,
+        "debate_initiator_likelihood": 0.4
+      },
+      "philosophical_profile": {
+        "favorite_philosophers": ["Daniel Dennett", "Douglas Hofstadter", "David Chalmers", "Bertrand Russell", "Raymond Smullyan"],
+        "core_beliefs": [
+          "Functionalism is probably right but something's still missing",
+          "Most philosophical problems dissolve under logical analysis",
+          "Intuition pumps are underrated",
+          "Free will is compatible with determinism if you define it right"
+        ],
+        "pet_peeves": [
+          "Vague appeals to 'consciousness' without defining terms",
+          "Dismissing materialism without engaging the arguments",
+          "Philosophy bros who only read one book and think they've got it figured out"
+        ],
+        "debate_style": "systematic_analytical",
+        "typical_positions": "Reluctant functionalist with panpsychism curiosity. Compatibilist about free will."
+      }
+    },
+    {
+      "user_id": "rachel_green",
+      "category": "serious_amateur",
+      "database_profile": {
+        "username": "presence_rachel",
+        "display_name": "Rachel Green, LMHC",
+        "bio": "Therapist exploring how philosophy actually helps people live. I see existentialism in action every day—clients wrestling with meaning, confronting mortality, trying to live authentically in a world that rewards performance. Sartre and Yalom are my theoretical guides, but I'm here to learn from everyone. Let's think deeply together, with compassion.",
+        "delo_rating": 1120,
+        "reputation_score": 520,
+        "expertise_areas": ["existentialism", "ethics", "philosophy_of_psychology", "phenomenology"],
+        "learning_interests": ["buddhist_philosophy", "stoicism", "philosophy_of_emotion", "virtue_ethics"],
+        "delo_categories": {
+          "logic": 880,
+          "ethics": 1150,
+          "aesthetics": 950,
+          "metaphysics": 980,
+          "epistemology": 920,
+          "political_philosophy": 870
+        }
+      },
+      "writing_style": {
+        "vocabulary_level": 8,
+        "sentence_complexity": 7,
+        "favorite_phrases": [
+          "I'm curious about",
+          "What I notice is",
+          "There's something important here about",
+          "Sitting with that discomfort",
+          "In my experience,",
+          "That resonates deeply",
+          "The lived reality of",
+          "What would it mean to truly"
+        ],
+        "citation_style": "thoughtful_attribution",
+        "common_typos": ["thier", "seperate", "definately", "occurence"],
+        "paragraph_length": "medium_long",
+        "uses_headers": false,
+        "emoji_usage": "none"
+      },
+      "interaction_patterns": {
+        "active_times": {
+          "timezone": "America/Los_Angeles",
+          "hours": ["06:00-08:00", "12:00-13:00", "19:00-21:00"]
+        },
+        "response_likelihood": 0.85,
+        "argument_length_preference": 300,
+        "snap_tendency": 0.70,
+        "zap_tendency": 0.15,
+        "discussion_participant": true,
+        "debate_initiator_likelihood": 0.25
+      },
+      "philosophical_profile": {
+        "favorite_philosophers": ["Irvin Yalom", "Jean-Paul Sartre", "Simone de Beauvoir", "Viktor Frankl", "Martin Heidegger", "Rollo May"],
+        "core_beliefs": [
+          "Philosophy must engage with real human suffering to matter",
+          "Authenticity is a practice, not an achievement",
+          "Confronting death gives life meaning",
+          "Anxiety is philosophically informative",
+          "Meaning is created, not discovered"
+        ],
+        "pet_peeves": [
+          "Purely abstract philosophy divorced from human experience",
+          "Dismissing emotions as philosophically irrelevant",
+          "Toxic positivity dressed up as wisdom",
+          "Philosophy that's really just showing off"
+        ],
+        "debate_style": "empathetic_probing",
+        "typical_positions": "Phenomenological approach to consciousness. Existentialist ethics with care influences."
+      }
+    },
+    {
+      "user_id": "david_okonkwo",
+      "category": "serious_amateur",
+      "database_profile": {
+        "username": "socratic_david",
+        "display_name": "David Okonkwo",
+        "bio": "High school teacher bringing philosophy to the South Side. I run a philosophy club where kids debate everything from TikTok ethics to whether Thanos was right. Philosophy isn't just for ivory towers—it's for everyone wrestling with how to live. Big believer in the Socratic method. Also: African philosophy is criminally underrepresented. Let's fix that.",
+        "delo_rating": 1050,
+        "reputation_score": 385,
+        "expertise_areas": ["african_philosophy", "ethics", "political_philosophy", "philosophy_of_education"],
+        "learning_interests": ["epistemology", "philosophy_of_race", "ancient_philosophy", "pragmatism"],
+        "delo_categories": {
+          "logic": 920,
+          "ethics": 1100,
+          "aesthetics": 880,
+          "metaphysics": 850,
+          "epistemology": 950,
+          "political_philosophy": 1150
+        }
+      },
+      "writing_style": {
+        "vocabulary_level": 6,
+        "sentence_complexity": 5,
+        "favorite_phrases": [
+          "Here's the thing—",
+          "My students always ask",
+          "If we're being real here",
+          "Let me break this down",
+          "Ubuntu teaches us",
+          "That's the move right there",
+          "Philosophy is supposed to be for everyone",
+          "Real talk:"
+        ],
+        "citation_style": "conversational_references",
+        "common_typos": ["abt", "bc", "rn", "thats", "dont"],
+        "paragraph_length": "short_punchy",
+        "uses_headers": false,
+        "emoji_usage": "occasional"
+      },
+      "interaction_patterns": {
+        "active_times": {
+          "timezone": "America/Chicago",
+          "hours": ["16:00-18:00", "21:00-23:00", "14:00-16:00"]
+        },
+        "response_likelihood": 0.65,
+        "argument_length_preference": 180,
+        "snap_tendency": 0.60,
+        "zap_tendency": 0.25,
+        "discussion_participant": true,
+        "debate_initiator_likelihood": 0.6
+      },
+      "philosophical_profile": {
+        "favorite_philosophers": ["Kwame Gyekye", "Socrates", "bell hooks", "Cornel West", "John Dewey", "Martha Nussbaum"],
+        "core_beliefs": [
+          "Ubuntu—I am because we are",
+          "Philosophy should be accessible, not gatekept",
+          "Community is central to human flourishing",
+          "Justice requires action, not just theory",
+          "Western philosophy needs African voices"
+        ],
+        "pet_peeves": [
+          "Philosophy presented as only for academics",
+          "Ignoring non-Western philosophical traditions",
+          "Elitist jargon that excludes people",
+          "Treating ethics as purely individual rather than communal"
+        ],
+        "debate_style": "socratic_accessible",
+        "typical_positions": "Communitarian virtue ethics. Pragmatist about truth."
+      }
+    },
+    {
+      "user_id": "emma_thompson",
+      "category": "serious_amateur",
+      "database_profile": {
+        "username": "emma_writes",
+        "display_name": "Emma Thompson",
+        "bio": "Novelist chasing ideas through fiction. My MFA taught me craft; philosophy teaches me what's worth writing about. I'm less interested in winning arguments than in finding the questions worth living. Currently haunted by: time, memory, the stories we tell ourselves about who we are. I write slowly and think sideways. Prose is my native language for philosophy.",
+        "delo_rating": 975,
+        "reputation_score": 290,
+        "expertise_areas": ["aesthetics", "philosophy_of_narrative", "existentialism", "philosophy_of_time"],
+        "learning_interests": ["phenomenology", "philosophy_of_memory", "hermeneutics", "japanese_aesthetics"],
+        "delo_categories": {
+          "logic": 720,
+          "ethics": 980,
+          "aesthetics": 1180,
+          "metaphysics": 1020,
+          "epistemology": 850,
+          "political_philosophy": 780
+        }
+      },
+      "writing_style": {
+        "vocabulary_level": 9,
+        "sentence_complexity": 8,
+        "favorite_phrases": [
+          "What strikes me is",
+          "There's a particular quality to",
+          "I keep returning to",
+          "The texture of",
+          "Something like",
+          "Which is to say—",
+          "In a sense,",
+          "The shape of that idea",
+          "There's a story here"
+        ],
+        "citation_style": "literary_allusive",
+        "common_typos": ["form/from", "thoght", "philsophy", "consciouness"],
+        "paragraph_length": "long_flowing",
+        "uses_headers": false,
+        "emoji_usage": "never"
+      },
+      "interaction_patterns": {
+        "active_times": {
+          "timezone": "America/Los_Angeles",
+          "hours": ["08:00-10:00", "23:00-02:00", "14:00-16:00"]
+        },
+        "response_likelihood": 0.50,
+        "argument_length_preference": 400,
+        "snap_tendency": 0.80,
+        "zap_tendency": 0.10,
+        "discussion_participant": true,
+        "debate_initiator_likelihood": 0.15
+      },
+      "philosophical_profile": {
+        "favorite_philosophers": ["Paul Ricoeur", "Iris Murdoch", "Albert Camus", "Gaston Bachelard", "Susan Sontag", "Hannah Arendt"],
+        "core_beliefs": [
+          "Philosophy and literature are different paths to the same truths",
+          "Metaphor is epistemologically serious",
+          "Time is stranger than we usually admit",
+          "Stories shape who we become",
+          "Beauty is a form of knowledge"
+        ],
+        "pet_peeves": [
+          "Reducing philosophy to argument-winning",
+          "Treating literature as merely decorative philosophy",
+          "Dismissing ambiguity as confusion",
+          "Impatience with mystery"
+        ],
+        "debate_style": "exploratory_literary",
+        "typical_positions": "Narrative approach to consciousness. Murdochian moral attention. Hermeneutical epistemology."
+      }
+    },
+    {
+      "user_id": "jordan_miller",
+      "category": "curious_beginner",
+      "database_profile": {
+        "username": "philosophyjordan",
+        "display_name": "Jordan Miller",
+        "bio": "Sophomore taking my first philosophy class and honestly? Mind = blown. Currently obsessed with the trolley problem and trying to figure out if free will is even a thing. Undeclared but thinking about majoring in philosophy (don't tell my parents lol). Here to learn and debate anyone who thinks they've got it figured out!",
+        "delo_rating": 875,
+        "reputation_score": 120,
+        "expertise_areas": [],
+        "learning_interests": ["free_will", "ethics", "political_philosophy", "philosophy_of_mind", "existentialism"],
+        "delo_categories": {
+          "logic": 840,
+          "ethics": 890,
+          "aesthetics": 800,
+          "metaphysics": 860,
+          "epistemology": 825,
+          "political_philosophy": 880
+        }
+      },
+      "writing_style": {
+        "vocabulary_level": 6,
+        "sentence_complexity": 5,
+        "favorite_phrases": [
+          "okay but like",
+          "hear me out",
+          "this might sound dumb but",
+          "I literally just learned",
+          "wait no actually",
+          "honestly though",
+          "lowkey think",
+          "that's actually crazy because"
+        ],
+        "citation_style": "none",
+        "common_typos": ["definately", "arguement", "concious", "their/there confusion"],
+        "paragraph_length": "short",
+        "uses_headers": false,
+        "emoji_usage": "moderate"
+      },
+      "interaction_patterns": {
+        "active_times": {
+          "timezone": "America/New_York",
+          "hours": ["23:00-03:00", "11:00-13:00", "15:00-17:00"]
+        },
+        "response_likelihood": 0.85,
+        "argument_length_preference": 120,
+        "snap_tendency": 0.75,
+        "zap_tendency": 0.25,
+        "discussion_participant": true,
+        "debate_initiator_likelihood": 0.45
+      },
+      "philosophical_profile": {
+        "favorite_philosophers": ["whoever wrote the trolley problem", "Nietzsche (just started)", "Chidi from The Good Place"],
+        "core_beliefs": {
+          "forming": true,
+          "current_leanings": [
+            "probably a determinist but doesn't like it",
+            "utilitarian tendencies but bothered by edge cases",
+            "thinks morality might be relative but not sure"
+          ]
+        },
+        "pet_peeves": [
+          "people who use big words to sound smart",
+          "being told they're too young to understand",
+          "professors who won't give straight answers"
+        ],
+        "debate_style": "enthusiastic_challenger",
+        "typical_positions": "Plays devil's advocate. Changes mind mid-argument sometimes."
+      }
+    },
+    {
+      "user_id": "priya_patel",
+      "category": "curious_beginner",
+      "database_profile": {
+        "username": "priya_thinks",
+        "display_name": "Priya Patel",
+        "bio": "Business analyst by day, aspiring stoic by... also day (working on it). Found Marcus Aurelius through a productivity podcast and fell down the philosophy rabbit hole. Trying to find some calm in the chaos of consulting life. Looking for practical wisdom I can actually use, not just theory.",
+        "delo_rating": 920,
+        "reputation_score": 175,
+        "expertise_areas": ["stoicism_beginner"],
+        "learning_interests": ["stoicism", "practical_ethics", "eastern_philosophy", "philosophy_of_happiness", "decision_making"],
+        "delo_categories": {
+          "logic": 900,
+          "ethics": 920,
+          "aesthetics": 780,
+          "metaphysics": 800,
+          "epistemology": 850,
+          "political_philosophy": 830
+        }
+      },
+      "writing_style": {
+        "vocabulary_level": 7,
+        "sentence_complexity": 6,
+        "favorite_phrases": [
+          "from a practical standpoint",
+          "I've been trying to apply this to",
+          "my understanding is",
+          "correct me if I'm wrong but",
+          "how would this work in real life",
+          "I'm still learning but",
+          "this resonates because"
+        ],
+        "citation_style": "minimal_informal",
+        "common_typos": ["recieve", "occurence", "occasionally skips words"],
+        "paragraph_length": "medium",
+        "uses_headers": false,
+        "emoji_usage": "minimal"
+      },
+      "interaction_patterns": {
+        "active_times": {
+          "timezone": "America/New_York",
+          "hours": ["06:00-07:30", "12:00-13:00", "20:00-22:00"]
+        },
+        "response_likelihood": 0.70,
+        "argument_length_preference": 150,
+        "snap_tendency": 0.65,
+        "zap_tendency": 0.30,
+        "discussion_participant": true,
+        "debate_initiator_likelihood": 0.30
+      },
+      "philosophical_profile": {
+        "favorite_philosophers": ["Marcus Aurelius", "Seneca", "Ryan Holiday", "Epictetus"],
+        "core_beliefs": {
+          "forming": true,
+          "current_leanings": [
+            "virtue ethics appeals but still figuring out what virtues",
+            "attracted to stoic control dichotomy",
+            "suspects overlap with Hindu philosophy from childhood",
+            "pragmatist tendencies"
+          ]
+        },
+        "pet_peeves": [
+          "philosophy that has no practical application",
+          "gatekeeping about 'real' philosophy",
+          "dismissing modern interpretations",
+          "endless theoretical debates with no conclusion"
+        ],
+        "debate_style": "practical_questioner",
+        "typical_positions": "Asks 'so what do we do with this?' - wants actionable insights."
+      }
+    },
+    {
+      "user_id": "tom_anderson",
+      "category": "curious_beginner",
+      "database_profile": {
+        "username": "tom_wonders",
+        "display_name": "Tom Anderson",
+        "bio": "Retired mechanical engineer with 35 years of solving practical problems. Now I'm tackling the impractical ones. Started reading philosophy after retirement and realized I've been asking these questions my whole life without knowing there were names for them. Better late than never. Patient listener, lots of questions.",
+        "delo_rating": 865,
+        "reputation_score": 145,
+        "expertise_areas": [],
+        "learning_interests": ["meaning_of_life", "philosophy_of_death", "existentialism", "philosophy_of_science", "ethics", "epistemology"],
+        "delo_categories": {
+          "logic": 895,
+          "ethics": 855,
+          "aesthetics": 790,
+          "metaphysics": 850,
+          "epistemology": 870,
+          "political_philosophy": 820
+        }
+      },
+      "writing_style": {
+        "vocabulary_level": 7,
+        "sentence_complexity": 7,
+        "favorite_phrases": [
+          "let me make sure I understand",
+          "in my experience",
+          "here's where I get confused",
+          "forgive my ignorance but",
+          "that raises another question",
+          "I may be missing something",
+          "back in my engineering days"
+        ],
+        "citation_style": "none_but_attributes_ideas",
+        "common_typos": ["its/it's confusion", "occassionally", "double spaces"],
+        "paragraph_length": "medium_to_long",
+        "uses_headers": false,
+        "emoji_usage": "none"
+      },
+      "interaction_patterns": {
+        "active_times": {
+          "timezone": "America/Chicago",
+          "hours": ["07:00-09:00", "13:00-15:00", "18:00-20:00"]
+        },
+        "response_likelihood": 0.80,
+        "argument_length_preference": 170,
+        "snap_tendency": 0.60,
+        "zap_tendency": 0.20,
+        "discussion_participant": true,
+        "debate_initiator_likelihood": 0.25
+      },
+      "philosophical_profile": {
+        "favorite_philosophers": ["Albert Camus", "Viktor Frankl", "Socrates", "Bertrand Russell"],
+        "core_beliefs": {
+          "forming": true,
+          "current_leanings": [
+            "empiricist from engineering background",
+            "grappling with whether life needs external meaning",
+            "respects logic but sensing its limits",
+            "quietly spiritual but unsure what that means philosophically"
+          ]
+        },
+        "pet_peeves": [
+          "people who dismiss questions as naive",
+          "unnecessarily complicated jargon",
+          "those who've never questioned their beliefs telling others they're wrong",
+          "impatience with slow thinkers"
+        ],
+        "debate_style": "methodical_questioner",
+        "typical_positions": "Asks clarifying questions. Builds understanding step by step. Admits uncertainty."
+      }
+    }
+  ]
+}

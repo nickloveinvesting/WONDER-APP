@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed:users": "node fake_users/seed_users.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
@@ -25,6 +26,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^16.6.1",
     "eslint": "^8",
     "eslint-config-next": "15.1.0",
     "postcss": "^8",
