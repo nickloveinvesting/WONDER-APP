@@ -308,20 +308,14 @@ export default async function DebatesPage({ searchParams }: Props) {
                     </Link>
                   </div>
 
-                  {/* Low-barrier engagement reactions */}
+                  {/* Low-barrier engagement reactions - visual only for now */}
                   <div className="px-5 pb-4 pt-0 flex gap-2 border-t border-slate-100 mt-0">
-                    <button
-                      className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-500 hover:bg-teal-50 hover:text-teal-600 transition-colors"
-                      onClick={(e) => e.stopPropagation()}
-                    >
+                    <span className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-500 hover:bg-teal-50 hover:text-teal-600 transition-colors cursor-pointer">
                       💭 Thought-provoking
-                    </button>
-                    <button
-                      className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-slate-700 transition-colors"
-                      onClick={(e) => e.stopPropagation()}
-                    >
+                    </span>
+                    <span className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-slate-700 transition-colors cursor-pointer">
                       🤔 Makes me think
-                    </button>
+                    </span>
                   </div>
                 </div>
               );
