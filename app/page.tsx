@@ -45,10 +45,10 @@ export default async function Home() {
 
               <div className="flex flex-col sm:flex-row lg:flex-row items-center lg:items-start justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
                 <Link
-                  href="/auth/signup"
+                  href="/apply"
                   className="px-10 py-4 bg-teal-500 text-white text-lg font-black rounded-xl hover:bg-teal-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
                 >
-                  Join the Community
+                  Apply to Join
                 </Link>
                 <Link
                   href="/home"
@@ -295,7 +295,7 @@ export default async function Home() {
           </p>
 
           <Link
-            href="/auth/signup"
+            href="/apply"
             className="inline-block px-10 py-4 bg-teal-500 text-white text-lg font-black rounded-xl hover:bg-teal-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
           >
             Start Getting Challenges
@@ -384,10 +384,10 @@ export default async function Home() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-10">
             <Link
-              href="/auth/signup"
+              href="/apply"
               className="px-14 py-5 bg-teal-500 text-white text-xl font-black rounded-xl hover:bg-teal-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
             >
-              Join WONDER Free
+              Apply to WONDER
             </Link>
             <Link
               href="/home"
@@ -472,8 +472,8 @@ export default async function Home() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/auth/signup" className="hover:text-teal-400 transition-colors">
-                    Getting Started
+                  <Link href="/apply" className="hover:text-teal-400 transition-colors">
+                    Apply to Join
                   </Link>
                 </li>
                 <li>
