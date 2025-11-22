@@ -231,7 +231,7 @@ export default async function DebatesPage({ searchParams }: Props) {
           {debates && debates.length > 0 ? (
             debates.map((debate) => {
               const userVote: VoteType | null = userVotes[debate.id] || null;
-              const lastActivity = debate.last_activity_at || debate.updated_at || debate.created_at;
+              const lastActivity = debate.last_activity_at || debate.created_at;
               const discussionActive = isActive(lastActivity);
               const commentCount = debate.argument_count || 0;
               const participantCount = debate.participant_count || 2;
