@@ -264,7 +264,7 @@ export default async function ConversationDetailPage({
                         Contribution #{index + 1}
                       </span>
                       <span className="text-sm text-slate-400">
-                        {new Date(message.created_at).toLocaleDateString()}
+                        {message.created_at ? new Date(message.created_at).toLocaleDateString() : ''}
                       </span>
                       {/* Depth Score */}
                       {(message.depth_score || 0) > 0 && (
