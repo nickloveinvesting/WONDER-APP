@@ -11,11 +11,14 @@ import {
   Megaphone,
   LogOut,
   ChevronRight,
+  MessageSquare,
+  Home,
 } from 'lucide-react';
 
 const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/users', label: 'Users', icon: Users },
+  { href: '/admin/feedback', label: 'User Feedback', icon: MessageSquare },
   { href: '/admin/moderation', label: 'Moderation', icon: Shield },
   { href: '/admin/analytics', label: 'Analytics', icon: BarChart3 },
   { href: '/admin/controls', label: 'Controls', icon: Settings },
@@ -81,10 +84,10 @@ export default async function AdminLayout({
             </div>
           </div>
           <Link
-            href="/"
-            className="flex items-center gap-2 px-4 py-2 mt-2 text-slate-400 hover:text-white text-sm transition-colors"
+            href="/home"
+            className="flex items-center gap-2 px-4 py-2.5 mt-2 bg-teal-500/10 border border-teal-500/20 rounded-lg text-teal-400 hover:bg-teal-500/20 hover:text-teal-300 text-sm font-medium transition-colors"
           >
-            <LogOut className="w-4 h-4" />
+            <Home className="w-4 h-4" />
             Back to App
           </Link>
         </div>

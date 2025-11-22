@@ -91,6 +91,20 @@ ${description}
 
     const issue = await response.json();
 
+    // Also store in database for admin review
+    await supabase
+      .from('feedback_submissions')
+      .insert({
+        user_id: user.id,
+        username: username,
+        feedback_type: type,
+        title: title,
+        description: description,
+        github_issue_url: issue.html_url,
+        github_issue_number: issue.number,
+        status: 'pending',
+      });
+
     return NextResponse.json({
       success: true,
       issueNumber: issue.number,
