@@ -9,10 +9,9 @@ import { Database } from '@/lib/database.types';
 import { type VoteType } from '@/lib/actions/voting';
 import { unstable_cache } from 'next/cache';
 
-// Cache debates list for 30 seconds - major performance improvement
-// User-specific votes are fetched separately (not cached) to stay current
-// Revalidated when votes are cast via revalidatePath in voting action
-export const revalidate = 30; // Cache for 30 seconds instead of force-dynamic
+// Temporarily disable caching to ensure fresh data
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 type Props = {
   searchParams: Promise<{ quadrant?: string }>;
