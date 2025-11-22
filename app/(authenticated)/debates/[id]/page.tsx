@@ -7,6 +7,8 @@ import { Badge } from '@/components/ui/Badge';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import DebateActions from './DebateActions';
 import { Database } from '@/lib/database.types';
+import { ArgumentFeedbackWrapper } from './ArgumentFeedbackWrapper';
+import { DepthScore } from '@/components/DepthScore';
 
 type Profile = {
   username: string;
@@ -20,6 +22,9 @@ type ParticipantWithProfile = Database['public']['Tables']['conversation_partici
 
 type MessageWithAuthor = Database['public']['Tables']['arguments']['Row'] & {
   author: Profile;
+  feedback_counts?: Record<string, number>;
+  user_feedback?: string[];
+  depth_score?: number | null;
 };
 
 export default async function ConversationDetailPage({
@@ -74,6 +79,41 @@ export default async function ConversationDetailPage({
 
   if (!conversation) {
     redirect('/debates');
+  }
+
+  // Fetch feedback counts and user's feedback for all messages
+  let messagesWithFeedback: MessageWithAuthor[] = messages || [];
+  if (messages && messages.length > 0) {
+    const messageIds = messages.map(m => m.id);
+
+    // Fetch all feedback for these messages
+    const { data: allFeedback } = await supabase
+      .from('argument_feedback')
+      .select('argument_id, feedback_type, user_id')
+      .in('argument_id', messageIds);
+
+    // Process feedback into counts and user selections
+    const feedbackByMessage: Record<string, { counts: Record<string, number>; userFeedback: string[] }> = {};
+
+    allFeedback?.forEach(f => {
+      if (!feedbackByMessage[f.argument_id]) {
+        feedbackByMessage[f.argument_id] = { counts: {}, userFeedback: [] };
+      }
+      // Count feedback by type
+      feedbackByMessage[f.argument_id].counts[f.feedback_type] =
+        (feedbackByMessage[f.argument_id].counts[f.feedback_type] || 0) + 1;
+      // Track user's own feedback
+      if (f.user_id === user.id) {
+        feedbackByMessage[f.argument_id].userFeedback.push(f.feedback_type);
+      }
+    });
+
+    // Merge feedback into messages
+    messagesWithFeedback = messages.map(m => ({
+      ...m,
+      feedback_counts: feedbackByMessage[m.id]?.counts || {},
+      user_feedback: feedbackByMessage[m.id]?.userFeedback || [],
+    }));
   }
 
   const isParticipant = participants?.some(p => p.user_id === user.id);
@@ -203,10 +243,10 @@ export default async function ConversationDetailPage({
         )}
 
         {/* Conversation Thread */}
-        {messages && messages.length > 0 ? (
+        {messagesWithFeedback && messagesWithFeedback.length > 0 ? (
           <div className="space-y-6">
             <h2 className="text-3xl font-black text-slate-900">Conversation</h2>
-            {messages.map((message: MessageWithAuthor, index: number) => (
+            {messagesWithFeedback.map((message: MessageWithAuthor, index: number) => (
               <Card key={message.id} variant="standard">
                 <div className="flex items-start gap-4">
                   {/* Avatar placeholder */}
@@ -226,16 +266,25 @@ export default async function ConversationDetailPage({
                       <span className="text-sm text-slate-400">
                         {new Date(message.created_at).toLocaleDateString()}
                       </span>
+                      {/* Depth Score */}
+                      {(message.depth_score || 0) > 0 && (
+                        <DepthScore score={message.depth_score || 0} variant="badge" />
+                      )}
                     </div>
 
                     {/* Message content */}
-                    <div className="prose prose-lg max-w-none">
+                    <div className="prose prose-lg max-w-none mb-4">
                       <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">
                         {message.content}
                       </p>
                     </div>
 
-                    {/* Future: Add reaction/feedback UI here */}
+                    {/* Feedback buttons */}
+                    <ArgumentFeedbackWrapper
+                      argumentId={message.id}
+                      initialFeedback={message.user_feedback || []}
+                      feedbackCounts={message.feedback_counts || {}}
+                    />
                   </div>
                 </div>
               </Card>

@@ -1,6 +1,5 @@
-import { redirect } from 'next/navigation';
+import { GateController } from './components/GateController';
 
-// Redirect old gate URL to new apply flow
 export default function GatePage() {
-  redirect('/apply');
+  return <GateController />;
 }
