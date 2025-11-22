@@ -49,15 +49,15 @@ export default function CreateDebatePage() {
       <div className="max-w-3xl mx-auto px-6 lg:px-8 py-12">
         <div className="mb-6">
           <Link href="/debates" className="text-slate-600 hover:text-teal-600 transition font-bold">
-            ← Back to Posts
+            ← Back to Discuss
           </Link>
         </div>
 
         <h1 className="text-4xl lg:text-5xl font-black text-slate-900 mb-3 tracking-tight">
-          Create New Post
+          Ask a Question
         </h1>
         <p className="text-xl text-slate-600 font-medium mb-8">
-          Share a question or idea with the community
+          What's on your mind? Share something you're curious about.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-8">
@@ -96,7 +96,7 @@ export default function CreateDebatePage() {
           {/* Topic */}
           <div>
             <label htmlFor="topic" className="block text-sm font-black text-slate-900 mb-3 uppercase tracking-wide">
-              Post Title *
+              Your Question *
             </label>
             <input
               id="topic"
@@ -163,7 +163,7 @@ export default function CreateDebatePage() {
               disabled={loading}
               className="flex-1 px-8 py-4 bg-teal-500 text-white rounded-xl hover:bg-teal-600 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 font-black text-lg"
             >
-              {loading ? 'Creating Post...' : 'Create Post'}
+              {loading ? 'Posting...' : 'Share Question'}
             </button>
             <Link
               href="/debates"

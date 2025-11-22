@@ -125,7 +125,7 @@ export default async function ConversationDetailPage({
         {/* Breadcrumbs */}
         <Breadcrumbs
           items={[
-            { label: 'Posts', href: '/debates' },
+            { label: 'Discuss', href: '/debates' },
             { label: conversation.topic.length > 50 ? conversation.topic.substring(0, 50) + '...' : conversation.topic }
           ]}
         />
