@@ -39,7 +39,8 @@ export default function Navigation() {
     pathname.startsWith('/profile') ||
     pathname.startsWith('/settings') ||
     pathname.startsWith('/moderation-log') ||
-    pathname.startsWith('/vault')
+    pathname.startsWith('/vault') ||
+    pathname.startsWith('/admin')
   ) : false;
 
   useEffect(() => {
