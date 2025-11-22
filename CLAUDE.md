@@ -256,3 +256,98 @@ const supabase = createClient();
 - Brand name: "WONDER"
 - Tagline: "WONDER Together"
 - Vision: Conversation-first philosophical platform (see `research/FINAL_SYNTHESIS/` for details)
+
+---
+
+## Development Changelog
+
+### November 21, 2025 - Fake Users, Content Population & Caching Fixes
+
+#### Context
+This session continued from a previous conversation where 10 fake users were created for the WONDER platform to populate it with realistic content for testing and demonstration purposes.
+
+#### Previous Session Summary
+- **10 fake users created** with diverse philosophical perspectives:
+  - Dr. Sarah Chen (Cognitive Scientist)
+  - Marcus Rodriguez (Ethics Researcher)
+  - Prof. James Wright (Metaphysics)
+  - Aisha Patel (Tech Philosopher)
+  - David Kim (Existentialist)
+  - Elena Vasquez (Political Philosopher)
+  - Thomas Anderson (Skeptic)
+  - Dr. Maya Johnson (Philosophy of Mind)
+  - Robert Chen (Pragmatist)
+  - Sophie Martin (Continental Philosophy)
+
+- **Fake user data stored in**: `/fake_users/` directory
+  - `users.json`: User profiles with credentials
+  - `comments.json`: Pre-written philosophical arguments
+  - `README.md`: Documentation
+
+#### Issues Identified & Fixed
+
+**Issue 1: Navigation Header Showing "Sign In" When Logged In**
+- **Problem**: When authenticated, the header displayed "Sign In / Join Free" buttons instead of the user's profile (username + influence score)
+- **Root Cause**: `unstable_cache` in authenticated layout (`app/(authenticated)/layout.tsx`) was returning stale/null profile data
+- **Solution**: Removed `unstable_cache` wrapper and added `export const dynamic = 'force-dynamic'` to ensure fresh profile data on every request
+- **Commit**: `a5c6846`
+
+**Issue 2: Debates Page Showing "No Conversations Yet"**
+- **Problem**: Despite 42 debates existing in the database, the debates page showed empty state
+- **Root Cause**: `unstable_cache` in `app/(authenticated)/debates/page.tsx` cached an empty result before content was populated
+- **Solution**:
+  1. First attempt: Changed cache key from `debates-list` to `debates-list-v2` (commit `530b6bd`)
+  2. Second attempt: Added `export const dynamic = 'force-dynamic'` (commit `223f35d`)
+  3. Final fix: Completely removed `unstable_cache` wrapper, using direct Supabase query (commit `ad5491d`)
+- **Commits**: `530b6bd`, `223f35d`, `ad5491d`
+
+#### Key Files Modified
+
+1. **`app/(authenticated)/layout.tsx`**
+   - Removed `unstable_cache` import
+   - Added `export const dynamic = 'force-dynamic'`
+   - Changed `getCachedProfile()` to `getProfile()` (direct query)
+
+2. **`app/(authenticated)/debates/page.tsx`**
+   - Removed `unstable_cache` import
+   - Added `export const dynamic = 'force-dynamic'` and `export const revalidate = 0`
+   - Changed `getCachedDebates()` to `getDebates()` (direct query)
+
+3. **`components/Navigation.tsx`** (previous session)
+   - Added `mounted` state to prevent hydration mismatch
+   - Improved `isAuthenticatedRoute` detection
+
+#### Database Content Added
+
+- **42 debates** across 4 quadrants:
+  - AI & Technology
+  - Philosophy
+  - Morality & Ethics
+  - Economics & Society
+
+- **35+ arguments** from fake users added to debates via Supabase MCP
+
+- **19 profiles** total (including 10 fake users)
+
+#### Verification
+
+Production site verified working at: https://philosophy-app-eight.vercel.app/
+- Header correctly shows: "nicklove ✨ 800" with user dropdown
+- Navigation shows authenticated items: Home, Posts, Discuss, Journal, Leaderboard
+- Debates page displays all 40+ conversations with vote counts
+
+#### Lessons Learned
+
+1. **Next.js `unstable_cache` Caveats**:
+   - `unstable_cache` caches based on function arguments but can persist stale data across deployments
+   - Even with `export const dynamic = 'force-dynamic'`, `unstable_cache` maintains its own cache layer
+   - For frequently-changing data, prefer direct queries or use `revalidatePath`/`revalidateTag`
+
+2. **Vercel Edge Caching**:
+   - Changing cache keys alone may not bust Vercel's edge cache
+   - `force-dynamic` + removing `unstable_cache` is the most reliable approach for fresh data
+
+3. **Dual Navigation System**:
+   - Root layout renders `Navigation.tsx` (public nav)
+   - Authenticated layout renders `Header.tsx` (authenticated nav)
+   - `Navigation.tsx` must return `null` on authenticated routes to prevent duplicate headers
