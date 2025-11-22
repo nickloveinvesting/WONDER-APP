@@ -21,18 +21,26 @@ export default function Navigation() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [user, setUser] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
-  // Skip rendering on authenticated routes (they have their own Header)
-  const isAuthenticatedRoute = pathname?.startsWith('/home') ||
-    pathname?.startsWith('/debates') ||
-    pathname?.startsWith('/discuss') ||
-    pathname?.startsWith('/journal') ||
-    pathname?.startsWith('/leaderboard') ||
-    pathname?.startsWith('/profile') ||
-    pathname?.startsWith('/settings') ||
-    pathname?.startsWith('/moderation-log') ||
-    pathname?.startsWith('/vault');
+  // Track when component is mounted (client-side)
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Check if we're on an authenticated route
+  const isAuthenticatedRoute = pathname ? (
+    pathname.startsWith('/home') ||
+    pathname.startsWith('/debates') ||
+    pathname.startsWith('/discuss') ||
+    pathname.startsWith('/journal') ||
+    pathname.startsWith('/leaderboard') ||
+    pathname.startsWith('/profile') ||
+    pathname.startsWith('/settings') ||
+    pathname.startsWith('/moderation-log') ||
+    pathname.startsWith('/vault')
+  ) : false;
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -78,8 +86,9 @@ export default function Navigation() {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [userMenuOpen]);
 
+  // Don't render until mounted (prevents hydration mismatch)
   // Don't render on authenticated routes (they have Header)
-  if (isAuthenticatedRoute) {
+  if (!mounted || isAuthenticatedRoute) {
     return null;
   }
 
