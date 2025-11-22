@@ -538,3 +538,137 @@ Updated landing page (`/app/page.tsx`) to link CTAs to `/apply` instead of `/aut
 
 - `/research/exclusivity_analysis.md` - Full synthesis with 3 gate designs, audience psychology
 - `/research/EXCLUSIVITY_MECHANICS_ANALYSIS.md` - 12+ platform analysis with patterns
+
+---
+
+### November 21, 2025 - Admin Dashboard & Navigation Bug Fix
+
+#### Context
+This session continued from a previous conversation where a comprehensive Admin Dashboard was created for WONDER platform administrators.
+
+#### Admin Dashboard Overview (Created in Previous Session)
+
+**Route Structure**:
+```
+app/admin/
+├── layout.tsx          # Admin layout with sidebar, auth gate
+├── page.tsx            # Dashboard overview (Command Center)
+├── users/page.tsx      # User management
+├── moderation/page.tsx # Moderation queue
+├── analytics/page.tsx  # Platform analytics
+├── controls/page.tsx   # Platform controls & feature flags
+└── announcements/page.tsx # Announcement system
+```
+
+**Features Implemented**:
+- **Dashboard Overview**: Stats cards (19 users, 42 debates, 15 discussions), quick actions, recent users, admin activity log
+- **User Management**: Full user table with search, status (active/suspended/warned), influence scores, debate stats
+- **Analytics**: Signup trends, engagement metrics, activity charts, top contributors
+- **Platform Controls**: Emergency controls, feature flags (AI judging, real-time, email), database actions, danger zone
+- **Moderation Queue**: Content review system (placeholder)
+- **Announcements**: Platform-wide announcement system (placeholder)
+
+**Security**:
+- Admin access restricted to `nickloveacquisition@gmail.com`
+- Auth gate in `app/admin/layout.tsx` redirects unauthorized users
+- Admin link only shows in Header dropdown for admin email
+
+#### Bug Identified & Fixed
+
+**Issue: Public Navigation Appearing on Admin Pages**
+- **Problem**: When viewing admin dashboard at `/admin/*`, the top header showed "Sign In / Join Free" buttons instead of being hidden
+- **User Report**: "The top right still shows log in or join free it should say my nicklove account?"
+
+**Root Cause Analysis**:
+- Root layout (`app/layout.tsx`) renders `<Navigation />` component on ALL pages
+- `components/Navigation.tsx` has `isAuthenticatedRoute` check that returns `null` for authenticated routes
+- `/admin` was NOT included in `isAuthenticatedRoute`, so Navigation rendered on admin pages
+- Admin has its own sidebar navigation, so the public Navigation created duplicate/confusing UI
+
+**Solution**:
+Added `/admin` to `isAuthenticatedRoute` check in `components/Navigation.tsx`:
+
+```typescript
+// Before (bug)
+const isAuthenticatedRoute = pathname ? (
+  pathname.startsWith('/home') ||
+  pathname.startsWith('/debates') ||
+  pathname.startsWith('/discuss') ||
+  pathname.startsWith('/journal') ||
+  pathname.startsWith('/leaderboard') ||
+  pathname.startsWith('/profile') ||
+  pathname.startsWith('/settings') ||
+  pathname.startsWith('/moderation-log') ||
+  pathname.startsWith('/vault')
+) : false;
+
+// After (fixed)
+const isAuthenticatedRoute = pathname ? (
+  pathname.startsWith('/home') ||
+  pathname.startsWith('/debates') ||
+  pathname.startsWith('/discuss') ||
+  pathname.startsWith('/journal') ||
+  pathname.startsWith('/leaderboard') ||
+  pathname.startsWith('/profile') ||
+  pathname.startsWith('/settings') ||
+  pathname.startsWith('/moderation-log') ||
+  pathname.startsWith('/vault') ||
+  pathname.startsWith('/admin')  // Added
+) : false;
+```
+
+**Commit**: `ca54a7f` - "fix: Hide public navigation on admin pages"
+
+#### Production Testing with Playwright
+
+Used Playwright MCP server to verify admin dashboard on production:
+
+**Test URL**: https://philosophy-app-eight.vercel.app/
+
+**Pages Verified**:
+1. `/admin` - Dashboard shows Command Center with live stats
+2. `/admin/users` - User table displays all 19 users with full data
+3. `/admin/analytics` - Charts and metrics rendering correctly
+4. `/admin/controls` - Feature flags and emergency controls functional
+
+**Screenshots Captured**:
+- `.playwright-mcp/admin-fixed-no-signin-button.png` - Confirms fix deployed
+
+#### Files Modified
+
+1. **`components/Navigation.tsx`** (line 43)
+   - Added `pathname.startsWith('/admin')` to `isAuthenticatedRoute` check
+   - Prevents public navigation from rendering on admin pages
+
+#### Admin Dashboard Files (Reference)
+
+| File | Purpose |
+|------|---------|
+| `app/admin/layout.tsx` | Admin layout with dark sidebar, auth gate |
+| `app/admin/page.tsx` | Command Center dashboard |
+| `app/admin/users/page.tsx` | User management table |
+| `app/admin/analytics/page.tsx` | Platform analytics & charts |
+| `app/admin/controls/page.tsx` | Feature flags & controls |
+| `app/admin/moderation/page.tsx` | Content moderation queue |
+| `app/admin/announcements/page.tsx` | Announcement system |
+| `components/ui/Header.tsx` | Shows admin link for admin users |
+
+#### Key Learnings
+
+1. **Navigation Component Architecture**:
+   - Public `Navigation.tsx` must explicitly exclude ALL authenticated routes
+   - When adding new protected route groups, remember to update `isAuthenticatedRoute`
+
+2. **Admin Route Pattern**:
+   - Admin pages use their own layout with sidebar navigation
+   - No need for public navigation - admin has dedicated UI
+
+3. **Testing with Playwright MCP**:
+   - Browser automation useful for verifying production deployments
+   - Can navigate, interact, and take screenshots programmatically
+
+#### Current Admin Access
+
+- **Admin Email**: `nickloveacquisition@gmail.com`
+- **Admin URL**: https://philosophy-app-eight.vercel.app/admin
+- **Admin Features**: User management, analytics, platform controls
