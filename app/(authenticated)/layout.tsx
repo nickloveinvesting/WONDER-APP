@@ -4,23 +4,21 @@ import { Header } from '@/components/ui/Header';
 import { QuadrantNav } from '@/components/QuadrantNav';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { signOut } from '@/lib/actions';
-import { unstable_cache } from 'next/cache';
 
-// Cache profile fetch for 60 seconds to speed up navigation
-const getCachedProfile = unstable_cache(
-  async (userId: string) => {
-    const supabase = await createClient();
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('username, influence_score, daily_streak, longest_streak, streak_protected')
-      .eq('id', userId)
-      .single();
+// Temporarily disable caching to ensure fresh data
+export const dynamic = 'force-dynamic';
 
-    return profile;
-  },
-  ['user-profile'],
-  { revalidate: 60, tags: ['profile'] }
-);
+// Direct profile fetch (bypassing cache for now to fix header display)
+async function getProfile(userId: string) {
+  const supabase = await createClient();
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('username, influence_score, daily_streak, longest_streak, streak_protected')
+    .eq('id', userId)
+    .single();
+
+  return profile;
+}
 
 export default async function AuthenticatedLayout({
   children,
@@ -38,10 +36,10 @@ export default async function AuthenticatedLayout({
     redirect('/auth/login');
   }
 
-  // Fetch user profile data for display in header (cached)
+  // Fetch user profile data for display in header
   let userProfile = null;
   try {
-    const profile = await getCachedProfile(user.id);
+    const profile = await getProfile(user.id);
 
     if (profile) {
       userProfile = {
