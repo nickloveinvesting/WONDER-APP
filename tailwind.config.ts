@@ -9,55 +9,69 @@ export default {
   theme: {
     extend: {
       colors: {
-        argued: {
-          navy: '#1A3A52',        // Primary - trust, navigation, CTAs
-          brown: '#8B6F47',       // Secondary - achievements, accents
-          cream: '#F5F3F0',       // Background - warmth, readability
-          black: '#1C1C1C',       // Text - authority, contrast
-          gold: '#D4A574',        // Highlights - premium, hover states
-          success: '#4A7C59',     // Victory, positive states
-          error: '#C84C3C',       // Warnings, losses
-          gray: '#6B7280',        // Disabled, secondary text
+        // Primary Brand Colors - Teal gradient for actions and accents
+        brand: {
+          50: '#f0fdfa',
+          100: '#ccfbf1',
+          200: '#99f6e4',
+          300: '#5eead4',
+          400: '#2dd4bf',
+          500: '#14b8a6',  // Primary teal
+          600: '#0d9488',  // Primary teal hover
+          700: '#0f766e',
+          800: '#115e59',
+          900: '#134e4a',
         },
-        // Legacy colors for backward compatibility during migration
-        primary: {
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          200: '#c7d2fe',
-          300: '#a5b4fc',
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#1A3A52', // Map to argued-navy
-          700: '#3730a3',
-          800: '#312e81',
-          900: '#1e1b4b',
+        // Status Colors
+        success: {
+          50: '#f0fdf4',
+          500: '#22c55e',
+          600: '#16a34a',
         },
-        accent: {
-          50: '#fff1f2',
-          100: '#ffe4e6',
-          200: '#fecdd3',
-          300: '#fda4af',
-          400: '#fb7185',
-          500: '#8B6F47', // Map to argued-brown
-          600: '#e11d48',
-          700: '#be123c',
-          800: '#9f1239',
-          900: '#881337',
+        warning: {
+          50: '#fffbeb',
+          500: '#f59e0b',
+          600: '#d97706',
+        },
+        error: {
+          50: '#fef2f2',
+          500: '#ef4444',
+          600: '#dc2626',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
         serif: ['Lora', 'Georgia', 'serif'],
         mono: ['Monaco', 'Courier New', 'monospace'],
       },
-      backgroundColor: {
-        'argued-cream': '#F5F3F0',
-        'argued-navy': '#1A3A52',
+      spacing: {
+        // Layout-specific spacing
+        'sidebar': '16rem',           // 256px
+        'sidebar-collapsed': '4rem',  // 64px
+        'header': '3.5rem',           // 56px
+        'mobile-nav': '3.5rem',       // 56px
       },
-      textColor: {
-        'argued-navy': '#1A3A52',
-        'argued-black': '#1C1C1C',
-        'argued-brown': '#8B6F47',
+      maxWidth: {
+        'reading': '68ch',            // Optimal reading width
+        'content': '80rem',           // 1280px max content
+      },
+      borderRadius: {
+        'xl': '0.75rem',   // 12px
+        '2xl': '1rem',     // 16px
+        '3xl': '1.5rem',   // 24px
+      },
+      transitionDuration: {
+        'fast': '150ms',
+        'base': '200ms',
+        'slow': '300ms',
+      },
+      zIndex: {
+        'dropdown': '10',
+        'sticky': '20',
+        'fixed': '30',
+        'drawer': '40',
+        'modal': '50',
+        'toast': '60',
       },
     },
   },

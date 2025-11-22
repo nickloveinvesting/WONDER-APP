@@ -30,9 +30,10 @@ interface HeaderProps {
     streakProtected?: boolean;
   } | null;
   onSignOut?: () => void;
+  onMenuClick?: () => void;
 }
 
-export function Header({ user, onSignOut }: HeaderProps) {
+export function Header({ user, onSignOut, onMenuClick }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
@@ -192,13 +193,13 @@ export function Header({ user, onSignOut }: HeaderProps) {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Opens drawer instead of dropdown */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => onMenuClick ? onMenuClick() : setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-2 rounded-md text-slate-700 hover:bg-slate-50 transition"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <Menu size={24} />
           </button>
         </div>
 

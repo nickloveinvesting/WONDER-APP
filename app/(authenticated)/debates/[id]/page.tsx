@@ -147,7 +147,7 @@ export default async function ConversationDetailPage({
                 </Badge>
               </div>
               {conversation.description && (
-                <p className="text-xl text-slate-600 leading-relaxed font-medium">
+                <p className="text-xl text-slate-600 leading-relaxed font-medium max-w-reading">
                   {conversation.description}
                 </p>
               )}
@@ -272,8 +272,8 @@ export default async function ConversationDetailPage({
                       )}
                     </div>
 
-                    {/* Message content */}
-                    <div className="prose prose-lg max-w-none mb-4">
+                    {/* Message content - constrained to optimal reading width */}
+                    <div className="prose prose-lg max-w-reading mb-4">
                       <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">
                         {message.content}
                       </p>

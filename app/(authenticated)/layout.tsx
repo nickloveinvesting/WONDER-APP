@@ -1,9 +1,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-import { Header } from '@/components/ui/Header';
-import { QuadrantNav } from '@/components/QuadrantNav';
+import { AuthenticatedShell } from '@/components/AuthenticatedShell';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
-import { signOut } from '@/lib/actions';
 
 // Temporarily disable caching to ensure fresh data
 export const dynamic = 'force-dynamic';
@@ -58,23 +56,9 @@ export default async function AuthenticatedLayout({
 
   return (
     <ErrorBoundary>
-      <div className="min-h-screen flex flex-col">
-        {/* Navigation Header */}
-        <Header user={userProfile} onSignOut={signOut} />
-
-        {/* Main Layout with Quadrant Nav */}
-        <div className="flex-1 flex">
-          {/* Left-hand Quadrant Navigation */}
-          <QuadrantNav />
-
-          {/* Main Content */}
-          <main className="flex-1">
-            <ErrorBoundary>
-              {children}
-            </ErrorBoundary>
-          </main>
-        </div>
-      </div>
+      <AuthenticatedShell user={userProfile}>
+        {children}
+      </AuthenticatedShell>
     </ErrorBoundary>
   );
 }
