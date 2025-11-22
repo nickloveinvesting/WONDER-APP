@@ -48,9 +48,9 @@ const getCachedDebates = unstable_cache(
       query = query.eq('quadrant', quadrantFilter);
     }
 
-    return query.limit(20);
+    return query.limit(50);
   },
-  ['debates-list'],
+  ['debates-list-v2'], // Updated cache key to force fresh data
   { revalidate: 30, tags: ['debates'] } // Tag for smart cache invalidation
 );
 
