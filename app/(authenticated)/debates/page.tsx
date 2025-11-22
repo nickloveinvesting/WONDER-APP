@@ -4,9 +4,34 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { VoteButtons } from '@/components/VoteButtons';
-import { Zap } from 'lucide-react';
+import { MessageCircle, Users, Clock } from 'lucide-react';
 import { Database } from '@/lib/database.types';
 import { type VoteType } from '@/lib/actions/voting';
+
+// Helper function for relative time display
+function getRelativeTime(dateString: string): string {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffMins = Math.floor(diffMs / 60000);
+  const diffHours = Math.floor(diffMs / 3600000);
+  const diffDays = Math.floor(diffMs / 86400000);
+
+  if (diffMins < 1) return 'Just now';
+  if (diffMins < 60) return `${diffMins}m ago`;
+  if (diffHours < 24) return `${diffHours}h ago`;
+  if (diffDays < 7) return `${diffDays}d ago`;
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+// Check if discussion is "active" (has activity in last 2 hours)
+function isActive(dateString: string): boolean {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffHours = diffMs / 3600000;
+  return diffHours < 2;
+}
 
 // Temporarily disable caching to ensure fresh data
 export const dynamic = 'force-dynamic';
@@ -23,6 +48,7 @@ type DebateWithCounts = Database['public']['Tables']['debates']['Row'] & {
   argument_count?: number;
   participant_count?: number;
   quadrant?: string;
+  last_activity_at?: string;
 };
 
 type DailyPrompt = Database['public']['Tables']['daily_prompts']['Row'];
@@ -148,48 +174,48 @@ export default async function DebatesPage({ searchParams }: Props) {
           </div>
           <Link href="/debates/create">
             <Button variant="primary" size="lg">
-              + New Post
+              Ask a question
             </Button>
           </Link>
         </div>
 
-        {/* TODAY'S QUESTION - CRITICAL FOR ACTIVATION */}
+        {/* TODAY'S QUESTION - Enhanced with research insights */}
         {todayPrompt && (
-          <div className="mb-10">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-2xl">✨</span>
-              <h2 className="text-xl font-black text-teal-600 uppercase tracking-wide">
+          <div className="mb-12 mt-2">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></div>
+              <h2 className="text-lg font-black text-teal-600 uppercase tracking-wider">
                 Today's Question
               </h2>
             </div>
             <Link href={todayPrompt.debate_id ? `/debates/${todayPrompt.debate_id}` : '/debates/create'}>
-              <Card variant="gradient" className="hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border-2 border-teal-400">
-                <div className="space-y-4">
+              <div className="relative bg-gradient-to-br from-teal-50 via-white to-slate-50 rounded-2xl p-8 border-2 border-teal-300 hover:border-teal-400 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+                <div className="space-y-5">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <Badge variant="status" color="teal" size="sm" className="mb-3">
+                      <Badge variant="status" color="teal" size="sm" className="mb-4">
                         {todayPrompt.category?.toUpperCase() || todayPrompt.topic}
                       </Badge>
-                      <h3 className="text-3xl font-black text-slate-900 mb-3 leading-tight">
+                      <h3 className="text-3xl lg:text-4xl font-black text-slate-900 mb-4 leading-tight">
                         {todayPrompt.question}
                       </h3>
                       {todayPrompt.context && (
-                        <p className="text-lg text-slate-600 font-medium leading-relaxed">
+                        <p className="text-lg text-slate-600 font-medium leading-relaxed line-clamp-2">
                           {todayPrompt.context}
                         </p>
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-4 pt-4 border-t border-slate-200">
-                    <Button variant="primary" size="md">
-                      Join the Conversation →
+                  <div className="flex flex-wrap items-center gap-4 pt-5 border-t border-teal-200">
+                    <Button variant="primary" size="lg">
+                      Share your take
                     </Button>
                     <span className="text-sm text-slate-500 font-medium">
-                      Fresh today • Open to everyone
+                      What do you think?
                     </span>
                   </div>
                 </div>
-              </Card>
+              </div>
             </Link>
           </div>
         )}
@@ -204,80 +230,119 @@ export default async function DebatesPage({ searchParams }: Props) {
 
           {debates && debates.length > 0 ? (
             debates.map((debate) => {
-              const totalVotes = (debate.snap_count || 0) + (debate.zap_count || 0);
               const userVote: VoteType | null = userVotes[debate.id] || null;
+              const lastActivity = debate.last_activity_at || debate.updated_at || debate.created_at;
+              const discussionActive = isActive(lastActivity);
+              const commentCount = debate.argument_count || 0;
+              const participantCount = debate.participant_count || 2;
 
               return (
-                <Card key={debate.id} variant="standard" className="hover:shadow-2xl transition-all duration-300">
-                  <div className="flex gap-6">
-                    {/* Vote Column (Reddit-style) */}
-                    <div className="flex-shrink-0">
+                <div key={debate.id} className="group bg-white rounded-xl border border-slate-200 hover:border-teal-300 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                  <div className="flex gap-5 p-5">
+                    {/* Vote Column - Softer, appreciation-focused */}
+                    <div className="flex-shrink-0 pt-1">
                       <VoteButtons
                         postId={debate.id}
                         initialSnapCount={debate.snap_count || 0}
                         initialZapCount={debate.zap_count || 0}
                         userVote={userVote}
                         orientation="vertical"
-                        size="lg"
+                        size="md"
                       />
                     </div>
 
                     {/* Content */}
-                    <Link href={`/debates/${debate.id}`} className="flex-1 min-w-0 group">
-                      <div className="cursor-pointer py-2">
+                    <Link href={`/debates/${debate.id}`} className="flex-1 min-w-0">
+                      <div className="cursor-pointer">
+                        {/* Header Row with badges and activity indicator */}
                         <div className="flex items-center gap-3 mb-3">
                           {debate.quadrant && (
                             <Badge variant="status" color="slate" size="sm">
                               {getQuadrantName(debate.quadrant)}
                             </Badge>
                           )}
-                          {getStatusBadge(debate.status)}
+                          {discussionActive && (
+                            <span className="flex items-center gap-1.5 text-xs font-bold text-teal-600">
+                              <span className="w-1.5 h-1.5 bg-teal-500 rounded-full animate-pulse"></span>
+                              Active
+                            </span>
+                          )}
                         </div>
-                        <h3 className="text-2xl font-black text-slate-900 group-hover:text-teal-600 transition-colors mb-3 leading-tight">
+
+                        {/* Title - Larger, bolder */}
+                        <h3 className="text-xl lg:text-2xl font-black text-slate-900 group-hover:text-teal-600 transition-colors mb-2 leading-tight">
                           {debate.topic}
                         </h3>
+
+                        {/* Description - Truncated to 2 lines */}
                         {debate.description && (
-                          <p className="text-lg text-slate-600 leading-relaxed font-medium mb-4 line-clamp-3">
+                          <p className="text-base text-slate-600 leading-relaxed font-medium mb-4 line-clamp-2">
                             {debate.description}
                           </p>
                         )}
-                        <div className="flex flex-wrap gap-6 text-sm text-slate-500 font-bold">
-                          <span className="flex items-center gap-2">
-                            💬 <span className="text-slate-700">{debate.argument_count || 0}</span> comments
+
+                        {/* Clean Stats Row */}
+                        <div className="flex items-center gap-5 text-sm text-slate-500">
+                          <span className="flex items-center gap-1.5">
+                            <Users size={14} className="text-slate-400" />
+                            <span className="font-semibold text-slate-600">{participantCount}</span>
+                            <span className="hidden sm:inline">discussing</span>
                           </span>
-                          <span className="flex items-center gap-2">
-                            👤 <span className="text-slate-700">{debate.participant_count || 2}</span> participants
+                          <span className="flex items-center gap-1.5">
+                            <MessageCircle size={14} className="text-slate-400" />
+                            <span className="font-semibold text-slate-600">{commentCount}</span>
                           </span>
-                          {totalVotes > 0 && (
-                            <span className="flex items-center gap-2">
-                              <Zap size={14} className="text-teal-600" />
-                              <span className="text-teal-700 font-black">{totalVotes}</span> {totalVotes === 1 ? 'vote' : 'votes'}
-                            </span>
-                          )}
+                          <span className="flex items-center gap-1.5">
+                            <Clock size={14} className="text-slate-400" />
+                            <span>{getRelativeTime(lastActivity)}</span>
+                          </span>
+                        </div>
+
+                        {/* CTA that appears on hover */}
+                        <div className="mt-4 pt-4 border-t border-slate-100 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                          <span className="inline-flex items-center gap-2 text-teal-600 font-bold text-sm">
+                            {commentCount === 0 ? 'Be first to share your thoughts' : 'Discuss this'} →
+                          </span>
                         </div>
                       </div>
                     </Link>
                   </div>
-                </Card>
+
+                  {/* Low-barrier engagement reactions */}
+                  <div className="px-5 pb-4 pt-0 flex gap-2 border-t border-slate-100 mt-0">
+                    <button
+                      className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-500 hover:bg-teal-50 hover:text-teal-600 transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      💭 Thought-provoking
+                    </button>
+                    <button
+                      className="px-3 py-1.5 rounded-lg text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-slate-700 transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      🤔 Makes me think
+                    </button>
+                  </div>
+                </div>
               );
             })
           ) : (
-            <Card variant="gradient" className="text-center py-16">
-              <div className="max-w-md mx-auto">
-                <div className="text-6xl mb-6">🤔</div>
+            <div className="bg-gradient-to-br from-slate-50 via-white to-teal-50 rounded-2xl border border-slate-200 text-center py-16">
+              <div className="max-w-md mx-auto px-6">
+                <div className="text-6xl mb-6">💭</div>
                 <h3 className="text-2xl font-black text-slate-900 mb-3">
-                  No conversations yet
+                  Start a conversation
                 </h3>
                 <p className="text-lg text-slate-600 font-medium mb-6">
-                  Every great conversation starts with a simple question. No expertise required—just curiosity!
+                  What's on your mind? Share a question or idea—no expertise required, just curiosity.
                 </p>
                 <Link href="/debates/create">
                   <Button variant="primary" size="lg">
-                    Start Your First Conversation
+                    Ask a question
                   </Button>
                 </Link>
               </div>
-            </Card>
+            </div>
           )}
         </div>
       </div>
