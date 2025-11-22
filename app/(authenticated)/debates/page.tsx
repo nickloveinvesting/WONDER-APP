@@ -7,7 +7,6 @@ import { VoteButtons } from '@/components/VoteButtons';
 import { Zap } from 'lucide-react';
 import { Database } from '@/lib/database.types';
 import { type VoteType } from '@/lib/actions/voting';
-import { unstable_cache } from 'next/cache';
 
 // Temporarily disable caching to ensure fresh data
 export const dynamic = 'force-dynamic';
@@ -33,25 +32,20 @@ type PostVote = {
   vote_type: VoteType;
 };
 
-// Cached function to fetch debates list
-// Tagged so voting action can invalidate cache when votes change
-const getCachedDebates = unstable_cache(
-  async (quadrantFilter?: string) => {
-    const supabase = await createClient();
-    let query = supabase
-      .from('debates')
-      .select('*')
-      .order('created_at', { ascending: false });
+// Direct fetch function (no cache) to ensure fresh data
+async function getDebates(quadrantFilter?: string) {
+  const supabase = await createClient();
+  let query = supabase
+    .from('debates')
+    .select('*')
+    .order('created_at', { ascending: false });
 
-    if (quadrantFilter) {
-      query = query.eq('quadrant', quadrantFilter);
-    }
+  if (quadrantFilter) {
+    query = query.eq('quadrant', quadrantFilter);
+  }
 
-    return query.limit(50);
-  },
-  ['debates-list-v2'], // Updated cache key to force fresh data
-  { revalidate: 30, tags: ['debates'] } // Tag for smart cache invalidation
-);
+  return query.limit(50);
+}
 
 export default async function DebatesPage({ searchParams }: Props) {
   const supabase = await createClient();
@@ -67,8 +61,8 @@ export default async function DebatesPage({ searchParams }: Props) {
   let todayPrompt: DailyPrompt | null = null;
 
   try {
-    // Use cached function for debates list (saves 50-100ms per request)
-    const { data: debatesData, error: debatesError } = await getCachedDebates(
+    // Direct fetch for debates list (no cache to ensure fresh data)
+    const { data: debatesData, error: debatesError } = await getDebates(
       quadrantFilter
     );
 
