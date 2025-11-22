@@ -54,8 +54,7 @@ export function Header({ user, onSignOut }: HeaderProps) {
   const navItems = user
     ? [
       { href: '/home', label: 'Home' },
-      { href: '/debates', label: 'Posts' },
-      { href: '/discuss', label: 'Discuss' },
+      { href: '/debates', label: 'Discuss' },
       { href: '/journal', label: 'Journal' },
       { href: '/leaderboard', label: 'Leaderboard' },
     ]

@@ -33,7 +33,6 @@ export default function Navigation() {
   const isAuthenticatedRoute = pathname ? (
     pathname.startsWith('/home') ||
     pathname.startsWith('/debates') ||
-    pathname.startsWith('/discuss') ||
     pathname.startsWith('/journal') ||
     pathname.startsWith('/leaderboard') ||
     pathname.startsWith('/profile') ||
